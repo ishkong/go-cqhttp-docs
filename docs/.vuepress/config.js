@@ -26,6 +26,7 @@ module.exports = {
             { text: 'API', link: '/api/' },
             { text: 'Event', link: '/event/' },
             { text: 'CQcode', link: '/cqcode/' },
+            { text: 'faq', link: '/faq/' }
         ],
         sidebar: {
             '/guide/': [
