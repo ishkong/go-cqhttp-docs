@@ -1,0 +1,26 @@
+name: Go-cqhttp-docs
+
+on:
+  push:
+    branches: main
+
+jobs:
+  
+  build:
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install and build
+        run: |
+          yarn install
+          yarn docs:build
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: docs/.vuepress/dist
