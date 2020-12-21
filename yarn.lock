@@ -1110,6 +1110,13 @@
   dependencies:
     lodash.debounce "^4.0.8"
 
+"@vuepress/plugin-back-to-top@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.npm.taobao.org/@vuepress/plugin-back-to-top/download/@vuepress/plugin-back-to-top-1.7.1.tgz#8bdc4a2de95f8244f167b3b3066c2610b88aabeb"
+  integrity sha1-i9xKLelfgkTxZ7OzBmwmELiKq+s=
+  dependencies:
+    lodash.debounce "^4.0.8"
+
 "@vuepress/plugin-last-updated@1.7.1":
   version "1.7.1"
   resolved "https://registry.npm.taobao.org/@vuepress/plugin-last-updated/download/@vuepress/plugin-last-updated-1.7.1.tgz?cache=0&sync_timestamp=1602782825472&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40vuepress%2Fplugin-last-updated%2Fdownload%2F%40vuepress%2Fplugin-last-updated-1.7.1.tgz#668c55daa6b8bc1d8ee42cdb4169cf67c01b6e97"
@@ -1117,7 +1124,7 @@
   dependencies:
     cross-spawn "^6.0.5"
 
-"@vuepress/plugin-nprogress@1.7.1":
+"@vuepress/plugin-nprogress@1.7.1", "@vuepress/plugin-nprogress@^1.7.1":
   version "1.7.1"
   resolved "https://registry.npm.taobao.org/@vuepress/plugin-nprogress/download/@vuepress/plugin-nprogress-1.7.1.tgz#101ebf720eaa635a473e16ca16e7b4a7850331fa"
   integrity sha1-EB6/cg6qY1pHPhbKFue0p4UDMfo=
@@ -7602,6 +7609,11 @@ vuepress-plugin-container@^2.0.2:
   dependencies:
     "@vuepress/shared-utils" "^1.2.0"
     markdown-it-container "^2.0.0"
+
+vuepress-plugin-demo-container@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.npm.taobao.org/vuepress-plugin-demo-container/download/vuepress-plugin-demo-container-0.2.0.tgz#5d92161b1c033b91f3cabddd994d5beed47ab6a6"
+  integrity sha1-XZIWGxwDO5Hzyr3dmU1b7tR6tqY=
 
 vuepress-plugin-smooth-scroll@^0.0.3:
   version "0.0.3"
