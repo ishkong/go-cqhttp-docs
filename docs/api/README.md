@@ -169,33 +169,6 @@
 | `filename` | string | 图片文件原名   |
 | `url`      | string | 图片下载地址   |
 
-<details>
-<summary>Onebot v11原始标准</summary>
-<p>
-
-## 获取图片
-
-终结点: `/get_image`
-
-**参数**
-
-| 字段名 | 数据类型 | 默认值 | 说明 |
-| ----- | ------- | ----- | --- |
-| `file` | string | - | 收到的图片文件名（消息段的 `file` **参数**），如 `6B4DE3DFD1BD271E3297859D41C530F5.jpg` |
-
-**响应数据**
-
-| 字段名 | 数据类型 | 说明 |
-| ----- | ------- | --- |
-| `file` | string | 下载后的图片文件路径，如 `/home/somebody/cqhttp/data/image/6B4DE3DFD1BD271E3297859D41C530F5.jpg` |
-
-::: tip 提示
-`can_send_image` 检查是否可以发送图片
-:::
-
-</p>
-</details>
-
 ## 发送好友赞
 
 ::: warning 警告
@@ -249,7 +222,7 @@ Go-cqhttp预计不会支持该API
 
 ## 群组匿名用户禁言
 
-::: warning 注意
+::: danger 警告
 该API可能暂时无法生效
 [Issue#504](https://github.com/Mrs4s/go-cqhttp/issues/504#issuecomment-747796718)
 :::
@@ -309,7 +282,9 @@ Go-cqhttp预计不会支持该API
 ::: warning 注意
 该API暂未被Go-cqhttp支持，您可以提交Pr以使该API被支持
 [提交Pr](https://github.com/Mrs4s/go-cqhttp/compare)
+:::
 
+::: danger 警告
 该API可能暂时无法生效
 [Issue#504](https://github.com/Mrs4s/go-cqhttp/issues/504#issuecomment-747796718)
 :::
@@ -786,7 +761,7 @@ Go-cqhttp预计不会支持该API
 
 ## 获取中文分词（隐藏API）
 
-::: warning 注意
+::: danger 警告
 隐藏 API 是不建议一般用户使用的，它们只应该在 OneBot 实现内部或由 SDK 和框架使用，因为不正确的使用可能造成程序运行不正常。
 :::
 
@@ -806,7 +781,7 @@ Go-cqhttp预计不会支持该API
 
 ## 图片OCR(隐藏API)
 
-::: warning 注意
+::: danger 警告
 隐藏 API 是不建议一般用户使用的，它们只应该在 OneBot 实现内部或由 SDK 和框架使用，因为不正确的使用可能造成程序运行不正常。
 :::
 
@@ -920,7 +895,9 @@ Go-cqhttp预计不会支持该API
 
 ## 获取群子目录文件列表
 
-> `File` 和 `Folder` 对象信息请参考最下方
+::: tip 提示
+`File` 和 `Folder` 对象信息请参考最下方
+:::
 
 终结点: `/get_group_files_by_folder`
 

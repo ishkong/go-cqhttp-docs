@@ -2,11 +2,19 @@ module.exports = {
     title: 'Go-cqhttp帮助中心',
     description: 'Go-cqhttp帮助中心',
     base: '/go-cqhttp-docs/',
-    plugins: [
-        ['@vuepress/search', {
-          searchMaxSuggestions: 10
-        }]
-      ],
+    plugins: {
+        '@vuepress/search': {
+            searchMaxSuggestions: 10
+        },
+        '@vuepress/back-to-top': true,
+        '@vuepress/pwa': {
+            serviceWorker: true,
+            updatePopup: {
+                message: "发现新的内容",
+                buttonText: "刷新",
+            }
+        },
+    },
     themeConfig: {
         search: true,
         searchMaxSuggestions: 5,
@@ -19,7 +27,8 @@ module.exports = {
         docsRepo: 'ishkong/go-cqhttp-docs',
         editLinks: true,
         editLinkText: '编辑此页',
-        displayAllHeaders: true,
+        displayAllHeaders: false,
+        sidebarDepth: 2,
         activeHeaderLinks: true,
         nav: [
             { text: 'Home', link: '/' },
