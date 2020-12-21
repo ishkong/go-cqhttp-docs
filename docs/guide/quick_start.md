@@ -126,13 +126,19 @@ enable ws?(Y/n)
 #### 方法二
 
 使用更新参数, 在命令行中打开go-cqhttp所在目录
-##### windows
+
+**windows**
+
 输入指令
-`go-cqhttp.exe update`
+```powershell
+go-cqhttp.exe update
+```
 
 如果在国内连接github下载速度可能很慢, 可以使用镜像源下载
 
-`go-cqhttp.exe update https://github.rc1844.workers.dev`
+```powershell
+go-cqhttp.exe update https://github.rc1844.workers.dev
+```
 
 几个可用的镜像源
 - `https://hub.fastgit.org`
@@ -140,5 +146,10 @@ enable ws?(Y/n)
 - `https://github.bajins.com`
 - `https://github.rc1844.workers.dev`
 
-##### linux
+**linux**
+
 方法与windows基本一致, 将 `go-cqhttp.exe` 替换为 `./go-cqhttp`即可
+
+```shell
+./go-cqhttp update
+```

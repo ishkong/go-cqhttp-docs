@@ -6,6 +6,7 @@
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.7.1",
     "@vuepress/plugin-nprogress": "^1.7.1",
+    "@vuepress/plugin-pwa": "^1.7.1",
     "vuepress": "^1.7.1",
     "vuepress-plugin-demo-container": "^0.2.0"
   },
