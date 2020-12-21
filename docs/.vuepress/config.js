@@ -1,6 +1,7 @@
 module.exports = {
     title: 'Go-cqhttp帮助中心',
     description: 'Go-cqhttp帮助中心',
+    base: '/go-cqhttp-docs/',
     plugins: [
         ['@vuepress/search', {
           searchMaxSuggestions: 10
