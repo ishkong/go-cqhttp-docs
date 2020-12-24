@@ -51,7 +51,12 @@ Type: `face`
 
 [1] 发送时，`file` 参数除了支持使用收到的语音文件名直接发送外，还支持其它形式，参考 [图片](#图片)。
 
-## 短视频
+## 短视频 <Badge text="收"/>
+
+::: warning 注意
+该CQCode仅能用于接收短视频，暂时没有支持发送的计划
+[Issue#123](https://github.com/Mrs4s/go-cqhttp/issues/123#issuecomment-674657213)
+:::
 
 ```json
 {
@@ -324,6 +329,13 @@ Type : `image`
 
 示例: `[CQ:image,file=http://baidu.com/1.jpg,type=show,id=40004]`
 
+::: warning 注意
+图片最大不能超过30MB
+
+PNG格式不会被压缩，JPG可能不会二次压缩，GIF非动图转成PNG
+
+GIF动图原样发送(总帧数最大300张，超过无法发出，无论循不循环)
+:::
 
 ## 回复
 
