@@ -228,7 +228,7 @@
 | `sender_id` | int64 | | 发送者 QQ 号 |
 | `user_id`     | int64  | | 发送者 QQ 号 |
 | `target_id` | int64 | | 被戳者 QQ 号 |
-| `time` | time | | 时间 |
+| `time` | int64 | | 时间 |
 
 ## 群内戳一戳
 
