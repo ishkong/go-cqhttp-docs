@@ -2,8 +2,8 @@
 
 ## go-cqhttp
 
-使用 [mirai](https://github.com/mamoe/mirai) 以及 [MiraiGo](https://github.com/Mrs4s/MiraiGo) 开发的cqhttp golang原生实现, 并在 [cqhttp 原版](https://github.com/richardchien/coolq-http-api) 的基础上做了部分修改和拓展.
-文档目前还在撰写中.
+使用 [mirai](https://github.com/mamoe/mirai) 以及 [MiraiGo](https://github.com/Mrs4s/MiraiGo) 开发的 cqhttp golang 原生实现, 并在 [cqhttp 原版](https://github.com/richardchien/coolq-http-api) 的基础上做了部分修改和拓展。
+文档目前还在撰写中。
 
 测试版可前往 [Release](https://github.com/Mrs4s/go-cqhttp/releases) 下载。
 
@@ -25,16 +25,16 @@
 - 解析/发送 合并转发
 - 使用代理请求网络图片
 
-## 关于ISSUE
+## 关于 issue
 
-以下ISSUE会被直接关闭
+以下 issue 会被直接关闭
 - 提交BUG不使用Template
 - 询问已知问题
 - 提问找不到重点
 - 重复提问
 
 ::: warning 注意
-开发者并没有义务回复您的问题. 您应该具备基本的提问技巧。
+开发者并没有义务回复您的问题, 您应该具备基本的提问技巧。
 :::
 
 ## 性能
