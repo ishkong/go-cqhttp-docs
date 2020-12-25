@@ -1,4 +1,4 @@
-# api
+# API
 
 ## 发送私聊消息
 
@@ -78,7 +78,7 @@
 | `message_id` | number (int32) | - | 消息 ID |
 
 ::: tip 提示
-该 api 无响应数据
+该 API 无响应数据
 :::
 
 ## 获取消息
@@ -172,7 +172,7 @@
 ## 发送好友赞
 
 ::: warning 警告
-go-cqhttp 预计不会支持该 api
+go-cqhttp 预计不会支持该 API
 :::
 
 终结点：`/send_like`
@@ -185,7 +185,7 @@ go-cqhttp 预计不会支持该 api
 | `times` | number | 1 | 赞的次数, 每个好友每天最多 10 次 |
 
 ::: tip 提示
-该 api 无响应数据
+该 API 无响应数据
 :::
 
 ## 群组踢人
@@ -201,7 +201,7 @@ go-cqhttp 预计不会支持该 api
 | `reject_add_request` | boolean | `false` | 拒绝此人的加群请求 |
 
 ::: tip 提示
-该 api 无响应数据
+该 API 无响应数据
 :::
 
 ## 群组单人禁言
@@ -217,13 +217,13 @@ go-cqhttp 预计不会支持该 api
 | `duration` | number | `30 * 60` | 禁言时长, 单位秒, 0 表示取消禁言 |
 
 ::: tip 提示
-该 api 无响应数据
+该 API 无响应数据
 :::
 
 ## 群组匿名用户禁言
 
 ::: danger 警告
-该 api 可能暂时无法生效
+该 API 可能暂时无法生效
 详情 : [Issue#504](https://github.com/Mrs4s/go-cqhttp/issues/504#issuecomment-747796718)
 :::
 
@@ -243,7 +243,7 @@ go-cqhttp 预计不会支持该 api
 :::
 
 ::: tip 提示
-该 api 无响应数据
+该 API 无响应数据
 :::
 
 ## 群组全员禁言
@@ -258,7 +258,7 @@ go-cqhttp 预计不会支持该 api
 | `enable` | boolean | `true` | 是否禁言 |
 
 ::: tip 提示
-该 api 无响应数据
+该 API 无响应数据
 :::
 
 ## 群组设置管理员
@@ -274,18 +274,18 @@ go-cqhttp 预计不会支持该 api
 | `enable` | boolean | `true` | true 为设置, false 为取消 |
 
 ::: tip 提示
-该 api 无响应数据
+该 API 无响应数据
 :::
 
 ## 群组匿名
 
 ::: warning 注意
-该 api 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 api 被支持
-[提交Pr](https://github.com/Mrs4s/go-cqhttp/compare)
+该 API 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 API 被支持
+[提交 pr](https://github.com/Mrs4s/go-cqhttp/compare)
 :::
 
 ::: danger 警告
-该 api 可能暂时无法生效
+该 API 可能暂时无法生效
 详情 : [Issue#504](https://github.com/Mrs4s/go-cqhttp/issues/504#issuecomment-747796718)
 :::
 
@@ -299,7 +299,7 @@ go-cqhttp 预计不会支持该 api
 | `enable` | boolean | `true` | 是否允许匿名聊天 |
 
 ::: tip 提示
-该 api 无响应数据
+该 API 无响应数据
 :::
 
 ## 设置群名片 ( 群备注 )
@@ -315,7 +315,7 @@ go-cqhttp 预计不会支持该 api
 | `card` | string | 空 | 群名片内容, 不填或空字符串表示删除群名片 |
 
 ::: tip 提示
-该 api 无响应数据
+该 API 无响应数据
 :::
 
 ## 设置群名
@@ -330,7 +330,7 @@ go-cqhttp 预计不会支持该 api
 | `group_name` | string | 新群名 |
 
 ::: tip 提示
-该 api 无响应数据
+该 API 无响应数据
 :::
 
 ## 退出群组
@@ -345,7 +345,7 @@ go-cqhttp 预计不会支持该 api
 | `is_dismiss` | boolean | `false` | 是否解散, 如果登录号是群主, 则仅在此项为 true 时能够解散 |
 
 ::: tip 提示
-该 api 无响应数据
+该 API 无响应数据
 :::
 
 ## 设置群组专属头衔
@@ -362,7 +362,7 @@ go-cqhttp 预计不会支持该 api
 | `duration` | number | `-1` | 专属头衔有效期, 单位秒, -1 表示永久, 不过此项似乎没有效果, 可能是只有某些特殊的时间长度有效, 有待测试 |
 
 ::: tip 提示
-该 api 无响应数据
+该 API 无响应数据
 :::
 
 ## 处理加好友请求
@@ -378,7 +378,7 @@ go-cqhttp 预计不会支持该 api
 | `remark` | string | 空 | 添加后的好友备注（仅在同意时有效） |
 
 ::: tip 提示
-该 api 无响应数据
+该 API 无响应数据
 :::
 
 ## 处理加群请求／邀请
@@ -395,7 +395,7 @@ go-cqhttp 预计不会支持该 api
 | `reason` | string | 空 | 拒绝理由（仅在拒绝时有效） |
 
 ::: tip 提示
-该 api 无响应数据
+该 API 无响应数据
 :::
 
 ## 获取登录号信息
@@ -403,7 +403,7 @@ go-cqhttp 预计不会支持该 api
 终结点：`/get_login_info`
 
 ::: tip 提示
-该 api 无需参数
+该 API 无需参数
 :::
 
 **响应数据**
@@ -438,7 +438,7 @@ go-cqhttp 预计不会支持该 api
 终结点：`/get_friend_list`
 
 ::: tip 提示
-该 api 无需参数
+该 API 无需参数
 :::
 
 **响应数据**
@@ -476,7 +476,7 @@ go-cqhttp 预计不会支持该 api
 终结点：`/get_group_list`
 
 ::: tip 提示
-该 api 无需参数
+该 API 无需参数
 :::
 
 **响应数据**
@@ -573,7 +573,7 @@ go-cqhttp 预计不会支持该 api
 ## 获取 Cookies
 
 ::: warning 注意
-该 api 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 api 被支持
+该 API 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 API 被支持
 [提交 pr](https://github.com/Mrs4s/go-cqhttp/compare)
 :::
 
@@ -594,14 +594,14 @@ go-cqhttp 预计不会支持该 api
 ## 获取 CSRF Token
 
 ::: warning 注意
-该 api 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 api 被支持
+该 API 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 API 被支持
 [提交 pr](https://github.com/Mrs4s/go-cqhttp/compare)
 :::
 
 终结点：`/get_csrf_token`
 
 ::: tip 提示
-该 api 无需参数
+该 API 无需参数
 :::
 
 **响应数据**
@@ -613,7 +613,7 @@ go-cqhttp 预计不会支持该 api
 ## 获取 QQ 相关接口凭证
 
 ::: warning 注意
-该 api 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 api 被支持
+该 API 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 API 被支持
 [提交 pr](https://github.com/Mrs4s/go-cqhttp/compare)
 :::
 
@@ -639,7 +639,7 @@ go-cqhttp 预计不会支持该 api
 ## 获取语音
 
 ::: warning 注意
-该 api 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 api 被支持
+该 API 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 API 被支持
 [提交 pr](https://github.com/Mrs4s/go-cqhttp/compare)
 :::
 
@@ -667,7 +667,7 @@ go-cqhttp 预计不会支持该 api
 终结点：`/can_send_image`
 
 ::: tip 提示
-该 api 无需参数
+该 API 无需参数
 :::
 
 **响应数据**
@@ -681,7 +681,7 @@ go-cqhttp 预计不会支持该 api
 终结点：`/can_send_record`
 
 ::: tip 提示
-该 api 无需参数
+该 API 无需参数
 :::
 
 **响应数据**
@@ -695,7 +695,7 @@ go-cqhttp 预计不会支持该 api
 终结点：`/get_version_info`
 
 ::: tip 提示
-该 api 无需参数
+该 API 无需参数
 :::
 
 **响应数据**
@@ -719,13 +719,13 @@ go-cqhttp 预计不会支持该 api
 | `delay` | number | `0` | 要延迟的毫秒数, 如果默认情况下无法重启, 可以尝试设置延迟为 2000 左右 |
 
 ::: tip 提示
-该 api 无响应数据
+该 API 无响应数据
 :::
 
 ## 清理缓存
 
 ::: warning 注意
-该 api 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 api 被支持
+该 API 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 API 被支持
 [提交 pr](https://github.com/Mrs4s/go-cqhttp/compare)
 :::
 
@@ -734,7 +734,7 @@ go-cqhttp 预计不会支持该 api
 用于清理积攒了太多的缓存文件。
 
 ::: tip 提示
-该 api 无需参数也没有响应数据
+该 API 无需参数也没有响应数据
 :::
 
 ## 设置群头像
@@ -759,10 +759,10 @@ go-cqhttp 预计不会支持该 api
 
 [3] 目前这个API在登录一段时间后因cookie失效而失效, 请考虑后使用
 
-## 获取中文分词 ( 隐藏 api )
+## 获取中文分词 ( 隐藏 API )
 
 ::: danger 警告
-隐藏 api 是不建议一般用户使用的, 它们只应该在 OneBot 实现内部或由 SDK 和框架使用, 因为不正确的使用可能造成程序运行不正常。
+隐藏 API 是不建议一般用户使用的, 它们只应该在 OneBot 实现内部或由 SDK 和框架使用, 因为不正确的使用可能造成程序运行不正常。
 :::
 
 终结点: `/.get_word_slices`
@@ -779,7 +779,7 @@ go-cqhttp 预计不会支持该 api
 | -------- | -------- | ---- |
 | `slices` | string[] | 词组 |
 
-## 图片 OCR ( 隐藏 api )
+## 图片 OCR ( 隐藏 API )
 
 ::: danger 警告
 隐藏 API 是不建议一般用户使用的, 它们只应该在 OneBot 实现内部或由 SDK 和框架使用, 因为不正确的使用可能造成程序运行不正常。
@@ -1015,10 +1015,10 @@ go-cqhttp 预计不会支持该 api
 | `remain_at_all_count_for_group` | int16      | 群内所有管理当天剩余 @全体成员 次数 |
 | `remain_at_all_count_for_uin`   | int16      | Bot 当天剩余 @全体成员 次数      |
 
-## 对事件执行快速操作 ( 隐藏 api )
+## 对事件执行快速操作 ( 隐藏 API )
 
 ::: warning 注意
-隐藏 api 是不建议一般用户使用的, 它们只应该在 OneBot 实现内部或由 SDK 和框架使用, 因为不正确的使用可能造成程序运行不正常。
+隐藏 API 是不建议一般用户使用的, 它们只应该在 OneBot 实现内部或由 SDK 和框架使用, 因为不正确的使用可能造成程序运行不正常。
 :::
 
 终结点：`/.handle_quick_operation`
@@ -1033,5 +1033,5 @@ go-cqhttp 预计不会支持该 api
 | `operation` | object | - | 快速操作对象, 例如 `{"ban": true, "reply": "请不要说脏话"}` |
 
 ::: tip 提示
-该 api 没有响应数据
+该 API 没有响应数据
 :::

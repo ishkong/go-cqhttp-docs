@@ -32,11 +32,11 @@ module.exports = {
         activeHeaderLinks: true,
         nav: [
             { text: 'Home', link: '/' },
-            { text: 'guide', link: '/guide/' },
-            { text: 'api', link: '/api/' },
-            { text: 'event', link: '/event/' },
+            { text: 'Guide', link: '/guide/' },
+            { text: 'API', link: '/api/' },
+            { text: 'Event', link: '/event/' },
             { text: 'CQ code', link: '/cqcode/' },
-            { text: 'faq', link: '/faq/' }
+            { text: 'Faq', link: '/faq/' }
         ],
         sidebar: {
             '/guide/': [

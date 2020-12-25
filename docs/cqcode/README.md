@@ -4,7 +4,7 @@
 
 Type: `face`
 
-范围 : **发送/接收**
+范围: **发送/接收**
 
 ```json
 {
@@ -103,7 +103,7 @@ Type: `face`
 ## 猜拳魔法表情
 
 ::: warning 注意
-该 CQcode 暂未被 go-cqhttp 支持, 您可以提交Pr以使该 CQcode 被支持
+该 CQcode 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 CQcode 被支持
 [提交 pr](https://github.com/Mrs4s/go-cqhttp/compare)
 :::
 
@@ -121,7 +121,7 @@ Type: `face`
 ## 掷骰子魔法表情
 
 ::: warning 注意
-该 CQcode 暂未被 go-cqhttp 支持, 您可以提交Pr以使该 CQcode 被支持
+该 CQcode 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 CQcode 被支持
 [提交 pr](https://github.com/Mrs4s/go-cqhttp/compare)
 :::
 
@@ -139,7 +139,7 @@ Type: `face`
 ## 窗口抖动（戳一戳） <Badge text="发"/>
 
 ::: warning 注意
-该 CQcode 暂未被 go-cqhttp 支持, 您可以提交Pr以使该 CQcode 被支持
+该 CQcode 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 CQcode 被支持
 [提交 pr](https://github.com/Mrs4s/go-cqhttp/compare)
 :::
 
@@ -161,7 +161,7 @@ Type: `face`
 ## 匿名发消息 <Badge text="发"/>
 
 ::: warning 注意
-该 CQcode 暂未被 go-cqhttp 支持, 您可以提交Pr以使该 CQcode 被支持
+该 CQcode 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 CQcode 被支持
 [提交 pr](https://github.com/Mrs4s/go-cqhttp/compare)
 :::
 
@@ -210,7 +210,7 @@ Type: `face`
 ## 推荐好友/群
 
 ::: warning 注意
-该 CQcode 暂未被 go-cqhttp 支持, 您可以提交Pr以使该 CQcode 被支持
+该 CQcode 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 CQcode 被支持
 [提交 pr](https://github.com/Mrs4s/go-cqhttp/compare)
 :::
 
@@ -227,7 +227,7 @@ Type: `face`
 ## 位置
 
 ::: warning 注意
-该 CQcode 暂未被 go-cqhttp 支持, 您可以提交Pr以使该 CQcode 被支持
+该 CQcode 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 CQcode 被支持
 [提交 pr](https://github.com/Mrs4s/go-cqhttp/compare)
 :::
 
@@ -371,7 +371,7 @@ Type: `redbag`
 
 Type: `poke`
 
-范围: 仅群聊
+范围: **仅群聊**
 
 参数:
 
@@ -383,11 +383,15 @@ Type: `poke`
 
 ## 礼物 <Badge text="发"/>
 
-> 注意 : 仅支持免费礼物, 发送群礼物消息 无法撤回, 返回的 `message id`  恒定为 `0`
+::: warning 注意
+
+仅支持免费礼物, 发送群礼物消息 无法撤回, 返回的 `message id`  恒定为 `0`
+
+:::
 
 Type: `gift`
 
-范围: 仅群聊,接收的时候不是 CQ 码
+范围: **仅群聊,接收的时候不是 CQ 码**
 
 参数 :
 
@@ -533,7 +537,7 @@ Type: `xml`
 
 #### ps:重要 : xml 中的 value 部分, 记得 html 实体化处理后, 再打加入到 CQ 码中
 
-#### qq 音乐
+#### QQ 音乐
 
 ```xml
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?><msg serviceID="2" templateID="1" action="web" brief="&#91;分享&#93; 十年" sourceMsgId="0" url="https://i.y.qq.com/v8/playsong.html?_wv=1&amp;songid=4830342&amp;souce=qqshare&amp;source=qqshare&amp;ADTAG=qqshare" flag="0" adverSign="0" multiMsgFlag="0" ><item layout="2"><audio cover="http://imgcache.qq.com/music/photo/album_500/26/500_albumpic_89526_0.jpg" src="http://ws.stream.qqmusic.qq.com/C400003mAan70zUy5O.m4a?guid=1535153710&amp;vkey=D5315B8C0603653592AD4879A8A3742177F59D582A7A86546E24DD7F282C3ACF81526C76E293E57EA1E42CF19881C561275D919233333ADE&amp;uin=&amp;fromtag=3" /><title>十年</title><summary>陈奕迅</summary></item><source name="QQ音乐" icon="https://i.gtimg.cn/open/app_icon/01/07/98/56/1101079856_100_m.png" url="http://web.p.qq.com/qqmpmobile/aio/app.html?id=1101079856" action="app"  a_actionData="com.tencent.qqmusic" i_actionData="tencent1101079856://" appid="1101079856" /></msg>
@@ -629,7 +633,7 @@ Type: `cardimage`
 
 Type: `tts`
 
-范围: 仅群聊
+范围: **仅群聊**
 
 参数:
 
