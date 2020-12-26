@@ -4,8 +4,6 @@
 
 Type: `face`
 
-范围: **发送/接收**
-
 ```json
 {
     "type": "face",
