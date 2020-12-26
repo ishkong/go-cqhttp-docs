@@ -700,11 +700,11 @@ go-cqhttp 预计不会支持该 API
 | `app_version` | string | 应用版本, 如 `1.2.3` |
 | `protocol_version` | string | OneBot 标准版本, 如 `v11` |
 
-## 重启 OneBot 实现
+## 重启 go-cqhttp
 
 终结点：`/set_restart`
 
-由于重启 OneBot 实现同时需要重启 API 服务, 这意味着当前的 API 请求会被中断, 因此需要异步地重启, 接口返回的 `status` 是 `async`。
+由于重启 go-cqhttp 实现同时需要重启 API 服务, 这意味着当前的 API 请求会被中断, 因此需要异步地重启, 接口返回的 `status` 是 `async`。
 
 **参数**
 
@@ -773,17 +773,17 @@ go-cqhttp 预计不会支持该 API
 | -------- | -------- | ---- |
 | `slices` | string[] | 词组 |
 
-## 图片 OCR ( 隐藏 API )
-
-::: danger 警告
-隐藏 API 是不建议一般用户使用的, 它们只应该在 OneBot 实现内部或由 SDK 和框架使用, 因为不正确的使用可能造成程序运行不正常。
-:::
+## 图片 OCR
 
 ::: warning 注意
 目前图片OCR接口仅支持接受的图片
+
+ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能访问, 后期将只保留后者.
+
+[go-cqhttp-v0.9.34更新日志](https://github.com/Mrs4s/go-cqhttp/releases/tag/v0.9.34)
 :::
 
-终结点: `/.ocr_image`
+终结点: `/ocr_image`或`/.ocr_image`
 
 **参数**
 
@@ -1028,4 +1028,49 @@ go-cqhttp 预计不会支持该 API
 
 ::: tip 提示
 该 API 没有响应数据
+:::
+
+## 获取VIP信息
+
+终结点：`/_get_vip_info`
+
+**参数**
+
+| 字段名 | 数据类型 | 默认值 | 说明 |
+| ----- | ------- | ----- | --- |
+| `user_id` | int64 | | 用户ID |
+
+**响应数据**
+
+| 字段                | 类型    | 说明    |
+| ------------------ | ------- | ------ |
+| `user_id`          | int64   | 用户ID  |
+| `nickname`         | string  | 用户昵称 |
+| `level`            | int64   | VIP等级 |
+| `level_speed`      | float64 | |
+| `vip_level`        | string  | |
+| `vip_growth_speed` | int64   | 成长速度 |
+| `vip_growth_total` | int64   | 总成长值 |
+
+## 发送群公告
+
+终结点： `/_send_group_notice`
+
+**参数**
+
+| 字段名      | 数据类型  | 默认值 | 说明    |
+| ---------- | ------- | ----- | ------ |
+| `group_id` | int64   |       | 群号    |
+| `content`  | string  |       | 公告内容 |
+
+::: warning 注意
+未知响应数据
+:::
+
+## 重载事件过滤器
+
+终结点：`/reload_event_filter`
+
+::: tip 提示
+该 API 无需参数也没有响应数据
 :::
