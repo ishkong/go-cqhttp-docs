@@ -222,9 +222,8 @@ go-cqhttp 预计不会支持该 API
 
 ## 群组匿名用户禁言
 
-::: danger 警告
-该 API 可能暂时无法生效
-详情 : [Issue#504](https://github.com/Mrs4s/go-cqhttp/issues/504#issuecomment-747796718)
+::: warning 注意
+该 API 从 go-cqhttp-v0.9.36 开始支持
 :::
 
 终结点：`/set_group_anonymous_ban`
@@ -282,11 +281,6 @@ go-cqhttp 预计不会支持该 API
 ::: warning 注意
 该 API 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 API 被支持
 [提交 pr](https://github.com/Mrs4s/go-cqhttp/compare)
-:::
-
-::: danger 警告
-该 API 可能暂时无法生效
-详情 : [Issue#504](https://github.com/Mrs4s/go-cqhttp/issues/504#issuecomment-747796718)
 :::
 
 终结点：`/set_group_anonymous`

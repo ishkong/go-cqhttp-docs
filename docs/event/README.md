@@ -6,26 +6,26 @@
 
 | 字段名 | 数据类型 | 可能的值 | 说明 |
 | ----- | ------- | ------- | ---- |
-| `time` | number (int64) | - | 事件发生的时间戳 |
-| `self_id` | number (int64) | - | 收到事件的机器人 QQ 号 |
+| `time` | int64 | - | 事件发生的时间戳 |
+| `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
 | `post_type` | string | `message` | 上报类型 |
 | `message_type` | string | `private` | 消息类型 |
 | `sub_type` | string | `friend`、`group`、`other` | 消息子类型, 如果是好友则是 `friend`, 如果是群临时会话则是 `group` |
-| `message_id` | number (int32) | - | 消息 ID |
-| `user_id` | number (int64) | - | 发送者 QQ 号 |
+| `message_id` | int32 | - | 消息 ID |
+| `user_id` | int64 | - | 发送者 QQ 号 |
 | `message` | message | - | 消息内容 |
 | `raw_message` | string | - | 原始消息内容 |
-| `font` | number (int32) | - | 字体 |
+| `font` | int32 | - | 字体 |
 | `sender` | object | - | 发送人信息 |
 
 其中 `sender` 字段的内容如下：
 
 | 字段名 | 数据类型 | 说明 |
 | ----- | ------ | ---- |
-| `user_id` | number (int64) | 发送者 QQ 号 |
+| `user_id` | int64 | 发送者 QQ 号 |
 | `nickname` | string | 昵称 |
 | `sex` | string | 性别, `male` 或 `female` 或 `unknown` |
-| `age` | number (int32) | 年龄 |
+| `age` | int32 | 年龄 |
 
 需要注意的是, `sender` 中的各字段是尽最大努力提供的, 也就是说, 不保证每个字段都一定存在, 也不保证存在的字段都是完全正确的 ( 缓存可能过期 ) 。
 
@@ -42,25 +42,29 @@
 
 | 字段名 | 数据类型 | 可能的值 | 说明 |
 | ----- | ------- | ------- | --- |
-| `time` | number (int64) | - | 事件发生的时间戳 |
-| `self_id` | number (int64) | - | 收到事件的机器人 QQ 号 |
+| `time` | int64 | - | 事件发生的时间戳 |
+| `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
 | `post_type` | string | `message` | 上报类型 |
 | `message_type` | string | `group` | 消息类型 |
 | `sub_type` | string | `normal`、`anonymous`、`notice` | 消息子类型, 正常消息是 `normal`, 匿名消息是 `anonymous`, 系统提示 ( 如「管理员已禁止群内匿名聊天」 ) 是 `notice` |
-| `message_id` | number (int32) | - | 消息 ID |
-| `group_id` | number (int64) | - | 群号 |
-| `user_id` | number (int64) | - | 发送者 QQ 号 |
+| `message_id` | int32 | - | 消息 ID |
+| `group_id` | int64 | - | 群号 |
+| `user_id` | int64 | - | 发送者 QQ 号 |
 | `anonymous` | object | - | 匿名信息, 如果不是匿名消息则为 null |
 | `message` | message | - | 消息内容 |
 | `raw_message` | string | - | 原始消息内容 |
-| `font` | number (int32) | - | 字体 |
+| `font` | int32 | - | 字体 |
 | `sender` | object | - | 发送人信息 |
+
+::: warning 注意
+`anonymous` 字段从 go-cqhttp-v0.9.36 开始支持
+:::
 
 其中 `anonymous` 字段的内容如下：
 
 | 字段名 | 数据类型 | 说明 |
 | ----- | ------ | ---- |
-| `id` | number (int64) | 匿名用户 ID |
+| `id` | int64 | 匿名用户 ID |
 | `name` | string | 匿名用户名称 |
 | `flag` | string | 匿名用户 flag, 在调用禁言 API 时需要传入 |
 
@@ -68,11 +72,11 @@
 
 | 字段名 | 数据类型 | 说明 |
 | ----- | ------ | ---- |
-| `user_id` | number (int64) | 发送者 QQ 号 |
+| `user_id` | int64 | 发送者 QQ 号 |
 | `nickname` | string | 昵称 |
 | `card` | string | 群名片／备注 |
 | `sex` | string | 性别, `male` 或 `female` 或 `unknown` |
-| `age` | number (int32) | 年龄 |
+| `age` | int32 | 年龄 |
 | `area` | string | 地区 |
 | `level` | string | 成员等级 |
 | `role` | string | 角色, `owner` 或 `admin` 或 `member` |
@@ -98,12 +102,12 @@
 
 | 字段名 | 数据类型 | 可能的值 | 说明 |
 | ----- | ------ | ------- | ---- |
-| `time` | number (int64) | - | 事件发生的时间戳 |
-| `self_id` | number (int64) | - | 收到事件的机器人 QQ 号 |
+| `time` | int64 | - | 事件发生的时间戳 |
+| `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
 | `post_type` | string | `notice` | 上报类型 |
 | `notice_type` | string | `group_upload` | 通知类型 |
-| `group_id` | number (int64) | - | 群号 |
-| `user_id` | number (int64) | - | 发送者 QQ 号 |
+| `group_id` | int64 | - | 群号 |
+| `user_id` | int64 | - | 发送者 QQ 号 |
 | `file` | object | - | 文件信息 |
 
 其中 `file` 字段的内容如下：
@@ -112,8 +116,8 @@
 | ----- | ------ | ---- |
 | `id` | string | 文件 ID |
 | `name` | string | 文件名 |
-| `size` | number (int64) | 文件大小 ( 字节数 )  |
-| `busid` | number (int64) | busid ( 目前不清楚有什么作用 )  |
+| `size` | int64 | 文件大小 ( 字节数 )  |
+| `busid` | int64 | busid ( 目前不清楚有什么作用 )  |
 
 ## 群管理员变动
 
@@ -121,13 +125,13 @@
 
 | 字段名 | 数据类型 | 可能的值 | 说明 |
 | ----- | ------ | -------- | --- |
-| `time` | number (int64) | - | 事件发生的时间戳 |
-| `self_id` | number (int64) | - | 收到事件的机器人 QQ 号 |
+| `time` | int64 | - | 事件发生的时间戳 |
+| `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
 | `post_type` | string | `notice` | 上报类型 |
 | `notice_type` | string | `group_admin` | 通知类型 |
 | `sub_type` | string | `set`、`unset` | 事件子类型, 分别表示设置和取消管理员 |
-| `group_id` | number (int64) | - | 群号 |
-| `user_id` | number (int64) | - | 管理员 QQ 号 |
+| `group_id` | int64 | - | 群号 |
+| `user_id` | int64 | - | 管理员 QQ 号 |
 
 ## 群成员减少
 
@@ -135,14 +139,14 @@
 
 | 字段名 | 数据类型 | 可能的值 | 说明 |
 | ----- | ------ | -------- | --- |
-| `time` | number (int64) | - | 事件发生的时间戳 |
-| `self_id` | number (int64) | - | 收到事件的机器人 QQ 号 |
+| `time` | int64 | - | 事件发生的时间戳 |
+| `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
 | `post_type` | string | `notice` | 上报类型 |
 | `notice_type` | string | `group_decrease` | 通知类型 |
 | `sub_type` | string | `leave`、`kick`、`kick_me` | 事件子类型, 分别表示主动退群、成员被踢、登录号被踢 |
-| `group_id` | number (int64) | - | 群号 |
-| `operator_id` | number (int64) | - | 操作者 QQ 号 ( 如果是主动退群, 则和 `user_id` 相同 )  |
-| `user_id` | number (int64) | - | 离开者 QQ 号 |
+| `group_id` | int64 | - | 群号 |
+| `operator_id` | int64 | - | 操作者 QQ 号 ( 如果是主动退群, 则和 `user_id` 相同 )  |
+| `user_id` | int64 | - | 离开者 QQ 号 |
 
 ## 群成员增加
 
@@ -150,14 +154,14 @@
 
 | 字段名 | 数据类型 | 可能的值 | 说明 |
 | ----- | ------ | -------- | --- |
-| `time` | number (int64) | - | 事件发生的时间戳 |
-| `self_id` | number (int64) | - | 收到事件的机器人 QQ 号 |
+| `time` | int64 | - | 事件发生的时间戳 |
+| `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
 | `post_type` | string | `notice` | 上报类型 |
 | `notice_type` | string | `group_increase` | 通知类型 |
 | `sub_type` | string | `approve`、`invite` | 事件子类型, 分别表示管理员已同意入群、管理员邀请入群 |
-| `group_id` | number (int64) | - | 群号 |
-| `operator_id` | number (int64) | - | 操作者 QQ 号 |
-| `user_id` | number (int64) | - | 加入者 QQ 号 |
+| `group_id` | int64 | - | 群号 |
+| `operator_id` | int64 | - | 操作者 QQ 号 |
+| `user_id` | int64 | - | 加入者 QQ 号 |
 
 ## 群禁言
 
@@ -165,15 +169,15 @@
 
 | 字段名 | 数据类型 | 可能的值 | 说明 |
 | ----- | ------ | -------- | --- |
-| `time` | number (int64) | - | 事件发生的时间戳 |
-| `self_id` | number (int64) | - | 收到事件的机器人 QQ 号 |
+| `time` | int64 | - | 事件发生的时间戳 |
+| `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
 | `post_type` | string | `notice` | 上报类型 |
 | `notice_type` | string | `group_ban` | 通知类型 |
 | `sub_type` | string | `ban`、`lift_ban` | 事件子类型, 分别表示禁言、解除禁言 |
-| `group_id` | number (int64) | - | 群号 |
-| `operator_id` | number (int64) | - | 操作者 QQ 号 |
-| `user_id` | number (int64) | - | 被禁言 QQ 号 |
-| `duration` | number (int64) | - | 禁言时长, 单位秒 |
+| `group_id` | int64 | - | 群号 |
+| `operator_id` | int64 | - | 操作者 QQ 号 |
+| `user_id` | int64 | - | 被禁言 QQ 号 |
+| `duration` | int64 | - | 禁言时长, 单位秒 |
 
 ## 好友添加
 
@@ -181,11 +185,11 @@
 
 | 字段名 | 数据类型 | 可能的值 | 说明 |
 | ----- | ------ | -------- | --- |
-| `time` | number (int64) | - | 事件发生的时间戳 |
-| `self_id` | number (int64) | - | 收到事件的机器人 QQ 号 |
+| `time` | int64 | - | 事件发生的时间戳 |
+| `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
 | `post_type` | string | `notice` | 上报类型 |
 | `notice_type` | string | `friend_add` | 通知类型 |
-| `user_id` | number (int64) | - | 新添加好友 QQ 号 |
+| `user_id` | int64 | - | 新添加好友 QQ 号 |
 
 ## 群消息撤回
 
@@ -193,14 +197,14 @@
 
 | 字段名          | 数据类型   | 可能的值       | 说明           |
 | ------------- | ------ | -------------- | -------------- |
-| `time` | number (int64) | - | 事件发生的时间戳 |
-| `self_id` | number (int64) | - | 收到事件的机器人 QQ 号 |
+| `time` | int64 | - | 事件发生的时间戳 |
+| `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
 | `post_type`   | string | `notice`       | 上报类型       |
 | `notice_type` | string | `group_recall` | 通知类型       |
-| `group_id`    | number (int64)  |                | 群号           |
-| `user_id`     | number (int64)  |                | 消息发送者 QQ 号   |
-| `operator_id` | number (int64)  |                | 操作者 QQ 号  |
-| `message_id`  | number (int64)  |                | 被撤回的消息 ID |
+| `group_id`    | int64  |                | 群号           |
+| `user_id`     | int64  |                | 消息发送者 QQ 号   |
+| `operator_id` | int64  |                | 操作者 QQ 号  |
+| `message_id`  | int64  |                | 被撤回的消息 ID |
 
 ## 好友消息撤回
 
@@ -208,12 +212,12 @@
 
 | 字段名          | 数据类型   | 可能的值       | 说明           |
 | ------------- | ------ | -------------- | -------------- |
-| `time` | number (int64) | - | 事件发生的时间戳 |
-| `self_id` | number (int64) | - | 收到事件的机器人 QQ 号 |
+| `time` | int64 | - | 事件发生的时间戳 |
+| `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
 | `post_type`   | string | `notice`       | 上报类型       |
 | `notice_type` | string | `friend_recall`| 通知类型       |
-| `user_id`     | number (int64)  |                | 好友 QQ 号        |
-| `message_id`  | number (int64)  |                | 被撤回的消息 ID |
+| `user_id`     | int64  |                | 好友 QQ 号        |
+| `message_id`  | int64  |                | 被撤回的消息 ID |
 
 ## 好友戳一戳
 
@@ -327,11 +331,11 @@
 
 | 字段名 | 数据类型 | 可能的值 | 说明 |
 | ----- | ------ | -------- | --- |
-| `time` | number (int64) | - | 事件发生的时间戳 |
-| `self_id` | number (int64) | - | 收到事件的机器人 QQ 号 |
+| `time` | int64 | - | 事件发生的时间戳 |
+| `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
 | `post_type` | string | `request` | 上报类型 |
 | `request_type` | string | `friend` | 请求类型 |
-| `user_id` | number (int64) | - | 发送请求的 QQ 号 |
+| `user_id` | int64 | - | 发送请求的 QQ 号 |
 | `comment` | string | - | 验证信息 |
 | `flag` | string | - | 请求 flag, 在调用处理请求的 API 时需要传入 |
 
@@ -348,13 +352,13 @@
 
 | 字段名 | 数据类型 | 可能的值 | 说明 |
 | ----- | ------ | -------- | --- |
-| `time` | number (int64) | - | 事件发生的时间戳 |
-| `self_id` | number (int64) | - | 收到事件的机器人 QQ 号 |
+| `time` | int64 | - | 事件发生的时间戳 |
+| `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
 | `post_type` | string | `request` | 上报类型 |
 | `request_type` | string | `group` | 请求类型 |
 | `sub_type` | string | `add`、`invite` | 请求子类型, 分别表示加群请求、邀请登录号入群 |
-| `group_id` | number (int64) | - | 群号 |
-| `user_id` | number (int64) | - | 发送请求的 QQ 号 |
+| `group_id` | int64 | - | 群号 |
+| `user_id` | int64 | - | 发送请求的 QQ 号 |
 | `comment` | string | - | 验证信息 |
 | `flag` | string | - | 请求 flag, 在调用处理请求的 API 时需要传入 |
 
