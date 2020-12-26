@@ -1,6 +1,6 @@
 module.exports = {
-    title: 'Go-cqhttp帮助中心',
-    description: 'Go-cqhttp帮助中心',
+    title: 'go-cqhttp 帮助中心',
+    description: 'go-cqhttp帮助中心',
     base: '/go-cqhttp-docs/',
     plugins: {
         '@vuepress/search': {
@@ -35,8 +35,8 @@ module.exports = {
             { text: 'Guide', link: '/guide/' },
             { text: 'API', link: '/api/' },
             { text: 'Event', link: '/event/' },
-            { text: 'CQcode', link: '/cqcode/' },
-            { text: 'faq', link: '/faq/' }
+            { text: 'CQ code', link: '/cqcode/' },
+            { text: 'Faq', link: '/faq/' }
         ],
         sidebar: {
             '/guide/': [

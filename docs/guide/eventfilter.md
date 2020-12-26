@@ -1,7 +1,7 @@
 # 事件过滤器
 
-在go-cqhttp同级目录下新建`filter.json`文件即可开启事件过滤器, 启动时会读取该文件中定义的过滤规则（使用 JSON 编写）, 若文件不存在, 或过滤规则语法错误, 则不会启用事件过滤器。
-事件过滤器会处理所有事件(包括心跳事件在内的元事件),请谨慎使用！！
+在 go-cqhttp 同级目录下新建 `filter.json` 文件即可开启事件过滤器, 启动时会读取该文件中定义的过滤规则 ( 使用 json 编写 ) , 若文件不存在, 或过滤规则语法错误, 则不会启用事件过滤器。
+事件过滤器会处理所有事件(包括心跳事件在内的元事件), 请谨慎使用！！
 
 注意: 与客户端建立连接的握手事件**不会**经过事件过滤器
 
@@ -123,20 +123,20 @@
 | 运算符      | 要求的参数类型             | 可作用于的类型                                        |
 | ----------- | -------------------------- | ----------------------------------------------------- |
 | `.not`      | object                     | 任何                                                  |
-| `.and`      | object                     | 若参数中全为运算符, 则任何；若不全为运算符, 则 object |
+| `.and`      | object                     | 若参数中全为运算符, 则任何; 若不全为运算符, 则 object |
 | `.or`       | array（数组元素为 object） | 任何                                                  |
 | `.eq`       | 任何                       | 任何                                                  |
 | `.neq`      | 任何                       | 任何                                                  |
-| `.in`       | string/array               | 若参数为 string, 则 string；若参数为 array, 则任何    |
+| `.in`       | string/array               | 若参数为 string, 则 string ; 若参数为 array, 则任何   |
 | `.contains` | string                     | string                                                |
 | `.regex`    | string                     | string                                                |
 
 
 ## 过滤时的事件数据对象
 
-过滤器在go-cqhttp构建好事件数据后运行, 各事件的数据字段见[OneBot标准]( https://github.com/howmanybots/onebot/blob/master/v11/specs/event/README.md )。
+过滤器在go-cqhttp构建好事件数据后运行, 各事件的数据字段见 [OneBot标准]( https://github.com/howmanybots/onebot/blob/master/v11/specs/event/README.md )。
 
 这里有几点需要注意：
 
-- `message` 字段在运行过滤器时和上报信息类型相同（见 [消息格式]( https://github.com/howmanybots/onebot/blob/master/v11/specs/message/array.md )）
-- `raw_message` 字段为未经**CQ码**处理的原始消息字符串, 这意味着其中可能会出现形如 `[CQ:face,id=123]` 的 CQ 码
+- `message` 字段在运行过滤器时和上报信息类型相同 (见 [消息格式]( https://github.com/howmanybots/onebot/blob/master/v11/specs/message/array.md ) )
+- `raw_message` 字段为未经 **CQ码** 处理的原始消息字符串, 这意味着其中可能会出现形如 `[CQ:face,id=123]` 的 CQ 码

@@ -1,11 +1,11 @@
 #  开始
 
-欢迎来到 go-cqhttp 文档 目前还在咕
+欢迎来到 go-cqhttp 文档 !
 
 ## 基础教程
 
 ### 下载
-从[release](https://github.com/Mrs4s/go-cqhttp/releases)界面下载最新版本的go-cqhttp
+从 [release](https://github.com/Mrs4s/go-cqhttp/releases) 界面下载最新版本的go-cqhttp
 
 - Windows下32位文件为  `go-cqhttp-v*-windows-386.zip`
 - Windows下64位文件为 `go-cqhttp-v*-windows-amd64.zip`
@@ -14,7 +14,7 @@
 - Linux下64位文件为 `go-cqhttp-v*-linux-amd64.tar.gz`
 - Linux下arm用(如树莓派)文件为 `go-cqhttp-v*-linux-arm.tar.gz`
 - MD5文件为 `*.md5` , 用于校验文件完整性
-- 如果没有你所使用的系统版本或者希望自己构建, 请移步[进阶指南-如何自己构建](#如何自己构建)
+- 如果没有你所使用的系统版本或者希望自己构建, 请移步 [进阶指南-如何自己构建](#如何自己构建)
 
 ### 解压
 
@@ -42,7 +42,7 @@
 
 #### Windows 懒人法
 
-1. [下载包含Windows.bat的zip](https://github.com/fkx4-p/go-cqhttp-lazy/archive/master.zip)
+1. [下载包含 Windows.bat 的 zip](https://github.com/fkx4-p/go-cqhttp-lazy/archive/master.zip)
 2. 解压
 3. 将`Windows.bat`复制/剪切到**go-cqhttp**文件夹
 4. 双击运行
@@ -80,7 +80,7 @@ enable ws?(Y/n)
 [INFO]: 默认配置文件已生成,请编辑 config.hjson 后重启程序.
 ```
 
-4. 参照[config.md](https://github.com/Mrs4s/go-cqhttp/blob/master/docs/config.md)和你所用到的插件的 `README` 填入参数
+4. 参照 [config.md](https://github.com/Mrs4s/go-cqhttp/blob/master/docs/config.md) 和你所用到的插件的 `README` 填入参数
 5. 再次输入 `./go-cqhttp`, `Enter`运行
 ```
 [INFO]: 登录成功 欢迎使用: balabala

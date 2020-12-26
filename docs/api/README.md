@@ -10,7 +10,7 @@
 | ----- | ------- | ----- | --- |
 | `user_id` | number | - | 对方 QQ 号 |
 | `message` | message | - | 要发送的内容 |
-| `auto_escape` | boolean | `false` | 消息内容是否作为纯文本发送（即不解析 CQ 码），只在 `message` 字段是字符串时有效 |
+| `auto_escape` | boolean | `false` | 消息内容是否作为纯文本发送 ( 即不解析 CQ 码 ) , 只在 `message` 字段是字符串时有效 |
 
 **响应数据**
 
@@ -28,7 +28,7 @@
 | ----- | ------- | ----- | --- |
 | `group_id` | number | - | 群号 |
 | `message` | message | - | 要发送的内容 |
-| `auto_escape` | boolean | `false` | 消息内容是否作为纯文本发送（即不解析 CQ 码），只在 `message` 字段是字符串时有效 |
+| `auto_escape` | boolean | `false` | 消息内容是否作为纯文本发送 ( 即不解析 CQ 码) , 只在 `message` 字段是字符串时有效 |
 
 **响应数据**
 
@@ -36,16 +36,16 @@
 | ----- | ------- | --- |
 | `message_id` | number (int32) | 消息 ID |
 
-## 发送合并转发(群)
+## 发送合并转发 ( 群 )
 
 终结点: `/send_group_forward_msg`
 
 **参数**
 
-| 字段       | 类型           | 说明                         |
-| ---------- | -------------- | ---------------------------- |
-| `group_id` | int64          | 群号                         |
-| `messages` | forward node[] | 自定义转发消息, 具体看CQCode |
+| 字段       | 类型           | 说明                          |
+| ---------- | -------------- | ----------------------------- |
+| `group_id` | int64          | 群号                          |
+| `messages` | forward node[] | 自定义转发消息, 具体看 CQcode |
 
 ## 发送消息
 
@@ -55,11 +55,11 @@
 
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
-| `message_type` | string | - | 消息类型，支持 `private`、`group`，分别对应私聊、群组，如不传入，则根据传入的 `*_id` 参数判断 |
-| `user_id` | number | - | 对方 QQ 号（消息类型为 `private` 时需要） |
-| `group_id` | number | - | 群号（消息类型为 `group` 时需要） |
+| `message_type` | string | - | 消息类型, 支持 `private`、`group` , 分别对应私聊、群组, 如不传入, 则根据传入的 `*_id` 参数判断 |
+| `user_id` | number | - | 对方 QQ 号 ( 消息类型为 `private` 时需要 ) |
+| `group_id` | number | - | 群号 ( 消息类型为 `group` 时需要 ) |
 | `message` | message | - | 要发送的内容 |
-| `auto_escape` | boolean | `false` | 消息内容是否作为纯文本发送（即不解析 CQ 码），只在 `message` 字段是字符串时有效 |
+| `auto_escape` | boolean | `false` | 消息内容是否作为纯文本发送 ( 即不解析 CQ 码 ) , 只在 `message` 字段是字符串时有效 |
 
 **响应数据**
 
@@ -78,7 +78,7 @@
 | `message_id` | number (int32) | - | 消息 ID |
 
 ::: tip 提示
-该API无响应数据
+该 API 无响应数据
 :::
 
 ## 获取消息
@@ -172,7 +172,7 @@
 ## 发送好友赞
 
 ::: warning 警告
-Go-cqhttp预计不会支持该API
+go-cqhttp 预计不会支持该 API
 :::
 
 终结点：`/send_like`
@@ -182,10 +182,10 @@ Go-cqhttp预计不会支持该API
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
 | `user_id` | number | - | 对方 QQ 号 |
-| `times` | number | 1 | 赞的次数，每个好友每天最多 10 次 |
+| `times` | number | 1 | 赞的次数, 每个好友每天最多 10 次 |
 
 ::: tip 提示
-该API无响应数据
+该 API 无响应数据
 :::
 
 ## 群组踢人
@@ -201,7 +201,7 @@ Go-cqhttp预计不会支持该API
 | `reject_add_request` | boolean | `false` | 拒绝此人的加群请求 |
 
 ::: tip 提示
-该API无响应数据
+该 API 无响应数据
 :::
 
 ## 群组单人禁言
@@ -214,17 +214,17 @@ Go-cqhttp预计不会支持该API
 | ----- | ------- | ----- | --- |
 | `group_id` | number | - | 群号 |
 | `user_id` | number | - | 要禁言的 QQ 号 |
-| `duration` | number | `30 * 60` | 禁言时长，单位秒，0 表示取消禁言 |
+| `duration` | number | `30 * 60` | 禁言时长, 单位秒, 0 表示取消禁言 |
 
 ::: tip 提示
-该API无响应数据
+该 API 无响应数据
 :::
 
 ## 群组匿名用户禁言
 
 ::: danger 警告
-该API可能暂时无法生效
-[Issue#504](https://github.com/Mrs4s/go-cqhttp/issues/504#issuecomment-747796718)
+该 API 可能暂时无法生效
+详情 : [Issue#504](https://github.com/Mrs4s/go-cqhttp/issues/504#issuecomment-747796718)
 :::
 
 终结点：`/set_group_anonymous_ban`
@@ -234,16 +234,16 @@ Go-cqhttp预计不会支持该API
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
 | `group_id` | number | - | 群号 |
-| `anonymous` | object | - | 可选，要禁言的匿名用户对象（群消息上报的 `anonymous` 字段） |
-| `anonymous_flag` 或 `flag` | string | - | 可选，要禁言的匿名用户的 flag（需从群消息上报的数据中获得） |
-| `duration` | number | `30 * 60` | 禁言时长，单位秒，无法取消匿名用户禁言 |
+| `anonymous` | object | - | 可选, 要禁言的匿名用户对象（群消息上报的 `anonymous` 字段） |
+| `anonymous_flag` 或 `flag` | string | - | 可选, 要禁言的匿名用户的 flag（需从群消息上报的数据中获得） |
+| `duration` | number | `30 * 60` | 禁言时长, 单位秒, 无法取消匿名用户禁言 |
 
 ::: tip 提示
-上面的 `anonymous` 和 `anonymous_flag` 两者任选其一传入即可，若都传入，则使用 `anonymous`。
+上面的 `anonymous` 和 `anonymous_flag` 两者任选其一传入即可, 若都传入, 则使用 `anonymous`。
 :::
 
 ::: tip 提示
-该API无响应数据
+该 API 无响应数据
 :::
 
 ## 群组全员禁言
@@ -258,7 +258,7 @@ Go-cqhttp预计不会支持该API
 | `enable` | boolean | `true` | 是否禁言 |
 
 ::: tip 提示
-该API无响应数据
+该 API 无响应数据
 :::
 
 ## 群组设置管理员
@@ -271,22 +271,22 @@ Go-cqhttp预计不会支持该API
 | ----- | ------- | ----- | --- |
 | `group_id` | number | - | 群号 |
 | `user_id` | number | - | 要设置管理员的 QQ 号 |
-| `enable` | boolean | `true` | true 为设置，false 为取消 |
+| `enable` | boolean | `true` | true 为设置, false 为取消 |
 
 ::: tip 提示
-该API无响应数据
+该 API 无响应数据
 :::
 
 ## 群组匿名
 
 ::: warning 注意
-该API暂未被Go-cqhttp支持，您可以提交Pr以使该API被支持
-[提交Pr](https://github.com/Mrs4s/go-cqhttp/compare)
+该 API 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 API 被支持
+[提交 pr](https://github.com/Mrs4s/go-cqhttp/compare)
 :::
 
 ::: danger 警告
-该API可能暂时无法生效
-[Issue#504](https://github.com/Mrs4s/go-cqhttp/issues/504#issuecomment-747796718)
+该 API 可能暂时无法生效
+详情 : [Issue#504](https://github.com/Mrs4s/go-cqhttp/issues/504#issuecomment-747796718)
 :::
 
 终结点：`/set_group_anonymous`
@@ -299,10 +299,10 @@ Go-cqhttp预计不会支持该API
 | `enable` | boolean | `true` | 是否允许匿名聊天 |
 
 ::: tip 提示
-该API无响应数据
+该 API 无响应数据
 :::
 
-## 设置群名片（群备注）
+## 设置群名片 ( 群备注 )
 
 终结点：`/set_group_card`
 
@@ -312,10 +312,10 @@ Go-cqhttp预计不会支持该API
 | ----- | ------- | ----- | --- |
 | `group_id` | number | - | 群号 |
 | `user_id` | number | - | 要设置的 QQ 号 |
-| `card` | string | 空 | 群名片内容，不填或空字符串表示删除群名片 |
+| `card` | string | 空 | 群名片内容, 不填或空字符串表示删除群名片 |
 
 ::: tip 提示
-该API无响应数据
+该 API 无响应数据
 :::
 
 ## 设置群名
@@ -330,7 +330,7 @@ Go-cqhttp预计不会支持该API
 | `group_name` | string | 新群名 |
 
 ::: tip 提示
-该API无响应数据
+该 API 无响应数据
 :::
 
 ## 退出群组
@@ -342,10 +342,10 @@ Go-cqhttp预计不会支持该API
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
 | `group_id` | number | - | 群号 |
-| `is_dismiss` | boolean | `false` | 是否解散，如果登录号是群主，则仅在此项为 true 时能够解散 |
+| `is_dismiss` | boolean | `false` | 是否解散, 如果登录号是群主, 则仅在此项为 true 时能够解散 |
 
 ::: tip 提示
-该API无响应数据
+该 API 无响应数据
 :::
 
 ## 设置群组专属头衔
@@ -358,11 +358,11 @@ Go-cqhttp预计不会支持该API
 | ----- | ------- | ----- | --- |
 | `group_id` | number | - | 群号 |
 | `user_id` | number | - | 要设置的 QQ 号 |
-| `special_title` | string | 空 | 专属头衔，不填或空字符串表示删除专属头衔 |
-| `duration` | number | `-1` | 专属头衔有效期，单位秒，-1 表示永久，不过此项似乎没有效果，可能是只有某些特殊的时间长度有效，有待测试 |
+| `special_title` | string | 空 | 专属头衔, 不填或空字符串表示删除专属头衔 |
+| `duration` | number | `-1` | 专属头衔有效期, 单位秒, -1 表示永久, 不过此项似乎没有效果, 可能是只有某些特殊的时间长度有效, 有待测试 |
 
 ::: tip 提示
-该API无响应数据
+该 API 无响应数据
 :::
 
 ## 处理加好友请求
@@ -378,7 +378,7 @@ Go-cqhttp预计不会支持该API
 | `remark` | string | 空 | 添加后的好友备注（仅在同意时有效） |
 
 ::: tip 提示
-该API无响应数据
+该 API 无响应数据
 :::
 
 ## 处理加群请求／邀请
@@ -390,12 +390,12 @@ Go-cqhttp预计不会支持该API
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
 | `flag` | string | - | 加群请求的 flag（需从上报的数据中获得） |
-| `sub_type` 或 `type` | string | - | `add` 或 `invite`，请求类型（需要和上报消息中的 `sub_type` 字段相符） |
+| `sub_type` 或 `type` | string | - | `add` 或 `invite`, 请求类型（需要和上报消息中的 `sub_type` 字段相符） |
 | `approve` | boolean | `true` | 是否同意请求／邀请 |
 | `reason` | string | 空 | 拒绝理由（仅在拒绝时有效） |
 
 ::: tip 提示
-该API无响应数据
+该 API 无响应数据
 :::
 
 ## 获取登录号信息
@@ -403,7 +403,7 @@ Go-cqhttp预计不会支持该API
 终结点：`/get_login_info`
 
 ::: tip 提示
-该API无需参数
+该 API 无需参数
 :::
 
 **响应数据**
@@ -422,7 +422,7 @@ Go-cqhttp预计不会支持该API
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
 | `user_id` | number | - | QQ 号 |
-| `no_cache` | boolean | `false` | 是否不使用缓存（使用缓存可能更新不及时，但响应更快） |
+| `no_cache` | boolean | `false` | 是否不使用缓存（使用缓存可能更新不及时, 但响应更快） |
 
 **响应数据**
 
@@ -430,7 +430,7 @@ Go-cqhttp预计不会支持该API
 | ----- | ------- | --- |
 | `user_id` | number (int64) | QQ 号 |
 | `nickname` | string | 昵称 |
-| `sex` | string | 性别，`male` 或 `female` 或 `unknown` |
+| `sex` | string | 性别, `male` 或 `female` 或 `unknown` |
 | `age` | number (int32) | 年龄 |
 
 ## 获取好友列表
@@ -438,12 +438,12 @@ Go-cqhttp预计不会支持该API
 终结点：`/get_friend_list`
 
 ::: tip 提示
-该API无需参数
+该 API 无需参数
 :::
 
 **响应数据**
 
-响应内容为 JSON 数组，每个元素如下：
+响应内容为 json 数组, 每个元素如下：
 
 | 字段名 | 数据类型 | 说明 |
 | ----- | ------- | --- |
@@ -460,7 +460,7 @@ Go-cqhttp预计不会支持该API
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
 | `group_id` | number | - | 群号 |
-| `no_cache` | boolean | `false` | 是否不使用缓存（使用缓存可能更新不及时，但响应更快） |
+| `no_cache` | boolean | `false` | 是否不使用缓存（使用缓存可能更新不及时, 但响应更快） |
 
 **响应数据**
 
@@ -476,12 +476,12 @@ Go-cqhttp预计不会支持该API
 终结点：`/get_group_list`
 
 ::: tip 提示
-该API无需参数
+该 API 无需参数
 :::
 
 **响应数据**
 
-响应内容为 JSON 数组，每个元素和上面的 `get_group_info` 接口相同。
+响应内容为 json 数组, 每个元素和上面的 `get_group_info` 接口相同。
 
 ## 获取群成员信息
 
@@ -493,7 +493,7 @@ Go-cqhttp预计不会支持该API
 | ----- | ------- | ----- | --- |
 | `group_id` | number | - | 群号 |
 | `user_id`  | number | - | QQ 号 |
-| `no_cache` | boolean | `false` | 是否不使用缓存（使用缓存可能更新不及时，但响应更快） |
+| `no_cache` | boolean | `false` | 是否不使用缓存（使用缓存可能更新不及时, 但响应更快） |
 
 **响应数据**
 
@@ -503,13 +503,13 @@ Go-cqhttp预计不会支持该API
 | `user_id` | number (int64) | QQ 号 |
 | `nickname` | string | 昵称 |
 | `card` | string | 群名片／备注 |
-| `sex` | string | 性别，`male` 或 `female` 或 `unknown` |
+| `sex` | string | 性别, `male` 或 `female` 或 `unknown` |
 | `age` | number (int32) | 年龄 |
 | `area` | string | 地区 |
 | `join_time` | number (int32) | 加群时间戳 |
 | `last_sent_time` | number (int32) | 最后发言时间戳 |
 | `level` | string | 成员等级 |
-| `role` | string | 角色，`owner` 或 `admin` 或 `member` |
+| `role` | string | 角色, `owner` 或 `admin` 或 `member` |
 | `unfriendly` | boolean | 是否不良记录成员 |
 | `title` | string | 专属头衔 |
 | `title_expire_time` | number (int32) | 专属头衔过期时间戳 |
@@ -527,7 +527,7 @@ Go-cqhttp预计不会支持该API
 
 **响应数据**
 
-响应内容为 JSON 数组，每个元素的内容和上面的 `get_group_member_info` 接口相同，但对于同一个群组的同一个成员，获取列表时和获取单独的成员信息时，某些字段可能有所不同，例如 `area`、`title` 等字段在获取列表时无法获得，具体应以单独的成员信息为准。
+响应内容为 json 数组, 每个元素的内容和上面的 `get_group_member_info` 接口相同, 但对于同一个群组的同一个成员, 获取列表时和获取单独的成员信息时, 某些字段可能有所不同, 例如 `area`、`title` 等字段在获取列表时无法获得, 具体应以单独的成员信息为准。
 
 ## 获取群荣誉信息
 
@@ -538,19 +538,19 @@ Go-cqhttp预计不会支持该API
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
 | `group_id` | number (int64) | - | 群号 |
-| `type` | string | - | 要获取的群荣誉类型，可传入 `talkative` `performer` `legend` `strong_newbie` `emotion` 以分别获取单个类型的群荣誉数据，或传入 `all` 获取所有数据 |
+| `type` | string | - | 要获取的群荣誉类型, 可传入 `talkative` `performer` `legend` `strong_newbie` `emotion` 以分别获取单个类型的群荣誉数据, 或传入 `all` 获取所有数据 |
 
 **响应数据**
 
 | 字段名 | 数据类型 | 说明 |
 | ----- | ------- | --- |
 | `group_id` | number (int64) | 群号 |
-| `current_talkative` | object | 当前龙王，仅 `type` 为 `talkative` 或 `all` 时有数据 |
-| `talkative_list` | array | 历史龙王，仅 `type` 为 `talkative` 或 `all` 时有数据 |
-| `performer_list` | array | 群聊之火，仅 `type` 为 `performer` 或 `all` 时有数据 |
-| `legend_list` | array | 群聊炽焰，仅 `type` 为 `legend` 或 `all` 时有数据 |
-| `strong_newbie_list` | array | 冒尖小春笋，仅 `type` 为 `strong_newbie` 或 `all` 时有数据 |
-| `emotion_list` | array | 快乐之源，仅 `type` 为 `emotion` 或 `all` 时有数据 |
+| `current_talkative` | object | 当前龙王, 仅 `type` 为 `talkative` 或 `all` 时有数据 |
+| `talkative_list` | array | 历史龙王, 仅 `type` 为 `talkative` 或 `all` 时有数据 |
+| `performer_list` | array | 群聊之火, 仅 `type` 为 `performer` 或 `all` 时有数据 |
+| `legend_list` | array | 群聊炽焰, 仅 `type` 为 `legend` 或 `all` 时有数据 |
+| `strong_newbie_list` | array | 冒尖小春笋, 仅 `type` 为 `strong_newbie` 或 `all` 时有数据 |
+| `emotion_list` | array | 快乐之源, 仅 `type` 为 `emotion` 或 `all` 时有数据 |
 
 其中 `current_talkative` 字段的内容如下：
 
@@ -561,7 +561,7 @@ Go-cqhttp预计不会支持该API
 | `avatar` | string | 头像 URL |
 | `day_count` | number (int32) | 持续天数 |
 
-其它各 `*_list` 的每个元素是一个 JSON 对象，内容如下：
+其它各 `*_list` 的每个元素是一个 json 对象, 内容如下：
 
 | 字段名 | 数据类型 | 说明 |
 | ----- | ------- | --- |
@@ -573,8 +573,8 @@ Go-cqhttp预计不会支持该API
 ## 获取 Cookies
 
 ::: warning 注意
-该API暂未被Go-cqhttp支持，您可以提交Pr以使该API被支持
-[提交Pr](https://github.com/Mrs4s/go-cqhttp/compare)
+该 API 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 API 被支持
+[提交 pr](https://github.com/Mrs4s/go-cqhttp/compare)
 :::
 
 终结点：`/get_cookies`
@@ -594,14 +594,14 @@ Go-cqhttp预计不会支持该API
 ## 获取 CSRF Token
 
 ::: warning 注意
-该API暂未被Go-cqhttp支持，您可以提交Pr以使该API被支持
-[提交Pr](https://github.com/Mrs4s/go-cqhttp/compare)
+该 API 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 API 被支持
+[提交 pr](https://github.com/Mrs4s/go-cqhttp/compare)
 :::
 
 终结点：`/get_csrf_token`
 
 ::: tip 提示
-该API无需参数
+该 API 无需参数
 :::
 
 **响应数据**
@@ -613,12 +613,12 @@ Go-cqhttp预计不会支持该API
 ## 获取 QQ 相关接口凭证
 
 ::: warning 注意
-该API暂未被Go-cqhttp支持，您可以提交Pr以使该API被支持
-[提交Pr](https://github.com/Mrs4s/go-cqhttp/compare)
+该 API 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 API 被支持
+[提交 pr](https://github.com/Mrs4s/go-cqhttp/compare)
 :::
 
 ::: tip 提示
-即上面两个接口的合并。
+即上面两个接口的合并
 :::
 
 终结点：`/get_credentials`
@@ -639,35 +639,35 @@ Go-cqhttp预计不会支持该API
 ## 获取语音
 
 ::: warning 注意
-该API暂未被Go-cqhttp支持，您可以提交Pr以使该API被支持
-[提交Pr](https://github.com/Mrs4s/go-cqhttp/compare)
+该 API 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 API 被支持
+[提交 pr](https://github.com/Mrs4s/go-cqhttp/compare)
 :::
 
 终结点：`/get_record`
 
 ::: tip 提示
-要使用此接口，通常需要安装 ffmpeg，请参考 OneBot 实现的相关说明。
+要使用此接口, 通常需要安装 ffmpeg, 请参考 OneBot 实现的相关说明。
 :::
 
 **参数**
 
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
-| `file` | string | - | 收到的语音文件名（消息段的 `file` 参数），如 `0B38145AA44505000B38145AA4450500.silk` |
-| `out_format`  | string | - | 要转换到的格式，目前支持 `mp3`、`amr`、`wma`、`m4a`、`spx`、`ogg`、`wav`、`flac` |
+| `file` | string | - | 收到的语音文件名（消息段的 `file` 参数）, 如 `0B38145AA44505000B38145AA4450500.silk` |
+| `out_format`  | string | - | 要转换到的格式, 目前支持 `mp3`、`amr`、`wma`、`m4a`、`spx`、`ogg`、`wav`、`flac` |
 
 **响应数据**
 
 | 字段名 | 数据类型 | 说明 |
 | ----- | ------- | --- |
-| `file` | string | 转换后的语音文件路径，如 `/home/somebody/cqhttp/data/record/0B38145AA44505000B38145AA4450500.mp3` |
+| `file` | string | 转换后的语音文件路径, 如 `/home/somebody/cqhttp/data/record/0B38145AA44505000B38145AA4450500.mp3` |
 
 ## 检查是否可以发送图片
 
 终结点：`/can_send_image`
 
 ::: tip 提示
-该API无需参数
+该 API 无需参数
 :::
 
 **响应数据**
@@ -681,7 +681,7 @@ Go-cqhttp预计不会支持该API
 终结点：`/can_send_record`
 
 ::: tip 提示
-该API无需参数
+该 API 无需参数
 :::
 
 **响应数据**
@@ -695,38 +695,38 @@ Go-cqhttp预计不会支持该API
 终结点：`/get_version_info`
 
 ::: tip 提示
-该API无需参数
+该 API 无需参数
 :::
 
 **响应数据**
 
 | 字段名 | 数据类型 | 说明 |
 | ----- | ------- | --- |
-| `app_name` | string | 应用标识，如 `mirai-native` |
-| `app_version` | string | 应用版本，如 `1.2.3` |
-| `protocol_version` | string | OneBot 标准版本，如 `v11` |
+| `app_name` | string | 应用标识, 如 `mirai-native` |
+| `app_version` | string | 应用版本, 如 `1.2.3` |
+| `protocol_version` | string | OneBot 标准版本, 如 `v11` |
 
 ## 重启 OneBot 实现
 
 终结点：`/set_restart`
 
-由于重启 OneBot 实现同时需要重启 API 服务，这意味着当前的 API 请求会被中断，因此需要异步地重启，接口返回的 `status` 是 `async`。
+由于重启 OneBot 实现同时需要重启 API 服务, 这意味着当前的 API 请求会被中断, 因此需要异步地重启, 接口返回的 `status` 是 `async`。
 
 **参数**
 
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
-| `delay` | number | `0` | 要延迟的毫秒数，如果默认情况下无法重启，可以尝试设置延迟为 2000 左右 |
+| `delay` | number | `0` | 要延迟的毫秒数, 如果默认情况下无法重启, 可以尝试设置延迟为 2000 左右 |
 
 ::: tip 提示
-该API无响应数据
+该 API 无响应数据
 :::
 
 ## 清理缓存
 
 ::: warning 注意
-该API暂未被Go-cqhttp支持，您可以提交Pr以使该API被支持
-[提交Pr](https://github.com/Mrs4s/go-cqhttp/compare)
+该 API 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 API 被支持
+[提交 pr](https://github.com/Mrs4s/go-cqhttp/compare)
 :::
 
 终结点：`/clean_cache`
@@ -734,7 +734,7 @@ Go-cqhttp预计不会支持该API
 用于清理积攒了太多的缓存文件。
 
 ::: tip 提示
-该API无需参数也没有响应数据
+该 API 无需参数也没有响应数据
 :::
 
 ## 设置群头像
@@ -749,20 +749,20 @@ Go-cqhttp预计不会支持该API
 | `file`     | string | 图片文件名               |
 | `cache`    | int    | 表示是否使用已缓存的文件 |
 
-[1]`file` **参数**支持以下几种格式：
+[1] `file` **参数**支持以下几种格式：
 
-- 绝对路径，例如 `file:///C:\\Users\Richard\Pictures\1.png`，格式使用 [`file` URI](https://tools.ietf.org/html/rfc8089)
-- 网络 URL，例如 `http://i1.piimg.com/567571/fdd6e7b6d93f1ef0.jpg`
-- Base64 编码，例如 `base64://iVBORw0KGgoAAAANSUhEUgAAABQAAAAVCAIAAADJt1n/AAAAKElEQVQ4EWPk5+RmIBcwkasRpG9UM4mhNxpgowFGMARGEwnBIEJVAAAdBgBNAZf+QAAAAABJRU5ErkJggg==`
+- 绝对路径, 例如 `file:///C:\\Users\Richard\Pictures\1.png`, 格式使用 [`file` URI](https://tools.ietf.org/html/rfc8089)
+- 网络 URL, 例如 `http://i1.piimg.com/567571/fdd6e7b6d93f1ef0.jpg`
+- Base64 编码, 例如 `base64://iVBORw0KGgoAAAANSUhEUgAAABQAAAAVCAIAAADJt1n/AAAAKElEQVQ4EWPk5+RmIBcwkasRpG9UM4mhNxpgowFGMARGEwnBIEJVAAAdBgBNAZf+QAAAAABJRU5ErkJggg==`
 
-[2]`cache`**参数**: 通过网络 URL 发送时有效，`1`表示使用缓存，`0`关闭关闭缓存，默认 为`1`
+[2] `cache`**参数**: 通过网络 URL 发送时有效, `1`表示使用缓存, `0`关闭关闭缓存, 默认 为`1`
 
-[3] 目前这个API在登录一段时间后因cookie失效而失效，请考虑后使用
+[3] 目前这个API在登录一段时间后因cookie失效而失效, 请考虑后使用
 
-## 获取中文分词（隐藏API）
+## 获取中文分词 ( 隐藏 API )
 
 ::: danger 警告
-隐藏 API 是不建议一般用户使用的，它们只应该在 OneBot 实现内部或由 SDK 和框架使用，因为不正确的使用可能造成程序运行不正常。
+隐藏 API 是不建议一般用户使用的, 它们只应该在 OneBot 实现内部或由 SDK 和框架使用, 因为不正确的使用可能造成程序运行不正常。
 :::
 
 终结点: `/.get_word_slices`
@@ -779,10 +779,10 @@ Go-cqhttp预计不会支持该API
 | -------- | -------- | ---- |
 | `slices` | string[] | 词组 |
 
-## 图片OCR(隐藏API)
+## 图片 OCR ( 隐藏 API )
 
 ::: danger 警告
-隐藏 API 是不建议一般用户使用的，它们只应该在 OneBot 实现内部或由 SDK 和框架使用，因为不正确的使用可能造成程序运行不正常。
+隐藏 API 是不建议一般用户使用的, 它们只应该在 OneBot 实现内部或由 SDK 和框架使用, 因为不正确的使用可能造成程序运行不正常。
 :::
 
 ::: warning 注意
@@ -989,7 +989,7 @@ Go-cqhttp预计不会支持该API
 | `packet_lost`      | uint32 | 数据包丢失总数   |
 | `message_received` | uint64 | 接受信息总数     |
 | `message_sent`     | uint64 | 发送信息总数     |
-| `disconnect_times` | uint32 | TCP链接断开次数  |
+| `disconnect_times` | uint32 | TCP 链接断开次数 |
 | `lost_times`       | uint32 | 账号掉线次数     |
 
 ::: warning 注意
@@ -997,7 +997,7 @@ Go-cqhttp预计不会支持该API
 :::
 
 
-## 获取群@全体成员剩余次数
+## 获取群 @全体成员 剩余次数
 
 终结点: `/get_group_at_all_remain`
 
@@ -1011,27 +1011,27 @@ Go-cqhttp预计不会支持该API
 
 | 字段                             | 类型       | 说明                            |
 | ------------------------------- | ---------- | ------------------------------- |
-| `can_at_all`                    | bool       | 是否可以@全体成员                |
-| `remain_at_all_count_for_group` | int16      | 群内所有管理当天剩余@全体成员次数 |
-| `remain_at_all_count_for_uin`   | int16      | BOT当天剩余@全体成员次数         |
+| `can_at_all`                    | bool       | 是否可以 @全体成员               |
+| `remain_at_all_count_for_group` | int16      | 群内所有管理当天剩余 @全体成员 次数 |
+| `remain_at_all_count_for_uin`   | int16      | Bot 当天剩余 @全体成员 次数      |
 
-## 对事件执行快速操作(隐藏API)
+## 对事件执行快速操作 ( 隐藏 API )
 
 ::: warning 注意
-隐藏 API 是不建议一般用户使用的，它们只应该在 OneBot 实现内部或由 SDK 和框架使用，因为不正确的使用可能造成程序运行不正常。
+隐藏 API 是不建议一般用户使用的, 它们只应该在 OneBot 实现内部或由 SDK 和框架使用, 因为不正确的使用可能造成程序运行不正常。
 :::
 
 终结点：`/.handle_quick_operation`
 
-关于事件的快速操作，见 [快速操作](../event/#快速操作)。
+关于事件的快速操作, 见 [快速操作](../event/#快速操作)。
 
 **参数**
 
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
-| `context` | object | - | 事件数据对象，可做精简，如去掉 `message` 等无用字段 |
-| `operation` | object | - | 快速操作对象，例如 `{"ban": true, "reply": "请不要说脏话"}` |
+| `context` | object | - | 事件数据对象, 可做精简, 如去掉 `message` 等无用字段 |
+| `operation` | object | - | 快速操作对象, 例如 `{"ban": true, "reply": "请不要说脏话"}` |
 
 ::: tip 提示
-该API没有响应数据
+该 API 没有响应数据
 :::
