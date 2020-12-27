@@ -166,7 +166,9 @@ go-cqhttp.exe update https://github.rc1844.workers.dev
 
 #### Windows
 
-从 [这里](https://github.com/BtbN/FFmpeg-Builds/releases) 选择版本下载并解压, 并为 `lib` 这个文件夹添加环境变量。
+从 [这里](https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-full.7z) 下载 并解压, 并为 `bin` 这个文件夹添加环境变量。
+
+如果遇到下载速度缓慢的问题可以用 [这个源](http://go-cqhttp.michikawachin.art/ffmpeg-2020-12-24-git-9a0f5e412a-full_build.7z) 。
 
 然后在命令行输入 
 
