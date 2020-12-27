@@ -12,5 +12,5 @@ features:
   details: 轻量, 原生, 高并发, 低占用, 跨平台。
 - title: 未来
   details: 不局限于 onebot 标准 ! go-cqhttp 可以做到更多 !
-  footer: AGPL-3.0 Licensed | Copyright © 2020-present Mrs4s
+footer: AGPL-3.0 Licensed | Copyright © 2020-present Mrs4s
 ---
