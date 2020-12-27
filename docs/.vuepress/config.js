@@ -59,6 +59,7 @@ module.exports = {
             ],
             '/faq/': [
                 '',
+                'slider'
             ]
         }
     }

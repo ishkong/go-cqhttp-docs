@@ -188,7 +188,7 @@
 {"data": {}, "retcode": 0, "status": "ok"}
 ```
 
-## 反向ws配置
+## 反向 ws 配置
 
 接口 : **admin/do_config_reverse**
 
