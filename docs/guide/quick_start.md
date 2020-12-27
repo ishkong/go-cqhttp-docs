@@ -166,7 +166,7 @@ go-cqhttp.exe update https://github.rc1844.workers.dev
 
 #### Windows
 
-从 [这里](https://go-cqhttp.michikawachin.art/ffmpeg-N-100082-g81503ac58a-win64-gpl-shared-vulkan.zip) 下载并解压, 并为 `lib` 这个文件夹添加环境变量。
+从 [这里](https://github.com/BtbN/FFmpeg-Builds/releases) 选择版本下载并解压, 并为 `lib` 这个文件夹添加环境变量。
 
 然后在命令行输入 
 
