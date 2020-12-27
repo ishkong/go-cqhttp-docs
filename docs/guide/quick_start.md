@@ -4,6 +4,12 @@
 
 ## 基础教程
 
+::: warning 注意
+
+- 如果你遇到滑块验证码的问题, 请移步 [这里](../faq/slider.md)
+
+:::
+
 ### 下载
 从 [release](https://github.com/Mrs4s/go-cqhttp/releases) 界面下载最新版本的go-cqhttp
 
@@ -153,3 +159,43 @@ go-cqhttp.exe update https://github.rc1844.workers.dev
 ```shell
 ./go-cqhttp update
 ```
+
+### 安装 ffmpeg
+
+为了支持任意格式的语音发送, 你需要安装 ffmpeg 。
+
+#### Windows
+
+从 [这里](https://go-cqhttp.michikawachin.art/ffmpeg-N-100082-g81503ac58a-win64-gpl-shared-vulkan.zip) 下载并解压, 并为 `lib` 这个文件夹添加环境变量。
+
+然后在命令行输入 
+
+```shell
+setx /M PATH "C:\Program Files\ffmpeg\bin;%PATH%"
+```
+
+自行将这个指令中的 `C:\Program Files` 替换成你的解压目录。
+
+#### Linux
+
+Ubuntu / Debian :
+
+终端执行
+
+```shell
+apt install -y ffmpeg
+```
+
+CentOS : 
+
+终端执行
+
+```shell
+yum install -y epel-release
+
+rpm -v --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro
+rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
+
+yum install ffmpeg ffmpeg-devel
+```
+
