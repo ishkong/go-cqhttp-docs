@@ -100,6 +100,14 @@ enable ws?(Y/n)
 
 暂时咕咕咕了
 
+### 跳过启动的五秒延时
+
+使用命令行参数 `faststart`即可跳过启动的五秒钟延时，例如
+
+```shell
+.\go-cqhttp.exe faststart
+```
+
 ### 验证http是否成功配置
 
 此时, 如果在本地开启的服务器, 可以在浏览器输入`http://127.0.0.1:5700/send_private_msg?user_id=[接收者qq号]&message=[发送的信息]`来发送一条测试信息
