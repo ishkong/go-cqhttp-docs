@@ -93,14 +93,22 @@
 
 **响应数据**
 
-| 字段         | 类型    | 说明       |
+| 字段          | 类型     | 说明       |
 | ------------ | ------- | ---------- |
-| `message_id` | int32   | 消息id     |
-| `real_id`    | int32   | 消息真实id |
-| `sender`     | object  | 发送者     |
-| `time`       | int32   | 发送时间   |
-| `message`    | message | 消息内容   |
-| `raw_message`| message | 原始消息内容 |
+| `message_id` | int32   | 消息id      |
+| `real_id`    | int32   | 消息真实id   |
+| `sender`     | object  | 发送者      |
+| `time`       | int32   | 发送时间    |
+| `message`    | string  | 消息内容    |
+| `raw_message`| string  | 原始消息内容 |
+
+::: warning 注意
+在 go-cqhttp-v0.9.35~v0.9.36-fix3 版本中 `raw_message` 字段为 `message_raw`
+
+在 go-cqhttp-v0.9.35以前的版本中不存在 `messsage_raw` 字段
+
+在 go-cqhttp-v0.9.29-fix1 以前的版本可能不符合该文档
+:::
 
 ## 获取合并转发内容
 
@@ -1042,15 +1050,15 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 
 **响应数据**
 
-| 字段                | 类型    | 说明    |
-| ------------------ | ------- | ------ |
-| `user_id`          | int64   | 用户ID  |
-| `nickname`         | string  | 用户昵称 |
-| `level`            | int64   | VIP等级 |
-| `level_speed`      | float64 | |
-| `vip_level`        | string  | |
-| `vip_growth_speed` | int64   | 成长速度 |
-| `vip_growth_total` | int64   | 总成长值 |
+| 字段                | 类型    | 说明        |
+| ------------------ | ------- | ---------- |
+| `user_id`          | int64   | QQ号       |
+| `nickname`         | string  | 用户昵称    |
+| `level`            | int64   | QQ等级     |
+| `level_speed`      | float64 | 等级加速度  |
+| `vip_level`        | string  | 会员等级    |
+| `vip_growth_speed` | int64   | 会员成长速度 |
+| `vip_growth_total` | int64   | 会员成长总值 |
 
 ## 发送群公告
 
@@ -1063,8 +1071,8 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 | `group_id` | int64   |       | 群号    |
 | `content`  | string  |       | 公告内容 |
 
-::: warning 注意
-未知响应数据
+::: tip 提示
+该 API 没有响应数据
 :::
 
 ## 重载事件过滤器
