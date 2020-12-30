@@ -7,6 +7,13 @@
 
 测试版可前往 [Release](https://github.com/Mrs4s/go-cqhttp/releases) 下载。
 
+<a href="https://github.com/Mrs4s/go-cqhttp/releases">
+    <img src="https://img.shields.io/github/v/release/Mrs4s/go-cqhttp?color=blueviolet&include_prereleases" alt="release">
+</a>
+<a href="https://github.com/Mrs4s/go-cqhttp/actions">
+    <img src="https://github.com/Mrs4s/go-cqhttp/workflows/CI/badge.svg" alt="action">
+</a>
+
 ## 兼容性
 
 ### 接口

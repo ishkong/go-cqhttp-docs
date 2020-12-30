@@ -93,14 +93,22 @@
 
 **响应数据**
 
-| 字段         | 类型    | 说明       |
+| 字段          | 类型     | 说明       |
 | ------------ | ------- | ---------- |
-| `message_id` | int32   | 消息id     |
-| `real_id`    | int32   | 消息真实id |
-| `sender`     | object  | 发送者     |
-| `time`       | int32   | 发送时间   |
-| `message`    | message | 消息内容   |
-| `raw_message`| message | 原始消息内容 |
+| `message_id` | int32   | 消息id      |
+| `real_id`    | int32   | 消息真实id   |
+| `sender`     | object  | 发送者      |
+| `time`       | int32   | 发送时间    |
+| `message`    | string  | 消息内容    |
+| `raw_message`| string  | 原始消息内容 |
+
+::: warning 注意
+在 go-cqhttp-v0.9.35~v0.9.36-fix3 版本中 `raw_message` 字段为 `message_raw`
+
+在 go-cqhttp-v0.9.35以前的版本中不存在 `messsage_raw` 字段
+
+在 go-cqhttp-v0.9.29-fix1 以前的版本可能不符合该文档
+:::
 
 ## 获取合并转发内容
 
