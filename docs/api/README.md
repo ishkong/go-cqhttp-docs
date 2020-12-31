@@ -105,7 +105,7 @@
 ::: warning 注意
 在 go-cqhttp-v0.9.35~v0.9.36-fix3 版本中 `raw_message` 字段为 `message_raw`
 
-在 go-cqhttp-v0.9.35以前的版本中不存在 `messsage_raw` 字段
+在 go-cqhttp-v0.9.35以前的版本中不存在 `message_raw` 字段
 
 在 go-cqhttp-v0.9.29-fix1 以前的版本可能不符合该文档
 :::
