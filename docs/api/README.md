@@ -1,22 +1,28 @@
 # API
 
+::: warning 注意
+本文档所有内容基于go-cqhttp-v0.9.37与框架Nonebot1交互（通过反向WS连接，以string形式上报）所写
+
+当您使用不同框架与go-cqhttp交互时可能存在差异，请注意！
+:::
+
 ## 发送私聊消息
 
 终结点：`/send_private_msg`
 
 **参数**
 
-| 字段名 | 数据类型 | 默认值 | 说明 |
-| ----- | ------- | ----- | --- |
-| `user_id` | number | - | 对方 QQ 号 |
-| `message` | message | - | 要发送的内容 |
+| 字段名         | 数据类型  | 默认值   | 说明                                                                   |
+| ------------- | ------- | ------- | ---------------------------------------------------------------------- |
+| `user_id`     | int64  | -       | 对方 QQ 号                                                              |
+| `message`     | message | -       | 要发送的内容                                                             |
 | `auto_escape` | boolean | `false` | 消息内容是否作为纯文本发送 ( 即不解析 CQ 码 ) , 只在 `message` 字段是字符串时有效 |
 
 **响应数据**
 
 | 字段名 | 数据类型 | 说明 |
 | ----- | ------- | --- |
-| `message_id` | number (int32) | 消息 ID |
+| `message_id` | int32 | 消息 ID |
 
 ##  发送群消息
 
@@ -26,7 +32,7 @@
 
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
-| `group_id` | number | - | 群号 |
+| `group_id` | int64 | - | 群号 |
 | `message` | message | - | 要发送的内容 |
 | `auto_escape` | boolean | `false` | 消息内容是否作为纯文本发送 ( 即不解析 CQ 码) , 只在 `message` 字段是字符串时有效 |
 
@@ -34,7 +40,7 @@
 
 | 字段名 | 数据类型 | 说明 |
 | ----- | ------- | --- |
-| `message_id` | number (int32) | 消息 ID |
+| `message_id` | int32 | 消息 ID |
 
 ## 发送合并转发 ( 群 )
 
@@ -56,8 +62,8 @@
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
 | `message_type` | string | - | 消息类型, 支持 `private`、`group` , 分别对应私聊、群组, 如不传入, 则根据传入的 `*_id` 参数判断 |
-| `user_id` | number | - | 对方 QQ 号 ( 消息类型为 `private` 时需要 ) |
-| `group_id` | number | - | 群号 ( 消息类型为 `group` 时需要 ) |
+| `user_id` | int64 | - | 对方 QQ 号 ( 消息类型为 `private` 时需要 ) |
+| `group_id` | int64 | - | 群号 ( 消息类型为 `group` 时需要 ) |
 | `message` | message | - | 要发送的内容 |
 | `auto_escape` | boolean | `false` | 消息内容是否作为纯文本发送 ( 即不解析 CQ 码 ) , 只在 `message` 字段是字符串时有效 |
 
@@ -65,7 +71,7 @@
 
 | 字段名 | 数据类型 | 说明 |
 | ----- | ------- | --- |
-| `message_id` | number (int32) | 消息 ID |
+| `message_id` | int32 | 消息 ID |
 
 ## 撤回消息
 
@@ -75,7 +81,7 @@
 
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
-| `message_id` | number (int32) | - | 消息 ID |
+| `message_id` | int32 | - | 消息 ID |
 
 ::: tip 提示
 该 API 无响应数据
@@ -94,13 +100,13 @@
 **响应数据**
 
 | 字段          | 类型     | 说明       |
-| ------------ | ------- | ---------- |
-| `message_id` | int32   | 消息id      |
-| `real_id`    | int32   | 消息真实id   |
-| `sender`     | object  | 发送者      |
-| `time`       | int32   | 发送时间    |
-| `message`    | string  | 消息内容    |
-| `raw_message`| string  | 原始消息内容 |
+| ------------ | -------- | ---------- |
+| `message_id` | int32    | 消息id      |
+| `real_id`    | int32    | 消息真实id   |
+| `sender`     | object   | 发送者      |
+| `time`       | int32    | 发送时间    |
+| `message`    | message  | 消息内容    |
+| `raw_message`| message  | 原始消息内容 |
 
 ::: warning 注意
 在 go-cqhttp-v0.9.35~v0.9.36-fix3 版本中 `raw_message` 字段为 `message_raw`
@@ -177,25 +183,6 @@
 | `filename` | string | 图片文件原名   |
 | `url`      | string | 图片下载地址   |
 
-## 发送好友赞
-
-::: warning 警告
-go-cqhttp 预计不会支持该 API
-:::
-
-终结点：`/send_like`
-
-**参数**
-
-| 字段名 | 数据类型 | 默认值 | 说明 |
-| ----- | ------- | ----- | --- |
-| `user_id` | number | - | 对方 QQ 号 |
-| `times` | number | 1 | 赞的次数, 每个好友每天最多 10 次 |
-
-::: tip 提示
-该 API 无响应数据
-:::
-
 ## 群组踢人
 
 终结点：`/set_group_kick`
@@ -204,8 +191,8 @@ go-cqhttp 预计不会支持该 API
 
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
-| `group_id` | number | - | 群号 |
-| `user_id` | number | - | 要踢的 QQ 号  |
+| `group_id` | int64 | - | 群号 |
+| `user_id` | int64 | - | 要踢的 QQ 号  |
 | `reject_add_request` | boolean | `false` | 拒绝此人的加群请求 |
 
 ::: tip 提示
@@ -220,8 +207,8 @@ go-cqhttp 预计不会支持该 API
 
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
-| `group_id` | number | - | 群号 |
-| `user_id` | number | - | 要禁言的 QQ 号 |
+| `group_id` | int64 | - | 群号 |
+| `user_id` | int64 | - | 要禁言的 QQ 号 |
 | `duration` | number | `30 * 60` | 禁言时长, 单位秒, 0 表示取消禁言 |
 
 ::: tip 提示
@@ -240,7 +227,7 @@ go-cqhttp 预计不会支持该 API
 
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
-| `group_id` | number | - | 群号 |
+| `group_id` | int64 | - | 群号 |
 | `anonymous` | object | - | 可选, 要禁言的匿名用户对象（群消息上报的 `anonymous` 字段） |
 | `anonymous_flag` 或 `flag` | string | - | 可选, 要禁言的匿名用户的 flag（需从群消息上报的数据中获得） |
 | `duration` | number | `30 * 60` | 禁言时长, 单位秒, 无法取消匿名用户禁言 |
@@ -261,7 +248,7 @@ go-cqhttp 预计不会支持该 API
 
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
-| `group_id` | number | - | 群号 |
+| `group_id` | int64 | - | 群号 |
 | `enable` | boolean | `true` | 是否禁言 |
 
 ::: tip 提示
@@ -276,8 +263,8 @@ go-cqhttp 预计不会支持该 API
 
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
-| `group_id` | number | - | 群号 |
-| `user_id` | number | - | 要设置管理员的 QQ 号 |
+| `group_id` | int64 | - | 群号 |
+| `user_id` | int64 | - | 要设置管理员的 QQ 号 |
 | `enable` | boolean | `true` | true 为设置, false 为取消 |
 
 ::: tip 提示
@@ -297,7 +284,7 @@ go-cqhttp 预计不会支持该 API
 
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
-| `group_id` | number | - | 群号 |
+| `group_id` | int64 | - | 群号 |
 | `enable` | boolean | `true` | 是否允许匿名聊天 |
 
 ::: tip 提示
@@ -312,8 +299,8 @@ go-cqhttp 预计不会支持该 API
 
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
-| `group_id` | number | - | 群号 |
-| `user_id` | number | - | 要设置的 QQ 号 |
+| `group_id` | int64 | - | 群号 |
+| `user_id` | int64 | - | 要设置的 QQ 号 |
 | `card` | string | 空 | 群名片内容, 不填或空字符串表示删除群名片 |
 
 ::: tip 提示
@@ -328,7 +315,7 @@ go-cqhttp 预计不会支持该 API
 
 | 字段名   | 数据类型 | 说明 |
 | -------- | ------ | ---- |
-| `group_id` | number (int64) | 群号 |
+| `group_id` | int64 | 群号 |
 | `group_name` | string | 新群名 |
 
 ::: tip 提示
@@ -343,7 +330,7 @@ go-cqhttp 预计不会支持该 API
 
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
-| `group_id` | number | - | 群号 |
+| `group_id` | int64 | - | 群号 |
 | `is_dismiss` | boolean | `false` | 是否解散, 如果登录号是群主, 则仅在此项为 true 时能够解散 |
 
 ::: tip 提示
@@ -358,8 +345,8 @@ go-cqhttp 预计不会支持该 API
 
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
-| `group_id` | number | - | 群号 |
-| `user_id` | number | - | 要设置的 QQ 号 |
+| `group_id` | int64 | - | 群号 |
+| `user_id` | int64 | - | 要设置的 QQ 号 |
 | `special_title` | string | 空 | 专属头衔, 不填或空字符串表示删除专属头衔 |
 | `duration` | number | `-1` | 专属头衔有效期, 单位秒, -1 表示永久, 不过此项似乎没有效果, 可能是只有某些特殊的时间长度有效, 有待测试 |
 
@@ -412,7 +399,7 @@ go-cqhttp 预计不会支持该 API
 
 | 字段名 | 数据类型 | 说明 |
 | ----- | ------- | --- |
-| `user_id` | number (int64) | QQ 号 |
+| `user_id` | int64 | QQ 号 |
 | `nickname` | string | QQ 昵称 |
 
 ## 获取陌生人信息
@@ -423,17 +410,17 @@ go-cqhttp 预计不会支持该 API
 
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
-| `user_id` | number | - | QQ 号 |
+| `user_id` | int64 | - | QQ 号 |
 | `no_cache` | boolean | `false` | 是否不使用缓存（使用缓存可能更新不及时, 但响应更快） |
 
 **响应数据**
 
 | 字段名 | 数据类型 | 说明 |
 | ----- | ------- | --- |
-| `user_id` | number (int64) | QQ 号 |
+| `user_id` | int64 | QQ 号 |
 | `nickname` | string | 昵称 |
 | `sex` | string | 性别, `male` 或 `female` 或 `unknown` |
-| `age` | number (int32) | 年龄 |
+| `age` | int32 | 年龄 |
 
 ## 获取好友列表
 
@@ -449,7 +436,7 @@ go-cqhttp 预计不会支持该 API
 
 | 字段名 | 数据类型 | 说明 |
 | ----- | ------- | --- |
-| `user_id` | number (int64) | QQ 号 |
+| `user_id` | int64 | QQ 号 |
 | `nickname` | string | 昵称 |
 | `remark` | string | 备注名 |
 
@@ -461,17 +448,17 @@ go-cqhttp 预计不会支持该 API
 
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
-| `group_id` | number | - | 群号 |
+| `group_id` | int64 | - | 群号 |
 | `no_cache` | boolean | `false` | 是否不使用缓存（使用缓存可能更新不及时, 但响应更快） |
 
 **响应数据**
 
 | 字段名 | 数据类型 | 说明 |
 | ----- | ------- | --- |
-| `group_id` | number (int64) | 群号 |
+| `group_id` | int64 | 群号 |
 | `group_name` | string | 群名称 |
-| `member_count` | number (int32) | 成员数 |
-| `max_member_count` | number (int32) | 最大成员数（群容量） |
+| `member_count` | int32 | 成员数 |
+| `max_member_count` | int32 | 最大成员数（群容量） |
 
 ## 获取群列表
 
@@ -493,28 +480,28 @@ go-cqhttp 预计不会支持该 API
 
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
-| `group_id` | number | - | 群号 |
-| `user_id`  | number | - | QQ 号 |
+| `group_id` | int64 | - | 群号 |
+| `user_id`  | int64 | - | QQ 号 |
 | `no_cache` | boolean | `false` | 是否不使用缓存（使用缓存可能更新不及时, 但响应更快） |
 
 **响应数据**
 
 | 字段名 | 数据类型 | 说明 |
 | ----- | ------- | --- |
-| `group_id` | number (int64) | 群号 |
-| `user_id` | number (int64) | QQ 号 |
+| `group_id` | int64 | 群号 |
+| `user_id` | int64 | QQ 号 |
 | `nickname` | string | 昵称 |
 | `card` | string | 群名片／备注 |
 | `sex` | string | 性别, `male` 或 `female` 或 `unknown` |
-| `age` | number (int32) | 年龄 |
+| `age` | int32 | 年龄 |
 | `area` | string | 地区 |
-| `join_time` | number (int32) | 加群时间戳 |
-| `last_sent_time` | number (int32) | 最后发言时间戳 |
+| `join_time` | int32 | 加群时间戳 |
+| `last_sent_time` | int32 | 最后发言时间戳 |
 | `level` | string | 成员等级 |
 | `role` | string | 角色, `owner` 或 `admin` 或 `member` |
 | `unfriendly` | boolean | 是否不良记录成员 |
 | `title` | string | 专属头衔 |
-| `title_expire_time` | number (int32) | 专属头衔过期时间戳 |
+| `title_expire_time` | int64 | 专属头衔过期时间戳 |
 | `card_changeable` | boolean | 是否允许修改群名片 |
 
 ## 获取群成员列表
@@ -525,7 +512,7 @@ go-cqhttp 预计不会支持该 API
 
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
-| `group_id` | number (int64) | - | 群号 |
+| `group_id` | int64 | - | 群号 |
 
 **响应数据**
 
@@ -539,14 +526,14 @@ go-cqhttp 预计不会支持该 API
 
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
-| `group_id` | number (int64) | - | 群号 |
+| `group_id` | int64 | - | 群号 |
 | `type` | string | - | 要获取的群荣誉类型, 可传入 `talkative` `performer` `legend` `strong_newbie` `emotion` 以分别获取单个类型的群荣誉数据, 或传入 `all` 获取所有数据 |
 
 **响应数据**
 
 | 字段名 | 数据类型 | 说明 |
 | ----- | ------- | --- |
-| `group_id` | number (int64) | 群号 |
+| `group_id` | int64 | 群号 |
 | `current_talkative` | object | 当前龙王, 仅 `type` 为 `talkative` 或 `all` 时有数据 |
 | `talkative_list` | array | 历史龙王, 仅 `type` 为 `talkative` 或 `all` 时有数据 |
 | `performer_list` | array | 群聊之火, 仅 `type` 为 `performer` 或 `all` 时有数据 |
@@ -558,16 +545,16 @@ go-cqhttp 预计不会支持该 API
 
 | 字段名 | 数据类型 | 说明 |
 | ----- | ------- | --- |
-| `user_id` | number (int64) | QQ 号 |
+| `user_id` | int64 | QQ 号 |
 | `nickname` | string | 昵称 |
 | `avatar` | string | 头像 URL |
-| `day_count` | number (int32) | 持续天数 |
+| `day_count` | int32 | 持续天数 |
 
 其它各 `*_list` 的每个元素是一个 json 对象, 内容如下：
 
 | 字段名 | 数据类型 | 说明 |
 | ----- | ------- | --- |
-| `user_id` | number (int64) | QQ 号 |
+| `user_id` | int64 | QQ 号 |
 | `nickname` | string | 昵称 |
 | `avatar` | string | 头像 URL |
 | `description` | string | 荣誉描述 |
@@ -610,7 +597,7 @@ go-cqhttp 预计不会支持该 API
 
 | 字段名 | 数据类型 | 说明 |
 | ----- | ------- | --- |
-| `token` | number (int32) | CSRF Token |
+| `token` | int32 | CSRF Token |
 
 ## 获取 QQ 相关接口凭证
 
@@ -636,7 +623,7 @@ go-cqhttp 预计不会支持该 API
 | 字段名 | 数据类型 | 说明 |
 | ----- | ------- | --- |
 | `cookies` | string | Cookies |
-| `csrf_token` | number (int32) | CSRF Token |
+| `csrf_token` | int32 | CSRF Token |
 
 ## 获取语音
 
@@ -1046,15 +1033,15 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
-| `user_id` | int64 | | 用户ID |
+| `user_id` | int64 | | QQ 号 |
 
 **响应数据**
 
 | 字段                | 类型    | 说明        |
 | ------------------ | ------- | ---------- |
-| `user_id`          | int64   | QQ号       |
+| `user_id`          | int64   | QQ 号       |
 | `nickname`         | string  | 用户昵称    |
-| `level`            | int64   | QQ等级     |
+| `level`            | int64   | QQ 等级     |
 | `level_speed`      | float64 | 等级加速度  |
 | `vip_level`        | string  | 会员等级    |
 | `vip_growth_speed` | int64   | 会员成长速度 |
