@@ -1,7 +1,7 @@
 # API
 
 ::: warning 注意
-本文档所有内容基于go-cqhttp-v0.9.37与框架Nonebot1交互（通过反向WS连接，以string形式上报）所写
+本文档所有内容基于go-cqhttp-v0.9.38与框架Nonebot1交互（通过反向WS连接，以string形式上报）所写
 
 当您使用不同框架与go-cqhttp交互时可能存在差异，请注意！
 :::
@@ -421,6 +421,7 @@
 | `nickname` | string | 昵称 |
 | `sex` | string | 性别, `male` 或 `female` 或 `unknown` |
 | `age` | int32 | 年龄 |
+| `qid` | string | qid ID身份卡 |
 
 ## 获取好友列表
 
@@ -1068,4 +1069,47 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 
 ::: tip 提示
 该 API 无需参数也没有响应数据
+:::
+
+## 下载文件到缓存目录
+
+**参数**
+
+| 字段       | 类型   | 说明                      |
+| ---------- | ------ | ------------------------- |
+| `url` | string  | 链接地址                      |
+| `thread_count` | int32  | 下载线程数            |
+| `headers` | string or array  | 自定义请求头    |
+
+**`headers`格式:**
+
+字符串:
+
+```
+User-Agent=YOUR_UA[\r\n]Referer=https://www.baidu.com
+```
+
+::: tip 提示
+`[\r\n]` 为换行符, 使用http请求时请注意编码
+:::
+
+JSON数组:
+
+```json
+[
+    "User-Agent=YOUR_UA",
+    "Referer=https://www.baidu.com",
+]
+```
+
+**响应数据**
+
+| 字段        | 类型       | 说明            |
+| ---------- | ---------- | ------------ |
+| `file`    | string       |  下载文件的*绝对路径*        |
+
+::: tip 提示
+通过这个API下载的文件能直接放入CQ码作为图片或语音发送
+
+调用后会阻塞直到下载完成后才会返回数据，请注意下载大文件时的超时
 :::
