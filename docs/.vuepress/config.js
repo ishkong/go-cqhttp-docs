@@ -1,7 +1,7 @@
 module.exports = {
     title: 'go-cqhttp 帮助中心',
     description: 'go-cqhttp帮助中心',
-    base: '/go-cqhttp-docs/',
+    base: '/',
     plugins: {
         '@vuepress/search': {
             searchMaxSuggestions: 10
@@ -21,7 +21,7 @@ module.exports = {
         smoothScroll: true,
         lastUpdated: '上一次编辑',
         docsDir: 'docs',
-        docsBranch: 'master',
+        docsBranch: 'main',
         repo: 'Mrs4s/go-cqhttp',
         repoLabel: 'GitHub',
         docsRepo: 'ishkong/go-cqhttp-docs',
