@@ -176,7 +176,7 @@ go-cqhttp.exe update https://github.rc1844.workers.dev
 
 从 [这里](https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full.7z) 下载 并解压, 并为 `bin` 这个文件夹添加环境变量。
 
-如果遇到下载速度缓慢的问题可以用 [这个源](https://go-cqhttp.michikawachin.art/ffmpeg-release-full.7z) 。
+如果遇到下载速度缓慢的问题可以用 [这个源](https://downloads.go-cqhttp.org/ffmpeg-release-full.7z) 。
 
 然后在命令行输入 
 
