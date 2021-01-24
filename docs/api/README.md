@@ -1,7 +1,7 @@
 # API
 
 ::: warning 注意
-本文档所有内容基于go-cqhttp-v0.9.38与框架Nonebot1交互（通过反向WS连接，以string形式上报）所写
+本文档所有内容基于go-cqhttp-v0.9.39与框架Nonebot1交互（通过反向WS连接，以string形式上报）所写
 
 当您使用不同框架与go-cqhttp交互时可能存在差异，请注意！
 :::
@@ -1098,7 +1098,7 @@ JSON数组:
 ```json
 [
     "User-Agent=YOUR_UA",
-    "Referer=https://www.baidu.com",
+    "Referer=https://www.baidu.com"
 ]
 ```
 
@@ -1113,3 +1113,27 @@ JSON数组:
 
 调用后会阻塞直到下载完成后才会返回数据，请注意下载大文件时的超时
 :::
+
+## 获取当前账号在线客户端列表
+
+终结点：`/get_online_clients`
+
+**参数**
+
+| 字段       | 类型   | 说明                      |
+| ---------- | ------ | ------------------------- |
+| `no_cache` | bool  | 是否无视缓存  |
+
+**响应数据**
+
+| 字段        | 类型       | 说明            |
+| ---------- | ---------- | ------------ |
+| `clients`    | []Device       |  在线客户端列表  |
+
+**Device**
+
+| 字段        | 类型       | 说明            |
+| ---------- | ---------- | ------------ |
+| `app_id`    | int64       |  客户端ID |
+| `device_name`    | string       |  设备名称 |
+| `device_kind`    | string       |  设备类型 |
