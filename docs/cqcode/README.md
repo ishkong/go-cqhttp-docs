@@ -1,11 +1,5 @@
 # CQcode
 
-::: warning 注意
-本文档所有内容基于 `go-cqhttp-v0.9.40` 与框架 `Nonebot2.0.0a9post1` 交互（通过反向WS连接，以string形式上报）所写
-
-当您使用不同框架与go-cqhttp交互时可能存在差异，请注意！
-:::
-
 ## QQ 表情
 
 Type: `face`
