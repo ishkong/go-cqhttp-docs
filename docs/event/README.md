@@ -1,7 +1,7 @@
 # 事件
 
 ::: warning 注意
-本文档所有内容基于go-cqhttp-v0.9.39与框架Nonebot1交互（通过反向WS连接，以string形式上报）所写
+本文档所有内容基于 `go-cqhttp-v0.9.40` 与框架 `Nonebot2.0.0a9post1` 交互（通过反向WS连接，以string形式上报）所写
 
 当您使用不同框架与go-cqhttp交互时可能存在差异，请注意！
 :::
@@ -387,3 +387,16 @@
 | `online`        | bool |                | 当前是否在线 |
 
 * Device 可在 [API - 获取当前账号在线客户端列表](../api/#获取当前账号在线客户端列表) 查看
+
+## 精华消息
+
+**事件数据**
+
+| 字段          | 类型   | 可能的值       | 说明     |
+| ------------- | ------ | -------------- | -------- |
+| `post_type`   | string | `notice`       | 上报类型 |
+| `notice_type` | string | `essence` | 消息类型 |
+| `sub_type`   | string | `add`,`delete`       | 添加为`add`,移出为`delete` |
+| `sender_id` | int64 |  | 消息发送者ID |
+| `operator_id` | int64 |  | 操作者ID |
+| `message_id`   | int32 |    | 消息ID |
