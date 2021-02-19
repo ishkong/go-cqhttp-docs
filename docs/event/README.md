@@ -10,7 +10,7 @@
 | `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
 | `post_type` | string | `message` | 上报类型 |
 | `message_type` | string | `private` | 消息类型 |
-| `sub_type` | string | `friend`、`group`、`other` | 消息子类型, 如果是好友则是 `friend`, 如果是群临时会话则是 `group` |
+| `sub_type` | string | `friend`、`group`、`group_self`、`other` | 消息子类型, 如果是好友则是 `friend`, 如果是群临时会话则是 `group`, 如果是在群中自身发送则是 `group_self` |
 | `message_id` | int32 | - | 消息 ID |
 | `user_id` | int64 | - | 发送者 QQ 号 |
 | `message` | message | - | 消息内容 |
