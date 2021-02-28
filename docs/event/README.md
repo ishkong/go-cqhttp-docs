@@ -1,11 +1,5 @@
 # 事件
 
-::: warning 注意
-本文档所有内容基于go-cqhttp-v0.9.37与框架Nonebot1交互（通过反向WS连接，以string形式上报）所写
-
-当您使用不同框架与go-cqhttp交互时可能存在差异，请注意！
-:::
-
 ## 私聊消息
 
 **事件数据**
@@ -16,7 +10,7 @@
 | `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
 | `post_type` | string | `message` | 上报类型 |
 | `message_type` | string | `private` | 消息类型 |
-| `sub_type` | string | `friend`、`group`、`other` | 消息子类型, 如果是好友则是 `friend`, 如果是群临时会话则是 `group` |
+| `sub_type` | string | `friend`、`group`、`group_self`、`other` | 消息子类型, 如果是好友则是 `friend`, 如果是群临时会话则是 `group`, 如果是在群中自身发送则是 `group_self` |
 | `message_id` | int32 | - | 消息 ID |
 | `user_id` | int64 | - | 发送者 QQ 号 |
 | `message` | message | - | 消息内容 |
@@ -374,3 +368,29 @@
 | ----- | ------- | --- | ------- |
 | `approve` | boolean | 是否同意请求／邀请 | 不处理 |
 | `reason` | string | 拒绝理由 ( 仅在拒绝时有效 )  | 无理由 |
+
+## 其他客户端在线状态变更
+
+**事件数据**
+
+| 字段          | 类型   | 可能的值       | 说明     |
+| ------------- | ------ | -------------- | -------- |
+| `post_type`   | string | `notice`       | 上报类型 |
+| `notice_type` | string | `client_status` | 消息类型 |
+| `client`      | Device*  |                | 客户端信息 |
+| `online`        | bool |                | 当前是否在线 |
+
+* Device 可在 [API - 获取当前账号在线客户端列表](../api/#获取当前账号在线客户端列表) 查看
+
+## 精华消息
+
+**事件数据**
+
+| 字段          | 类型   | 可能的值       | 说明     |
+| ------------- | ------ | -------------- | -------- |
+| `post_type`   | string | `notice`       | 上报类型 |
+| `notice_type` | string | `essence` | 消息类型 |
+| `sub_type`   | string | `add`,`delete`       | 添加为`add`,移出为`delete` |
+| `sender_id` | int64 |  | 消息发送者ID |
+| `operator_id` | int64 |  | 操作者ID |
+| `message_id`   | int32 |    | 消息ID |
