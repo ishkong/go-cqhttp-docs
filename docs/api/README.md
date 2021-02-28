@@ -17,6 +17,13 @@
 | 字段名 | 数据类型 | 说明 |
 | ----- | ------- | --- |
 | `message_id` | int32 | 消息 ID |
+| `user_id` | int64 | 对方 QQ 号 |
+| `message_seq` | int32 | 起始消息序号 |
+| `internal_id` | int32 | 内部ID, 用于撤回信息 |
+
+::: tip 提示
+临时信息的`internal_id`为0 (即无法撤回)
+:::
 
 ##  发送群消息
 
@@ -35,6 +42,9 @@
 | 字段名 | 数据类型 | 说明 |
 | ----- | ------- | --- |
 | `message_id` | int32 | 消息 ID |
+| `group_id` | int64 | 群号 |
+| `message_seq` | int32 | 起始消息序号 |
+| `internal_id` | int32 | 内部ID, 用于撤回信息 |
 
 ## 发送合并转发 ( 群 )
 
@@ -46,6 +56,15 @@
 | ---------- | -------------- | ----------------------------- |
 | `group_id` | int64          | 群号                          |
 | `messages` | forward node[] | 自定义转发消息, 具体看 CQcode |
+
+**响应数据**
+
+| 字段名 | 数据类型 | 说明 |
+| ----- | ------- | --- |
+| `message_id` | int32 | 消息 ID |
+| `group_id` | int64 | 群号 |
+| `message_seq` | int32 | 起始消息序号 |
+| `internal_id` | int32 | 内部ID, 用于撤回信息 |
 
 ## 发送消息
 
@@ -66,19 +85,29 @@
 | 字段名 | 数据类型 | 说明 |
 | ----- | ------- | --- |
 | `message_id` | int32 | 消息 ID |
+| `group_id/user_id` | int64 | 群号/对方 QQ 号 ( 按照发送类型 ) |
+| `message_seq` | int32 | 起始消息序号 |
+| `internal_id` | int32 | 内部ID, 用于撤回信息 |
 
 ## 撤回消息
 
 终结点：`/delete_msg`
+
+> 格式: 单一 message_id 或 group_id, message_seq, internal_id 一起
 
 **参数**
 
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
 | `message_id` | int32 | - | 消息 ID |
+| `group_id` | int64 | - | 群号, 目前仅支持群撤回 |
+| `message_seq` | int32 | - | 起始消息序号 |
+| `internal_id` | int32 | - | 内部ID |
 
 ::: tip 提示
 该 API 无响应数据
+
+如果内部ID不一致会导致出现问题, 比如只有自己能看到信息被撤回, 但其他人并没有
 :::
 
 ## 获取消息
