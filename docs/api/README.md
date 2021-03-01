@@ -45,7 +45,7 @@
 | 字段       | 类型           | 说明                          |
 | ---------- | -------------- | ----------------------------- |
 | `group_id` | int64          | 群号                          |
-| `messages` | forward node[] | 自定义转发消息, 具体看 CQcode |
+| `messages` | forward node[] | 自定义转发消息, 具体看 [CQcode](https://docs.go-cqhttp.org/cqcode/#%E5%90%88%E5%B9%B6%E8%BD%AC%E5%8F%91%E6%B6%88%E6%81%AF%E8%8A%82%E7%82%B9) |
 
 ## 发送消息
 
