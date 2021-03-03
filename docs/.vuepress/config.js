@@ -36,7 +36,7 @@ module.exports = {
             { text: 'API', link: '/api/' },
             { text: 'Event', link: '/event/' },
             { text: 'CQ code', link: '/cqcode/' },
-            { text: 'Faq', link: '/faq/' }
+            { text: 'FAQ', link: '/faq/' }
         ],
         sidebar: {
             '/guide/': [
