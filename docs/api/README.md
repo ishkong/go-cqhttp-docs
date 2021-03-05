@@ -8,7 +8,8 @@
 
 | 字段名         | 数据类型  | 默认值   | 说明                                                                   |
 | ------------- | ------- | ------- | ---------------------------------------------------------------------- |
-| `user_id`     | int64  | -       | 对方 QQ 号                                                              |
+| `user_id`     | int64   | -       | 对方 QQ 号                                                              |
+| `group_id`    | int64   | -       | 主动发起临时会话群号(机器人本身必须是管理员/群主)                               |
 | `message`     | message | -       | 要发送的内容                                                             |
 | `auto_escape` | boolean | `false` | 消息内容是否作为纯文本发送 ( 即不解析 CQ 码 ) , 只在 `message` 字段是字符串时有效 |
 
@@ -45,7 +46,7 @@
 | 字段       | 类型           | 说明                          |
 | ---------- | -------------- | ----------------------------- |
 | `group_id` | int64          | 群号                          |
-| `messages` | forward node[] | 自定义转发消息, 具体看 CQcode |
+| `messages` | forward node[] | 自定义转发消息, 具体看 [CQcode](https://docs.go-cqhttp.org/cqcode/#%E5%90%88%E5%B9%B6%E8%BD%AC%E5%8F%91%E6%B6%88%E6%81%AF%E8%8A%82%E7%82%B9) |
 
 ## 发送消息
 
@@ -1229,9 +1230,9 @@ JSON数组:
 | `sender_id`     | int64    | 发送者QQ 号  |
 | `sender_nick`   | string   | 发送者昵称   |
 | `sender_time`   | int64    | 消息发送时间 |
-| `operator_id`   | int64    | 发送者QQ 号  |
-| `operator_nick` | string   | 发送者昵称   |
-| `operator_time` | int64    | 消息发送时间 |
+| `operator_id`   | int64    | 操作者QQ 号  |
+| `operator_nick` | string   | 操作者昵称   |
+| `operator_time` | int64    | 精华设置时间 |
 | `message_id`    | int32    | 消息ID       |
 
 ## 检查链接安全性
