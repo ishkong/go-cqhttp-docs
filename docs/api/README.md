@@ -988,7 +988,7 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 | `plugins_good`    | bool       | 原 `CQHTTP` 字段, 恒定为 `true` |
 | `app_good`        | bool       | 原 `CQHTTP` 字段, 恒定为 `true` |
 | `online`          | bool       | 表示BOT是否在线                 |
-| `goold`           | bool       | 同 `online`                     |
+| `good`            | bool       | 同 `online`                    |
 | `stat`            | Statistics | 运行统计                        |
 
 **Statistics**
