@@ -449,12 +449,24 @@
 
 **响应数据**
 
+::: tip 提示
+如果机器人尚未加入群, `group_create_time`, `group_level`, `max_member_count` 和 `member_count` 将会为0
+:::
+
 | 字段名 | 数据类型 | 说明 |
 | ----- | ------- | --- |
 | `group_id` | int64 | 群号 |
 | `group_name` | string | 群名称 |
+| `group_memo` | string | 群备注 |
+| `group_create_time` | uint32 | 群创建时间 |
+| `group_level` | uint32 | 群等级 |
 | `member_count` | int32 | 成员数 |
 | `max_member_count` | int32 | 最大成员数（群容量） |
+
+::: tip 提示
+这里提供了一个API用于获取群图片, `group_id` 为群号
+https://p.qlogo.cn/gh/{group_id}/{group_id}/100
+:::
 
 ::: warning 注意
 在 `go-cqhttp-v0.9.40`之前的版本中，该API不能获取陌生群消息
