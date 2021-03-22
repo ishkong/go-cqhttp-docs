@@ -701,11 +701,22 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 
 **响应数据**
 
-| 字段名 | 数据类型 | 说明 |
-| ----- | ------- | --- |
-| `app_name` | string | 应用标识, 如 `mirai-native` |
-| `app_version` | string | 应用版本, 如 `1.2.3` |
-| `protocol_version` | string | OneBot 标准版本, 如 `v11` |
+| 字段名 | 数据类型 | 默认值 | 说明 |
+| ----- | ------- | --- | ---- |
+| `app_name` | string | `go-cqhttp` | 应用标识, 如 `go-cqhttp` 固定值 |
+| `app_version` | string |  | 应用版本, 如 `v0.9.40-fix4` |
+| `app_full_name` | string | | 应用完整名称 |
+| `protocol_version` | string | `v11` | OneBot 标准版本 固定值 |
+| `coolq_edition` | string | `pro` | 原Coolq版本 固定值 |
+| `coolq_directory` | string |  |  |
+| `go-cqhttp` | bool | true| 是否为go-cqhttp 固定值 |
+| `plugin_version` | string | `4.15.0` | 固定值 |
+| `plugin_build_number` | int | 99 | 固定值 |
+| `plugin_build_configuration` | string | `release` | 固定值 |
+| `runtime_version` | string |  |  |
+| `runtime_os` | string |  |  |
+| `version` | string || 应用版本, 如 `v0.9.40-fix4` |
+| `protocol` | int | `0/1/2/3/-1` | 当前登陆使用协议类型 |
 
 ## 重启 go-cqhttp
 
