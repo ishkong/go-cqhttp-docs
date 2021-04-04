@@ -14,6 +14,9 @@ module.exports = {
                 buttonText: "刷新",
             }
         },
+        '@vuepress/google-analytics': {
+            'ga': 'G-CZJ8X185MG'
+        }
     },
     themeConfig: {
         search: true,
