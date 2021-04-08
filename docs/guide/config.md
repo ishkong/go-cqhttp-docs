@@ -1,6 +1,6 @@
 # 配置
 
-go-cqhttp 包含 `config.hjson` 和 `device.json` 两个配置文件, 其中 `config.json` 为运行配置 `device.json` 为虚拟设备信息。
+go-cqhttp 包含 `config.yml` 和 `device.json` 两个配置文件, 其中 `config.yml` 为运行配置 `device.json` 为虚拟设备信息。
 
 ## 从原CQHTTP导入配置
 
@@ -14,86 +14,126 @@ go-cqhttp 支持导入CQHTTP的配置文件, 具体步骤为:
 
 默认生成的配置文件如下所示: 
 
-```json
-{
-    uin: 0
-    password: ""
-    encrypt_password: false
-    password_encrypted: ""
-    enable_db: true
-    access_token: ""
-    relogin: {
-        enabled: true
-        relogin_delay: 3
-        max_relogin_times: 0
-    }
-    _rate_limit: {
-        enabled: false
-        frequency: 1
-        bucket_size: 1
-    }
-    ignore_invalid_cqcode: false
-    force_fragmented: false
-    heartbeat_interval: 0
-    http_config: {
-        enabled: true
-        host: 0.0.0.0
-        port: 5700
-        timeout: 0
-        post_urls: {}
-    }
-    ws_config: {
-        enabled: true
-        host: 0.0.0.0
-        port: 6700
-    }
-    ws_reverse_servers: [
-        {
-            enabled: false
-            reverse_url: ws://you_websocket_universal.server
-            reverse_api_url: ws://you_websocket_api.server
-            reverse_event_url: ws://you_websocket_event.server
-            reverse_reconnect_interval: 3000
-        }
-    ]
-    post_message_format: string
-    use_sso_address: false
-    debug: false
-    log_level: ""
-    web_ui: {
-        enabled: true
-        host: 127.0.0.1
-        web_ui_port: 9999
-        web_input: false
-    }
-}
+```yaml
+# go-cqhttp 默认配置文件
 
+account: # 账号相关
+  uin: 1233456 # QQ账号
+  password: '' # 密码为空时使用扫码登录
+  encrypt: false  # 是否开启密码加密
+  relogin:        # 重连设置
+    disable: false
+    delay: 3      # 重连延迟, 单位秒
+    interval: 0   # 重连间隔
+    max-times: 0  # 最大重连次数, 0为无限制
+
+  # 是否使用服务器下发的新地址进行重连
+  # 注意, 此设置可能导致在海外服务器上连接情况更差
+  use-sso-address: true
+
+heartbeat:
+  disabled: false # 是否开启心跳事件上报
+  # 心跳频率, 单位秒
+  # -1 为关闭心跳
+  interval: 5
+
+message:
+  # 上报数据类型
+  # 可选: string,array
+  post-format: string
+  # 是否忽略无效的CQ码, 如果为假将原样发送
+  ignore-invalid-cqcode: false
+  # 是否强制分片发送消息
+  # 分片发送将会带来更快的速度
+  # 但是兼容性会有些问题
+  force-fragment: false
+  # 是否将url分片发送
+  fix-url: false
+  # 下载图片等请求网络代理
+  proxy-rewrite: ''
+  # 是否上报自身消息
+  report-self-message: false
+  # 移除服务端的Reply附带的At
+  remove-reply-at: false
+  # 为Reply附加更多信息
+  extra-reply-data: false
+
+output:
+  # 日志等级 trace,debug,info,warn,error日志等级 trace,debug,info,warn,error
+  log-level: warn
+  # 是否启用 DEBUG
+  debug: false # 开启调试模式
+
+default-middlewares: &default
+  # 访问密钥, 强烈推荐在公网的服务器设置
+  access-token: ''
+  # 事件过滤器文件目录
+  filter: ''
+  # API限速设置
+  # 该设置为全局生效
+  # 原 cqhttp 虽然启用了 rate_limit 后缀, 但是基本没插件适配
+  # 目前该限速设置为令牌桶算法, 请参考:
+  # https://baike.baidu.com/item/%E4%BB%A4%E7%89%8C%E6%A1%B6%E7%AE%97%E6%B3%95/6597000?fr=aladdin
+  rate-limit:
+    enabled: false # 是否启用限速
+    frequency: 1  # 令牌回复频率, 单位秒
+    bucket: 1     # 令牌桶大小
+
+servers:
+  # HTTP 通信设置
+  - http:
+      # 是否关闭正向HTTP服务器
+      disabled: false
+      # 服务端监听地址
+      host: 127.0.0.1
+      # 服务端监听端口
+      port: 5700
+      # 反向HTTP超时时间, 单位秒
+      # 最小值为5，小于5将会忽略本项设置
+      timeout: 5
+      middlewares:
+        <<: *default
+      # 反向HTTP POST地址列表
+      post:
+        - url: '' # 地址
+          secret: ''           # 密钥
+        #- url: 127.0.0.1:5701 # 地址
+        #  secret: ''          # 密钥
+
+  # 正向WS设置
+  - ws:
+      # 是否禁用正向WS服务器
+      disabled: true
+      # 正向WS服务器监听地址
+      host: 127.0.0.1
+      # 正向WS服务器监听端口
+      port: 6700
+      middlewares:
+        <<: *default
+
+  - ws-reverse:
+      # 是否禁用当前反向WS服务
+      disabled: true
+      # 反向WS Universal 地址
+      # 注意 设置了此项地址后下面两项将会被忽略
+      universal: ws://your_websocket_universal.server
+      # 反向WS API 地址
+      api: ws://your_websocket_api.server
+      # 反向WS Event 地址
+      event: ws://your_websocket_event.server
+      # 重连间隔 单位毫秒
+      reconnect-interval: 3000
+      middlewares:
+        <<: *default
+  #- ws-reverse: # 可添加多个
+
+database: # 数据库相关设置
+  leveldb:
+    # 是否启用内置leveldb数据库
+    # 启用将会增加10-20MB的内存占用和一定的磁盘空间
+    # 关闭将无法使用 撤回 回复 get_msg 等上下文相关功能
+    enable: true
 ```
-
-| 字段                  | 类型     | 说明                                                                                     |
-| --------------------- | -------- | ---------------------------------------------------------------------------------------- |
-| uin                   | int64    | 登录用QQ号                                                                               |
-| password              | string   | 登录用密码                                                                               |
-| encrypt_password      | bool     | 是否对密码进行加密.                                                                      |
-| password_encrypted    | string   | 加密后的密码(请勿修改)                                                                   |
-| enable_db             | bool     | 是否开启内置数据库, 关闭后将无法使用 **回复/撤回** 等上下文相关接口                      |
-| access_token          | string   | 同CQHTTP的 `access_token`  用于身份验证                                                  |
-| relogin               | bool     | 是否自动重新登录                                                                         |
-| relogin_delay         | int      | 重登录延时（秒）                                                                         |
-| max_relogin_times     | uint     | 最大重登录次数, 若0则不设置上限                                                          |
-| _rate_limit           | bool     | 是否启用API调用限速                                                                      |
-| frequency             | float64  | 1s内能调用API的次数                                                                      |
-| bucket_size           | int      | 令牌桶的大小, 默认为1, 修改此值可允许一定程度内连续调用api                               |
-| post_message_format   | string   | 上报信息类型                                                                             |
-| ignore_invalid_cqcode | bool     | 是否忽略错误的CQ码                                                                       |
-| force_fragmented      | bool     | 是否强制分片发送群长消息                                                                 |
-| fix_url               | bool     | 是否对链接的发送进行预处理, 可缓解链接信息被风控导致无法发送的情况, 但可能影响客户端着色(不影响内容)|
-| use_sso_address       | bool     | 是否使用服务器下发的地址                                                                 |
-| heartbeat_interval    | int64    | 心跳间隔时间, 单位秒。小于0则关闭心跳, 等于0使用默认值(5秒)                              |
-| http_config           | object   | HTTP API配置                                                                             |
-| ws_config             | object   | Websocket API 配置                                                                       |
-| ws_reverse_servers    | object[] | 反向 Websocket API 配置                                                                  |
-| log_level             | string   | 指定日志收集级别, 将收集的日志单独存放到固定文件中, 便于查看日志线索 当前支持 warn,error |
 
 ::: tip 提示
 开启密码加密后程序将在每次启动时要求输入解密密钥, 密钥错误会导致登录时提示密码错误.
@@ -113,14 +153,40 @@ go-cqhttp 支持导入CQHTTP的配置文件, 具体步骤为:
 
 默认生成的设备信息如下所示: 
 
-``` json
+```json5
 {
-	"protocol": 0,
-	"display": "xxx",
-	"finger_print": "xxx",
-	"boot_id": "xxx",
-	"proc_version": "xxx",
-	"imei": "xxx"
+  "protocol": 0,
+  "display": "xxx",
+  "product": "xxx",
+  "device": "xxx",
+  "board": "xxx",
+  "model": "xxx",
+  "finger_print": "xxx",
+  "boot_id": "xxx",
+  "proc_version": "xxx",
+  "imei": "xxx",
+  "brand": "xxx",
+  "bootloader": "xxx",
+  "base_band": "",
+  "version": {
+    "incremental": "xxx",
+    "release": "xxx",
+    "codename": "xxx",
+    "sdk": 0 // 随机
+  },
+  "sim_info": "xxx",
+  "os_type": "xxx",
+  "mac_address": "xxx",
+  "ip_address": [
+    // ...
+  ],
+  "wifi_bssid": "xxx",
+  "wifi_ssid": "xxx",
+  "imsi_md5": "xxx",
+  "android_id": "xxx",
+  "apn": "xxx",
+  "vendor_name": "xxx",
+  "vendor_os_name": "xxx"
 }
 ```
 
