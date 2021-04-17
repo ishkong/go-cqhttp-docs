@@ -15,7 +15,7 @@ module.exports = {
             }
         },
         '@vuepress/google-analytics': {
-            'ga': 'G-CZJ8X185MG'
+            'ga': 'UA-193666178-1'
         }
     },
     themeConfig: {
