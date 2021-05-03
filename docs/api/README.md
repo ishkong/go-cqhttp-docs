@@ -1311,6 +1311,10 @@ JSON数组:
 
 ## 获取在线机型
 
+::: tip 提示
+有关例子可从[这个链接](https://github.com/Mrs4s/go-cqhttp/pull/872#issuecomment-831180149)找到
+:::
+
 终结点：`/_get_model_show`
 
 **参数**
@@ -1334,6 +1338,10 @@ JSON数组:
 
 
 ## 设置在线机型
+
+::: tip 提示
+有关例子可从[这个链接](https://github.com/Mrs4s/go-cqhttp/pull/872#issuecomment-831180149)找到
+:::
 
 终结点：`/_set_model_show`
 
