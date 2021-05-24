@@ -3,10 +3,10 @@
 此仓库为 [Mrs4s / go-cqhttp](https://github.com/Mrs4s/go-cqhttp) 的文档。
 
 文档目前正在更新, 你可以在
-- <https://ishkong.github.io/go-cqhttp-docs> 
+- <https://ishkong.github.io/go-cqhttp-docs> (预览)
 - <https://docs.go-cqhttp.org> 
 
-查看预览。
+查看。
 
 ## 完善文档
 
