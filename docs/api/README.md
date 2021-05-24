@@ -397,6 +397,26 @@
 | `user_id` | int64 | QQ 号 |
 | `nickname` | string | QQ 昵称 |
 
+### 获取企点账号信息
+
+::: tip 注意
+该API只有企点协议可用
+:::
+
+终结点: `/qidian_get_account_info`
+
+::: tip 提示
+该 API 无需参数
+:::
+
+**响应数据**
+
+| 字段               | 类型    | 说明         |
+| ------------------ | ------- | ------------ |
+| `master_id`        | int64   | 父账号ID      |
+| `ext_name`         | string  | 用户昵称     |
+| `create_time`      | int64   | 账号创建时间  |
+
 ## 获取陌生人信息
 
 终结点：`/get_stranger_info`
