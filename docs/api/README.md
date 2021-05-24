@@ -436,6 +436,20 @@
 | `nickname` | string | 昵称 |
 | `remark` | string | 备注名 |
 
+## 删除好友
+
+终结点：`/delete_friend`
+
+**参数**
+
+| 字段名 | 数据类型 | 默认值 | 说明 |
+| ----- | ------- | ----- | --- |
+| `friend_id` | int64 | - | 好友 QQ 号 |
+
+::: tip 提示
+该 API 无响应数据
+:::
+
 ## 获取群信息
 
 终结点：`/get_group_info`
