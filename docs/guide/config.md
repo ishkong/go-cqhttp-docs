@@ -21,11 +21,10 @@ account: # 账号相关
   uin: 1233456 # QQ账号
   password: '' # 密码为空时使用扫码登录
   encrypt: false  # 是否开启密码加密
-  status: 0       # 在线状态
-  relogin:        # 重连设置
-    disable: false
-    delay: 3      # 重连延迟, 单位秒
-    interval: 0   # 重连间隔
+  status: 0      # 在线状态 请参考 https://github.com/Mrs4s/go-cqhttp/blob/dev/docs/config.md#在线状态
+  relogin: # 重连设置
+    delay: 3   # 首次重连延迟, 单位秒
+    interval: 3   # 重连间隔
     max-times: 0  # 最大重连次数, 0为无限制
 
   # 是否使用服务器下发的新地址进行重连
@@ -33,7 +32,6 @@ account: # 账号相关
   use-sso-address: true
 
 heartbeat:
-  disabled: false # 是否开启心跳事件上报
   # 心跳频率, 单位秒
   # -1 为关闭心跳
   interval: 5
@@ -60,11 +58,12 @@ message:
   extra-reply-data: false
 
 output:
-  # 日志等级 trace,debug,info,warn,error日志等级 trace,debug,info,warn,error
+  # 日志等级 trace,debug,info,warn,error
   log-level: warn
   # 是否启用 DEBUG
   debug: false # 开启调试模式
 
+# 默认中间件锚点
 default-middlewares: &default
   # 访问密钥, 强烈推荐在公网的服务器设置
   access-token: ''
@@ -80,60 +79,20 @@ default-middlewares: &default
     frequency: 1  # 令牌回复频率, 单位秒
     bucket: 1     # 令牌桶大小
 
-servers:
-  # HTTP 通信设置
-  - http:
-      # 是否关闭正向HTTP服务器
-      disabled: false
-      # 服务端监听地址
-      host: 127.0.0.1
-      # 服务端监听端口
-      port: 5700
-      # 反向HTTP超时时间, 单位秒
-      # 最小值为5，小于5将会忽略本项设置
-      timeout: 5
-      middlewares:
-        <<: *default
-      # 反向HTTP POST地址列表
-      post:
-        - url: '' # 地址
-          secret: ''           # 密钥
-        #- url: 127.0.0.1:5701 # 地址
-        #  secret: ''          # 密钥
-
-  # 正向WS设置
-  - ws:
-      # 是否禁用正向WS服务器
-      disabled: true
-      # 正向WS服务器监听地址
-      host: 127.0.0.1
-      # 正向WS服务器监听端口
-      port: 6700
-      middlewares:
-        <<: *default
-
-  - ws-reverse:
-      # 是否禁用当前反向WS服务
-      disabled: true
-      # 反向WS Universal 地址
-      # 注意 设置了此项地址后下面两项将会被忽略
-      universal: ws://your_websocket_universal.server
-      # 反向WS API 地址
-      api: ws://your_websocket_api.server
-      # 反向WS Event 地址
-      event: ws://your_websocket_event.server
-      # 重连间隔 单位毫秒
-      reconnect-interval: 3000
-      middlewares:
-        <<: *default
-  #- ws-reverse: # 可添加多个
-
 database: # 数据库相关设置
   leveldb:
     # 是否启用内置leveldb数据库
     # 启用将会增加10-20MB的内存占用和一定的磁盘空间
     # 关闭将无法使用 撤回 回复 get_msg 等上下文相关功能
     enable: true
+
+# 连接服务列表
+servers:
+  # 添加方式，同一连接方式可添加多个，具体配置说明请查看文档
+  #- http: # http 通信
+  #- ws:   # 正向 Websocket
+  #- ws-reverse: # 反向 Websocket
+  #- pprof: #性能分析服务器
 ```
 
 在线状态:
