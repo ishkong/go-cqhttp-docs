@@ -5,7 +5,7 @@ go-cqhttp 默认生成的文件树如下所示 :
 ```
 .
 ├── go-cqhttp
-├── config.hjson
+├── config.yml (旧版: config.hjson)
 ├── device.json
 ├── logs
 │   └── xx-xx-xx.log
@@ -20,7 +20,7 @@ go-cqhttp 默认生成的文件树如下所示 :
 | 文件        | 用途                |
 | ----------- | ------------------- |
 | go-cqhttp   | go-cqhttp可执行文件 |
-| config.hjson | 运行配置文件        |
+| config.yml / config.hjson | 运行配置文件        |
 | device.json | 虚拟设备配置文件    |
 | logs        | 日志存放目录        |
 | data        | 数据目录            |
@@ -29,7 +29,7 @@ go-cqhttp 默认生成的文件树如下所示 :
 
 ## 图片缓存文件
 
-出于性能考虑, go-cqhttp 并不会将图片源文件下载到本地, 而是生成一个可以和QQ服务器对应的缓存文件 ( .image ), 该缓存文件结构如下 :
+出于性能考虑, go-cqhttp 并不会将图片源文件下载到本地, 而是生成一个可以和QQ服务器对应的缓存文件 ( .image ), 该缓存文件结构如下
 
 | 偏移            | 类型     | 说明               |
 | --------------- | -------- | ------------------ |
