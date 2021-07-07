@@ -178,7 +178,7 @@ go-cqhttp.exe update https://github.rc1844.workers.dev
 
 如果遇到下载速度缓慢的问题可以用 [这个源](https://downloads.go-cqhttp.org/ffmpeg-release-full.7z) 。
 
-然后在命令行输入 
+然后在cmd输入 **(不能使用powershell）**
 
 ```shell
 setx /M PATH "C:\Program Files\ffmpeg\bin;%PATH%"
