@@ -88,12 +88,60 @@ database: # 数据库相关设置
 
 # 连接服务列表
 servers:
-  # 添加方式，同一连接方式可添加多个，具体配置说明请查看文档
-  #- http: # http 通信
-  #- ws:   # 正向 Websocket
-  #- ws-reverse: # 反向 Websocket
-  #- pprof: #性能分析服务器
+  # HTTP 通信设置
+  - http:
+      # 服务端监听地址
+      host: 127.0.0.1
+      # 服务端监听端口
+      port: 5700
+      # 反向HTTP超时时间, 单位秒
+      # 最小值为5，小于5将会忽略本项设置
+      timeout: 5
+      middlewares:
+        <<: *default # 引用默认中间件
+      # 反向HTTP POST地址列表
+      post:
+      #- url: '' # 地址
+      #  secret: ''           # 密钥
+      #- url: 127.0.0.1:5701 # 地址
+      #  secret: ''          # 密钥
+
+  # 正向WS设置
+  - ws:
+      # 正向WS服务器监听地址
+      host: 127.0.0.1
+      # 正向WS服务器监听端口
+      port: 6700
+      middlewares:
+        <<: *default # 引用默认中间件
+
+  - ws-reverse:
+      # 反向WS Universal 地址
+      # 注意 设置了此项地址后下面两项将会被忽略
+      universal: ws://your_websocket_universal.server
+      # 反向WS API 地址
+      api: ws://your_websocket_api.server
+      # 反向WS Event 地址
+      event: ws://your_websocket_event.server
+      # 重连间隔 单位毫秒
+      reconnect-interval: 3000
+      middlewares:
+        <<: *default # 引用默认中间件
+  # pprof 性能分析服务器, 一般情况下不需要启用.
+  # 如果遇到性能问题请上传报告给开发者处理
+  # 注意: pprof服务不支持中间件、不支持鉴权. 请不要开放到公网
+  - pprof:
+      # pprof服务器监听地址
+      host: 127.0.0.1
+      # pprof服务器监听端口
+      port: 7700
+
+  # 可添加更多
+  #- ws-reverse:
+  #- ws:
+  #- http:
 ```
+
 
 ## 在线状态
 
