@@ -87,6 +87,16 @@ database: # 数据库相关设置
     enable: true
 
 # 连接服务列表
+servers:  
+  # 添加方式，同一连接方式可添加多个，具体配置说明请查看文档
+  #- http: # http 通信
+  #- ws:   # 正向 Websocket
+  #- ws-reverse: # 反向 Websocket
+  #- pprof: #性能分析服务器
+```
+
+servers部分参考配置：
+```yaml
 servers:
   # HTTP 通信设置
   - http:
