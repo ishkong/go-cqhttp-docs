@@ -21,7 +21,7 @@ account: # 账号相关
   uin: 1233456 # QQ账号
   password: '' # 密码为空时使用扫码登录
   encrypt: false  # 是否开启密码加密
-  status: 0      # 在线状态 请参考 https://github.com/Mrs4s/go-cqhttp/blob/dev/docs/config.md#在线状态
+  status: 0      # 在线状态 请参考 https://docs.go-cqhttp.org/guide/config.html#在线状态
   relogin: # 重连设置
     delay: 3   # 首次重连延迟, 单位秒
     interval: 3   # 重连间隔
@@ -56,10 +56,16 @@ message:
   remove-reply-at: false
   # 为Reply附加更多信息
   extra-reply-data: false
+  # 跳过 Mime 扫描, 忽略错误数据
+  skip-mime-scan: false
 
 output:
   # 日志等级 trace,debug,info,warn,error
   log-level: warn
+  # 日志时效 单位天. 超过这个时间之前的日志将会被自动删除. 设置为 0 表示永久保留.
+  log-aging: 15
+  # 是否在每次启动时强制创建全新的文件储存日志. 为 false 的情况下将会在上次启动时创建的日志文件续写
+  log-force-new: true
   # 是否启用 DEBUG
   debug: false # 开启调试模式
 
@@ -87,12 +93,12 @@ database: # 数据库相关设置
     enable: true
 
 # 连接服务列表
-servers:  
-  # 添加方式，同一连接方式可添加多个，具体配置说明请查看文档
-  #- http: # http 通信
-  #- ws:   # 正向 WebSocket
-  #- ws-reverse: # 反向 WebSocket
-  #- pprof: #性能分析服务器
+servers:
+# 添加方式，同一连接方式可添加多个，具体配置说明请查看文档
+#- http: # http 通信
+#- ws:   # 正向 Websocket
+#- ws-reverse: # 反向 Websocket
+#- pprof: #性能分析服务器
 ```
 
 servers 部分参考配置：
@@ -146,6 +152,12 @@ servers:
       # pprof服务器监听端口
       port: 7700
 
+  # LambdaServer 配置
+  - lambda:
+      type: scf # 可用 scf,aws (aws未经过测试)
+      middlewares:
+        <<: *default # 引用默认中间件
+
   # 可添加更多
   #- ws-reverse:
   #- ws:
@@ -185,9 +197,21 @@ servers:
 
 解密后密码将储存在内存中, 用于自动重连等功能. 所以此加密并不能防止内存读取.
 
-解密密钥在使用完成后并不会留存在内存中, 所以可用相对简单的字符串作为密钥
+解密密钥在使用完成后并不会留存在内存中, 所以可用相对简单的字符串作为密钥.
+:::
 
-分片发送为原酷Q发送长消息的老方案, 发送速度更优/兼容性更好, 但在有发言频率限制的群里, 可能无法发送。关闭后将优先使用新方案, 能发送更长的消息, 但发送速度更慢, 在部分老客户端将无法解析.
+::: tip 提示
+分片发送为原酷Q发送长消息的老方案, 发送速度更优/兼容性更好
+
+但在有发言频率限制的群里，可能无法发送。
+
+关闭后将优先使用新方案, 能发送更长的消息,
+
+但发送速度更慢，在部分老客户端将无法解析.
+:::
+
+::: tip 提示
+对于不需要的通信方式，你可以使用注释将其停用(推荐)，或者添加配置 `disabled: true` 将其关闭
 :::
 
 ::: warning 注意
@@ -243,6 +267,7 @@ servers:
 | 1   | Android Phone | 无                                                               |
 | 2   | Android Watch | 无法接收 `notify` 事件、无法接收口令红包、无法接收撤回消息            |
 | 3   | MacOS         | 无                                                               |
+| 4   | 企点          | 只能登录企点账号或企点子账号                                       |
 
 ::: warning 注意
 根据协议的不同, 各类消息有所限制
@@ -262,3 +287,13 @@ servers:
 1.1.2.2:8899
 ```
 
+## 云函数部署
+
+使用CustomRuntime进行部署， bootstrap 文件在 [scripts/bootstrap](https://github.com/Mrs4s/go-cqhttp/blob/master/scripts/bootstrap) 中已给出。
+在部署前，请在本地完成登录，并将 `config.yml` ， `device.json` ，`bootstrap` 和 `go-cqhttp`
+一起打包。
+
+在触发器中创建一个 API 网关触发器，并启用继承响应， 创建完成后即可通过api网关访问 `go-cqhttp` (建议配置 AccessToken)。
+
+> `scripts/bootstrap` 中使用的工作路径为 /tmp, 这个目录最大能容下 500M 文件, 如需长期使用，
+> 请挂载文件存储(CFS).
