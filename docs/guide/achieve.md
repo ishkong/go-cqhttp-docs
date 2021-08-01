@@ -1,10 +1,10 @@
 # 实现
 
 
-## 已实现CQ码
+## 已实现 CQ 码
 
-##### 符合OneBot标准的CQ码
-| CQ码         | 功能                         |
+##### 符合 OneBot 标准的 CQ 码
+|  CQ 码       | 功能                         |
 | ------------ | ---------------------------- |
 | [CQ:face]    | [QQ表情]                     |
 | [CQ:record]  | [语音]                       |
@@ -29,8 +29,8 @@
 [XML消息]: /cqcode/README.md#xml-%E6%B6%88%E6%81%AF
 [JSON消息]: /cqcode/README.md#json-%E6%B6%88%E6%81%AF
 
-##### 拓展CQ码及与OneBot标准有略微差异的CQ码
-| 拓展CQ码       | 功能                            |
+##### 拓展 CQ 码及与 OneBot 标准有略微差异的 CQ 码
+| 拓展 CQ 码     | 功能                            |
 | -------------- | ------------------------------- |
 | [CQ:image]     | [图片]                          |
 | [CQ:redbag]    | [红包]                          |
@@ -48,9 +48,9 @@
 [一种xml的图片消息（装逼大图）]: /cqcode/README.md#cardimage
 [文本转语音]: /cqcode/README.md#%E6%96%87%E6%9C%AC%E8%BD%AC%E8%AF%AD%E9%9F%B3
 
-## 已实现API
+## 已实现 API
 
-##### 符合OneBot标准的API
+##### 符合 OneBot 标准的 API
 | API                      | 功能                   |
 | ------------------------ | ---------------------- |
 | /send_private_msg        | [发送私聊消息]         |
@@ -110,8 +110,8 @@
 [重启go-cqhttp]: /api/README.md#%E9%87%8D%E5%90%AF-onebot-%E5%AE%9E%E7%8E%B0
 [对事件执行快速操作]: /api/README.md#%E5%AF%B9%E4%BA%8B%E4%BB%B6%E6%89%A7%E8%A1%8C%E5%BF%AB%E9%80%9F%E6%93%8D%E4%BD%9C-%E9%9A%90%E8%97%8Fapi
 
-##### 拓展API及与OneBot标准有略微差异的API
-| 拓展API                     | 功能                   |
+##### 拓展 API 及与 OneBot 标准有略微差异的 API
+| 拓展 API                    | 功能                   |
 | --------------------------- | ---------------------- |
 | /set_group_portrait         | [设置群头像]           |
 | /get_image                  | [获取图片信息]         |
@@ -141,9 +141,9 @@
 [获取群文件资源链接]: /api/README.md#%E8%8E%B7%E5%8F%96%E7%BE%A4%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E9%93%BE%E6%8E%A5
 [获取状态]: /api/README.md#%E8%8E%B7%E5%8F%96%E7%8A%B6%E6%80%81
 
-## 已实现Event
+## 已实现 Event 
 
-##### 符合OneBot标准的Event（部分Event比OneBot标准多上报几个字段，不影响使用）
+##### 符合 OneBot 标准的 Event （部分 Event 比 OneBot 标准多上报几个字段，不影响使用）
 | 事件类型 | Event            |
 | -------- | ---------------- |
 | 消息事件 | [私聊信息]       |
@@ -178,10 +178,10 @@
 [加好友请求]: /event/README.md#%E5%8A%A0%E5%A5%BD%E5%8F%8B%E8%AF%B7%E6%B1%82
 [加群请求/邀请]: /event/README.md#%E5%8A%A0%E7%BE%A4%E8%AF%B7%E6%B1%82-%E9%82%80%E8%AF%B7
 
-##### 拓展Event
-| 事件类型 | 拓展Event        |
+##### 拓展 Event 
+| 事件类型 | 拓展 Event       |
 | -------- | ---------------- |
-| 通知事件 | [好友戳一戳]    |
+| 通知事件 | [好友戳一戳]     |
 | 通知事件 | [群成员名片更新] |
 | 通知事件 | [接收到离线文件] |
 
