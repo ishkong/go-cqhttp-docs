@@ -10,7 +10,7 @@
 
 | 参数名       | 类型   | 说明                        |
 | ------------ | ------ | --------------------------- |
-| access_token | string | 校验口令, config.hjson中配置 |
+| access_token | string | 校验口令, config.json中配置 |
 
 ## 热重启
 
@@ -209,7 +209,7 @@
 {"data": {}, "retcode": 0, "status": "ok"}
 ```
 
-## 直接修改 config.hjson 配置
+## 直接修改 config.json 配置
 
 接口 : **admin/do_config_json**
 
@@ -219,7 +219,7 @@
 
 | 参数名 | 类型   | 说明                                |
 | ------ | ------ | ----------------------------------- |
-| json   | string | 完整的config.hjson的配合，json字符串 |
+| json   | string | 完整的config.json的配合，json字符串 |
 
 
 返回 : 
@@ -228,7 +228,7 @@
 {"data": {}, "retcode": 0, "status": "ok"}
 ```
 
-## 获取当前 config.hjson 配置
+## 获取当前 config.json 配置
 
 接口 : **admin/get_config_json**
 
@@ -249,5 +249,5 @@
 
 | 参数名 | 类型   | 说明                                |
 | ------ | ------ | ----------------------------------- |
-| config | string | 完整的config.hjson的配合，json字符串 |
+| config | string | 完整的config.json的配合，json字符串 |
 
