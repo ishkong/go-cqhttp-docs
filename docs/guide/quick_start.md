@@ -11,7 +11,7 @@
 :::
 
 ### 下载
-从 [release](https://github.com/Mrs4s/go-cqhttp/releases) 界面下载最新版本的go-cqhttp
+从 [release](https://github.com/Mrs4s/go-cqhttp/releases) 界面下载最新版本的 go-cqhttp
 
 - Windows下32位文件为  `go-cqhttp-v*-windows-386.zip`
 - Windows下64位文件为 `go-cqhttp-v*-windows-amd64.zip`
@@ -31,7 +31,7 @@
 
 #### Windows 标准方法
 
-1.  双击`go-cqhttp.exe`此时将提示
+1.  双击 `go-cqhttp.exe` 此时将提示
 ```
 [WARNING]: 尝试加载配置文件 config.json 失败: 文件不存在
 [INFO]: 默认配置文件已生成,请编辑 config.json 后重启程序.
@@ -67,7 +67,7 @@ enable ws?(Y/n)
 请按任意键继续. . .
 ```
 
-5. 双击`go-cqhttp.exe`
+5. 双击 `go-cqhttp.exe`
 ```
 [INFO]: 登录成功 欢迎使用: balabala
 ```
@@ -120,26 +120,26 @@ enable ws?(Y/n)
 
 ### 如何自己构建
 
-1. [下载源码](https://github.com/Mrs4s/go-cqhttp/archive/master.zip)并解压 || 使用`git clone https://github.com/Mrs4s/go-cqhttp.git`来拉取
+1. [下载源码](https://github.com/Mrs4s/go-cqhttp/archive/master.zip)并解压 || 使用 `git clone https://github.com/Mrs4s/go-cqhttp.git` 来拉取
 
 2. [下载golang binary release](https://golang.google.cn/dl/)并安装或者[自己构建golang](https://golang.google.cn/doc/install/source)
 
-3. 在`cmd`或Linux命令行中, `cd`到目录中
+3. 在 `cmd` 或Linux命令行中, `cd` 到目录中
 
-4. 输入`go build -ldflags "-s -w -extldflags '-static'"`, `Enter`运行
+4. 输入 `go build -ldflags "-s -w -extldflags '-static'"`, `Enter` 运行
 
-*注：可以使用*`go env -w GOPROXY=https://goproxy.cn,direct`*来加速国内依赖安装速度*
+*注：可以使用* `go env -w GOPROXY=https://goproxy.cn,direct` *来加速国内依赖安装速度*
 
 ### 更新
 
 #### 方法一
 
-从[release](https://github.com/Mrs4s/go-cqhttp/releases)界面下载最新版本的go-cqhttp
+从 [release](https://github.com/Mrs4s/go-cqhttp/releases) 界面下载最新版本的 go-cqhttp
 并替换之前的版本
 
 #### 方法二
 
-使用更新参数, 在命令行中打开go-cqhttp所在目录
+使用更新参数, 在命令行中打开 go-cqhttp 所在目录
 
 **windows**
 
@@ -162,7 +162,7 @@ go-cqhttp.exe update https://github.rc1844.workers.dev
 
 **linux**
 
-方法与windows基本一致, 将 `go-cqhttp.exe` 替换为 `./go-cqhttp`即可
+方法与windows基本一致, 将 `go-cqhttp.exe` 替换为 `./go-cqhttp` 即可
 
 ```shell
 ./go-cqhttp update
@@ -178,7 +178,7 @@ go-cqhttp.exe update https://github.rc1844.workers.dev
 
 如果遇到下载速度缓慢的问题可以用 [这个源](https://downloads.go-cqhttp.org/ffmpeg-release-full.7z) 。
 
-然后在cmd输入 **(不能使用powershell）**
+然后在 cmd 输入 **(不能使用 powershell）**
 
 ```shell
 setx /M PATH "C:\Program Files\ffmpeg\bin;%PATH%"
