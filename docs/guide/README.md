@@ -19,8 +19,8 @@
 ### 接口
 - HTTP API
 - 反向HTTP POST
-- 正向Websocket
-- 反向Websocket
+- 正向WebSocket
+- 反向WebSocket
 
 ### 拓展支持
 > 拓展API可前往 [文档](docs/cqhttp.md) 查看
