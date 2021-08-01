@@ -3,7 +3,7 @@
 
 ## 已实现CQ码
 
-##### 符合Onebot标准的CQ码
+##### 符合OneBot标准的CQ码
 | CQ码         | 功能                         |
 | ------------ | ---------------------------- |
 | [CQ:face]    | [QQ表情]                     |
@@ -29,7 +29,7 @@
 [XML消息]: /cqcode/README.md#xml-%E6%B6%88%E6%81%AF
 [JSON消息]: /cqcode/README.md#json-%E6%B6%88%E6%81%AF
 
-##### 拓展CQ码及与Onebot标准有略微差异的CQ码
+##### 拓展CQ码及与OneBot标准有略微差异的CQ码
 | 拓展CQ码       | 功能                            |
 | -------------- | ------------------------------- |
 | [CQ:image]     | [图片]                          |
@@ -50,7 +50,7 @@
 
 ## 已实现API
 
-##### 符合Onebot标准的API
+##### 符合OneBot标准的API
 | API                      | 功能                   |
 | ------------------------ | ---------------------- |
 | /send_private_msg        | [发送私聊消息]         |
@@ -110,7 +110,7 @@
 [重启go-cqhttp]: /api/README.md#%E9%87%8D%E5%90%AF-onebot-%E5%AE%9E%E7%8E%B0
 [对事件执行快速操作]: /api/README.md#%E5%AF%B9%E4%BA%8B%E4%BB%B6%E6%89%A7%E8%A1%8C%E5%BF%AB%E9%80%9F%E6%93%8D%E4%BD%9C-%E9%9A%90%E8%97%8Fapi
 
-##### 拓展API及与Onebot标准有略微差异的API
+##### 拓展API及与OneBot标准有略微差异的API
 | 拓展API                     | 功能                   |
 | --------------------------- | ---------------------- |
 | /set_group_portrait         | [设置群头像]           |
@@ -143,7 +143,7 @@
 
 ## 已实现Event
 
-##### 符合Onebot标准的Event（部分Event比Onebot标准多上报几个字段，不影响使用）
+##### 符合OneBot标准的Event（部分Event比OneBot标准多上报几个字段，不影响使用）
 | 事件类型 | Event            |
 | -------- | ---------------- |
 | 消息事件 | [私聊信息]       |
