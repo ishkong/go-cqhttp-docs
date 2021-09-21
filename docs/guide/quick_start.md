@@ -4,22 +4,25 @@
 
 ## 基础教程
 
-::: warning 注意
-
-- 如果你遇到滑块验证码的问题, 请移步 [这里](../faq/slider.md)
-
-:::
-
 ### 下载
+
 从 [release](https://github.com/Mrs4s/go-cqhttp/releases) 界面下载最新版本的 go-cqhttp
 
-- Windows下32位文件为  `go-cqhttp-v*-windows-386.zip`
-- Windows下64位文件为 `go-cqhttp-v*-windows-amd64.zip`
-- Windows下arm用(如使用高通CPU的笔记本)文件为 `go-cqhttp-v*-windows-arm.zip`
-- Linux下32位文件为 `go-cqhttp-v*-linux-386.tar.gz`
-- Linux下64位文件为 `go-cqhttp-v*-linux-amd64.tar.gz`
-- Linux下arm用(如树莓派)文件为 `go-cqhttp-v*-linux-arm.tar.gz`
-- MD5文件为 `*.md5` , 用于校验文件完整性
+| 系统类型 | 可执行文件 | 压缩文件 |
+| :---: | :---: | :---: |
+| Intel 版 Macos | Not available | `go-cqhttp_darwin_amd64.tar.gz` |
+| M1 版 Macos | Not available | `go-cqhttp_darwin_arm64.tar.gz` |
+| 32 位 Linux | Not available | `go-cqhttp_linux_386.tar.gz` |
+| 64 位 Linux | Not available | `go-cqhttp_linux_amd64.tar.gz` |
+| arm64 Linux | Not available | `go-cqhttp_linux_arm64.tar.gz` |
+| armv7 Linux | Not available | `go-cqhttp_linux_armv7.tar.gz` |
+| 32 位 Windows | `go-cqhttp_windows_386.exe` | `go-cqhttp_windows_386.zip` |
+| 64 位 Windows | `go-cqhttp_windows_amd64.exe` | `go-cqhttp_windows_amd64.zip` |
+| arm64 Windows | `go-cqhttp_windows_arm64.exe` | `go-cqhttp_windows_arm64.zip` |
+| armv7 Windows | `go-cqhttp_windows_armv7.exe` | `go-cqhttp_windows_armv7.zip` |
+
+
+- MD5信息在 `go-cqhttp_checksums.txt` , 可用于校验文件完整性
 - 如果没有你所使用的系统版本或者希望自己构建, 请移步 [进阶指南-如何自己构建](#如何自己构建)
 
 ### 解压
@@ -31,43 +34,14 @@
 
 #### Windows 标准方法
 
-1.  双击 `go-cqhttp.exe` 此时将提示
+1. 双击`go-cqhttp_*.exe`，根据提示生成运行脚本
+2. 双击运行脚本
 ```
-[WARNING]: 尝试加载配置文件 config.hjson 失败: 文件不存在
-[INFO]: 默认配置文件已生成,请编辑 config.hjson 后重启程序.
+[WARNING]: 尝试加载配置文件 config.yml 失败: 文件不存在
+[INFO]: 默认配置文件已生成,请编辑 config.yml 后重启程序.
 ```
-2. 参照[config.md](https://github.com/Mrs4s/go-cqhttp/blob/master/docs/config.md)和你所用到的插件的 `README` 填入参数
-3. 再次双击`go-cqhttp.exe`
-```
-[INFO]: 登录成功 欢迎使用: balabala
-```
-
-如出现需要认证的信息, 请自行认证设备。
-
-此时, 基础配置完成
-
-#### Windows 懒人法
-
-1. [下载包含 Windows.bat 的 zip](https://github.com/fkx4-p/go-cqhttp-lazy/archive/master.zip)
-2. 解压
-3. 将`Windows.bat`复制/剪切到**go-cqhttp**文件夹
-4. 双击运行
-
-效果如下
-
-```
-QQ account:
-[QQ账号]
-QQ password:
-[QQ密码]
-enable http?(Y/n)
-[是否开启http(y/n),默认开启]
-enable ws?(Y/n)
-[是否开启websocket(y/n),默认开启]
-请按任意键继续. . .
-```
-
-5. 双击 `go-cqhttp.exe`
+3. 参照[config.md](https://github.com/Mrs4s/go-cqhttp/blob/master/docs/config.md)和你所用到的插件的 `README` 填入参数
+4. 再次双击运行脚本
 ```
 [INFO]: 登录成功 欢迎使用: balabala
 ```
@@ -78,12 +52,12 @@ enable ws?(Y/n)
 
 #### Linux 标准方法
 
-1. 打开一个命令行/ssh
+1. 通过 SSH 连接到服务器
 2. `cd`到解压目录
 3. 输入 `./go-cqhttp`, `Enter`运行 , 此时将提示
 ```
-[WARNING]: 尝试加载配置文件 config.hjson 失败: 文件不存在
-[INFO]: 默认配置文件已生成,请编辑 config.hjson 后重启程序.
+[WARNING]: 尝试加载配置文件 config.yml 失败: 文件不存在
+[INFO]: 默认配置文件已生成,请编辑 config.yml 后重启程序.
 ```
 
 4. 参照 [config.md](https://github.com/Mrs4s/go-cqhttp/blob/master/docs/config.md) 和你所用到的插件的 `README` 填入参数
@@ -96,25 +70,23 @@ enable ws?(Y/n)
 
 此时, 基础配置完成
 
-#### Linux 懒人法
+::: warning 注意
+需要保持 go-cqhttp 在后台持续运行
 
-暂时咕咕咕了
+请配合 screen 等服务来保证断开 SSH 连接后 go-cqhttp 的持续运行
+:::
 
 ### 跳过启动的五秒延时
 
 使用命令行参数 `faststart`即可跳过启动的五秒钟延时，例如
 
 ```shell
+# Windows
 .\go-cqhttp.exe faststart
+
+# Linux
+./go-cqhttp faststart
 ```
-
-### 验证http是否成功配置
-
-此时, 如果在本地开启的服务器, 可以在浏览器输入`http://127.0.0.1:5700/send_private_msg?user_id=[接收者qq号]&message=[发送的信息]`来发送一条测试信息
-
-如果出现`{"data":{"message_id":balabala},"retcode":0,"status":"ok"}`则证明已经成功配置HTTP
-
-*注：请 连 中括号 也替换掉, 就像这样：*`http://127.0.0.1:5700/send_private_msg?user_id=10001&message=ffeecoishp`
 
 ## 进阶指南
 
@@ -196,16 +168,17 @@ Ubuntu / Debian :
 apt install -y ffmpeg
 ```
 
-CentOS : 
+Fedora / RHEL / CentOS : 
+
+根据 [Rpmfusion](https://rpmfusion.org/Configuration) 的文档配置源
 
 终端执行
 
 ```shell
-yum install -y epel-release
+# Centos7 及之前
+yum install ffmpeg ffmpeg-devel 
 
-rpm -v --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro
-rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
-
-yum install ffmpeg ffmpeg-devel
+# CentOS8 及之后
+dnf install ffmpeg ffmpeg-devel
 ```
 

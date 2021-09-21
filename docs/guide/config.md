@@ -2,13 +2,7 @@
 
 go-cqhttp 包含 `config.yml` 和 `device.json` 两个配置文件, 其中 `config.yml` 为运行配置 `device.json` 为虚拟设备信息。
 
-## 从原 CQHTTP 导入配置
-
-go-cqhttp 支持导入 CQHTTP 的配置文件, 具体步骤为: 
-
-1. 找到 CQHTTP 原配置文件 `{CQ工作目录}/app/io.github.richardchien.coolqhttpapi/config/{qq号}.json`
-2. 将文件复制到go-cqhttp根目录并重命名为 `cqhttp.json`
-3. 重启go-cqhttp后将自动导入配置
+`config.yml` 会在首次运行 go-cqhttp 的时候自动生成，`device.json` 会在首次登陆账户的时候自动生成
 
 ## 配置信息
 
