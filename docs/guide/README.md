@@ -14,6 +14,14 @@
     <img src="https://github.com/Mrs4s/go-cqhttp/workflows/CI/badge.svg" alt="action">
 </a>
 
+::: danger 注意
+由于 go-cqhttp 仍在开发中，暂未发布正式版
+
+本文档将仅保留最新版的文档
+
+被遗弃的功能的文档将会被从文档中删除
+:::
+
 ## 兼容性
 
 ### 接口

@@ -61,8 +61,7 @@ module.exports = {
                 'file',
                 'config',
                 'achieve',
-                'eventfilter',
-                'adminApi'
+                'eventfilter'
             ],
             '/api/': [
                 '',
