@@ -1,6 +1,6 @@
 module.exports = {
     title: 'go-cqhttp 帮助中心',
-    description: 'go-cqhttp帮助中心',
+    description: 'cqhttp的golang实现，轻量、原生跨平台',
     base: '/',
     plugins: {
         '@vuepress/search': {
@@ -32,8 +32,13 @@ module.exports = {
         ],
     ],
     themeConfig: {
-        search: true,
-        searchMaxSuggestions: 5,
+        algolia: {
+            apiKey: '4cfe0f33be16c346fed77effff922cf8',
+            indexName: 'go-cqhttp',
+            algoliaOptions: {
+                facetFilters: ["lang:zh-CN"],
+            },
+        },
         smoothScroll: true,
         lastUpdated: '上一次编辑',
         docsDir: 'docs',
