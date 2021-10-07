@@ -121,6 +121,8 @@
 | ------------ | ------ | ------ |
 | `message_id` | string | 消息id |
 
+::: tip 提示 此处的`message_id`对应[合并转发](https://docs.go-cqhttp.org/cqcode/#%E5%90%88%E5%B9%B6%E8%BD%AC%E5%8F%91)中的`id`字段 :::
+
 **响应数据**
 
 | 字段       | 类型              | 说明     |
