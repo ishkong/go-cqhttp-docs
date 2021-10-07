@@ -36,7 +36,7 @@ module.exports = {
             apiKey: '4cfe0f33be16c346fed77effff922cf8',
             indexName: 'go-cqhttp',
             algoliaOptions: {
-                facetFilters: ["lang:zh-CN"],
+                facetFilters: ["lang:en-US"],
             },
         },
         smoothScroll: true,
