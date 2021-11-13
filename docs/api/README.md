@@ -441,6 +441,8 @@
 | `sex` | string | 性别, `male` 或 `female` 或 `unknown` |
 | `age` | int32 | 年龄 |
 | `qid` | string | qid ID身份卡 |
+| `level`| int32 | 等级 |
+| `login_days | int32 | 等级 |
 
 ## 获取好友列表
 
@@ -1014,6 +1016,7 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 
 | 字段             | 类型   | 说明                   |
 | ---------------- | ------ | ---------------------- |
+| `group_id`       | int32  | 群号                   |
 | `file_id`        | string | 文件ID                 |
 | `file_name`      | string | 文件名                 |
 | `busid`          | int32  | 文件类型               |
@@ -1029,6 +1032,7 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 
 | 字段               | 类型   | 说明       |
 | ------------------ | ------ | ---------- |
+| `group_id`         | int32  | 群号       |
 | `folder_id`        | string | 文件夹ID   |
 | `folder_name`      | string | 文件名     |
 | `create_time`      | int64  | 创建时间   |
