@@ -555,6 +555,7 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 | `title` | string | 专属头衔 |
 | `title_expire_time` | int64 | 专属头衔过期时间戳 |
 | `card_changeable` | boolean | 是否允许修改群名片 |
+| `shut_up_timestamp` | int64 | 禁言到期时间 |
 
 ## 获取群成员列表
 
