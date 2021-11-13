@@ -441,6 +441,8 @@
 | `sex` | string | 性别, `male` 或 `female` 或 `unknown` |
 | `age` | int32 | 年龄 |
 | `qid` | string | qid ID身份卡 |
+| `level`| int32 | 等级 |
+| `login_days | int32 | 等级 |
 
 ## 获取好友列表
 
@@ -553,6 +555,7 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 | `title` | string | 专属头衔 |
 | `title_expire_time` | int64 | 专属头衔过期时间戳 |
 | `card_changeable` | boolean | 是否允许修改群名片 |
+| `shut_up_timestamp` | int64 | 禁言到期时间 |
 
 ## 获取群成员列表
 
@@ -1014,6 +1017,7 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 
 | 字段             | 类型   | 说明                   |
 | ---------------- | ------ | ---------------------- |
+| `group_id`       | int32  | 群号                   |
 | `file_id`        | string | 文件ID                 |
 | `file_name`      | string | 文件名                 |
 | `busid`          | int32  | 文件类型               |
@@ -1029,6 +1033,7 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 
 | 字段               | 类型   | 说明       |
 | ------------------ | ------ | ---------- |
+| `group_id`         | int32  | 群号       |
 | `folder_id`        | string | 文件夹ID   |
 | `folder_name`      | string | 文件名     |
 | `create_time`      | int64  | 创建时间   |
@@ -1219,7 +1224,7 @@ JSON数组:
 
 | 字段        | 类型       | 说明            |
 | ---------- | ---------- | ------------ |
-| `clients`    | []Device       |  在线客户端列表  |
+| `clients`    |  Device[]    |  在线客户端列表  |
 
 **Device**
 
@@ -1244,7 +1249,7 @@ JSON数组:
 
 | 字段        | 类型       | 说明            |
 | ---------- | ---------- | ------------ |
-| `messages`    | []Message       |  从起始序号开始的前19条消息  |
+| `messages`    | Message[]   |  从起始序号开始的前19条消息  |
 
 ::: tip 提示
 不提供起始序号将默认获取最新的消息
