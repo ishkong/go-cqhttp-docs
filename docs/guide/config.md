@@ -275,6 +275,12 @@ servers:
 
 将文件 `address.txt` 创建到 `go-cqhttp` 工作目录, 并键入 `IP:PORT` 以换行符为分割即可.
 
+其中，`IP` 可以在 `debug` 模式下控制台输出中找到，它应该形如这样:
+
+ `got new server addr: xxx.xxx.xxx.xxx location: xxx`
+
+`PORT` 则默认为 `8080`
+
 示例:
 ```
 1.1.1.1:53
