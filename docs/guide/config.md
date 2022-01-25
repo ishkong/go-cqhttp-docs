@@ -275,11 +275,13 @@ servers:
 
 将文件 `address.txt` 创建到 `go-cqhttp` 工作目录, 并键入 `IP:PORT` 以换行符为分割即可.
 
-其中，`IP` 可以在 `debug` 模式下控制台输出中找到，它应该形如这样:
-
- `got new server addr: xxx.xxx.xxx.xxx location: xxx`
-
-`PORT` 则默认为 `8080`
+::: tip 提示
+假如你在使用 `use-sso-address` 后依然登录失败，可尝试开启 `debug` 模式后透过
+\
+`got new server addr: xxx.xxx.xxx.xxx location: xxx`
+\
+来获得服务器IP，然后手动输入到 `address.txt`
+:::
 
 示例:
 ```
