@@ -3,6 +3,7 @@ home: true
 heroImage: https://user-images.githubusercontent.com/25968335/120111974-8abef880-c139-11eb-99cd-fa928348b198.png
 heroText: go-cqhttp
 tagline: 使用 mirai 以及 MiraiGo 开发的 cqhttp golang 原生实现
+
 actions:
 - text: 快速开始 →
   type: primary
