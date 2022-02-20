@@ -66,7 +66,7 @@ export default defineUserConfig<DefaultThemeOptions>({
             { text: 'Event', children: ['/event/', '/event/guild.md'] },
             { text: 'CQ code', link: '/cqcode/' },
             { text: 'Guild', link: '/guild/'},
-            { text: 'Advance', link: '/advance/'},
+            { text: 'Advanced', link: '/advanced/'},
             { text: 'FAQ', link: '/faq/' }
         ],
         sidebar: "auto",
