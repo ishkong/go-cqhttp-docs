@@ -26,7 +26,7 @@ $ go install github.com/RomiChan/xgo-cqhttp/cmd/xgo-cqhttp@latest
 1. 编译自定义的 `xgo-cqhttp` 二进制文件
 2. 在开发 `go-cqhttp` 插件时替代 `go run`。
 
-`xgo-cqhttp` 命令默认使用 `go-cqhttp` 的最新版本，你可以通过设置`GOCQHTTP_VERSION'环境变量来为所有的调用进行自定义。
+`xgo-cqhttp` 命令默认使用 `go-cqhttp` 的最新版本，你可以通过设置`GOCQHTTP_VERSION`环境变量来为所有的调用进行自定义。
 \
 与 `go` 命令一样，`xgo-cqhttp` 命令将传递 `GOOS`、`GOARCH` 和 `GOARM` 环境变量，以便交叉编译。
 
