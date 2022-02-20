@@ -12,8 +12,7 @@ export default defineUserConfig<DefaultThemeOptions>({
         [
             '@vuepress/pwa',
             {
-                serviceWorker: true,
-                updatePopup: true
+                skipWaiting: true
             }
         ],
         [
