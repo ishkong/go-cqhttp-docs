@@ -21,7 +21,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                 locales: {
                     '/': {
                         message: '发现新内容可用',
-                        button: '刷新',
+                        buttonText: '刷新',
                     }
                 }
             }
