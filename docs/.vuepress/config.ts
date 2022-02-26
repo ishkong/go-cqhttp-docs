@@ -60,7 +60,7 @@ export default defineUserConfig<DefaultThemeOptions>({
         backToHome: "返回首页",
         navbar: [
             { text: 'Home', link: '/' },
-            { text: 'Guide', link: '/guide/' },
+            { text: 'Guide', children: ['/guide/', '/guide/quick_start.md', '/guide/config.md', '/guide/eventfilter.md', '/guide/file.md', '/guide/achieve.md'] },
             { text: 'API', children: ['/api/', '/api/guild.md'] },
             { text: 'Event', children: ['/event/', '/event/guild.md'] },
             { text: 'CQ code', link: '/cqcode/' },
