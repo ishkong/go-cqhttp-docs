@@ -1147,7 +1147,7 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 |------------| ------- | ----- |---------------|
 | `group_id` | int64   |       | 群号           |
 | `content`  | string  |       | 公告内容       |
-| `img`      | string  |       | 图片路径（可选）|
+| `image`    | string  |       | 图片路径（可选）|
 
 ::: tip 提示
 该 API 没有响应数据
