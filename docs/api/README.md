@@ -1115,28 +1115,6 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 该 API 没有响应数据
 :::
 
-## 获取VIP信息
-
-终结点：`/_get_vip_info`
-
-**参数**
-
-| 字段名 | 数据类型 | 默认值 | 说明 |
-| ----- | ------- | ----- | --- |
-| `user_id` | int64 | | QQ 号 |
-
-**响应数据**
-
-| 字段                | 类型    | 说明        |
-| ------------------ | ------- | ---------- |
-| `user_id`          | int64   | QQ 号       |
-| `nickname`         | string  | 用户昵称    |
-| `level`            | int64   | QQ 等级     |
-| `level_speed`      | float64 | 等级加速度  |
-| `vip_level`        | string  | 会员等级    |
-| `vip_growth_speed` | int64   | 会员成长速度 |
-| `vip_growth_total` | int64   | 会员成长总值 |
-
 ## 发送群公告
 
 终结点： `/_send_group_notice`
