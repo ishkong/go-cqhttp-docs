@@ -442,7 +442,7 @@
 | `age` | int32 | 年龄 |
 | `qid` | string | qid ID身份卡 |
 | `level`| int32 | 等级 |
-| `login_days | int32 | 等级 |
+| `login_days` | int32 | 等级 |
 
 ## 获取好友列表
 
