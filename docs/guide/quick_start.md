@@ -82,10 +82,10 @@
 
 ```shell
 # Windows
-.\go-cqhttp.exe faststart
+.\go-cqhttp.exe -faststart
 
 # Linux
-./go-cqhttp faststart
+./go-cqhttp -faststart
 ```
 
 ## 进阶指南
