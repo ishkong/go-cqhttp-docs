@@ -1,6 +1,8 @@
 #  开始
 
-欢迎来到 go-cqhttp 文档 !
+欢迎来到 go-cqhttp 文档!
+
+> 如果你在阅读完这篇向导之后还感到很迷惑, 那么我们建议你阅读: [OneBot: 一个聊天机器人应用接口标准](https://onebot.dev/)
 
 ## 基础教程
 
@@ -8,18 +10,18 @@
 
 从 [release](https://github.com/Mrs4s/go-cqhttp/releases) 界面下载最新版本的 go-cqhttp
 
-| 系统类型 | 可执行文件 | 压缩文件 |
-| :---: | :---: | :---: |
-| Intel 版 Macos | Not available | `go-cqhttp_darwin_amd64.tar.gz` |
-| M1 版 Macos | Not available | `go-cqhttp_darwin_arm64.tar.gz` |
-| 32 位 Linux | Not available | `go-cqhttp_linux_386.tar.gz` |
-| 64 位 Linux | Not available | `go-cqhttp_linux_amd64.tar.gz` |
-| arm64 Linux | Not available | `go-cqhttp_linux_arm64.tar.gz` |
-| armv7 Linux | Not available | `go-cqhttp_linux_armv7.tar.gz` |
-| 32 位 Windows | `go-cqhttp_windows_386.exe` | `go-cqhttp_windows_386.zip` |
-| 64 位 Windows | `go-cqhttp_windows_amd64.exe` | `go-cqhttp_windows_amd64.zip` |
-| arm64 Windows | `go-cqhttp_windows_arm64.exe` | `go-cqhttp_windows_arm64.zip` |
-| armv7 Windows | `go-cqhttp_windows_armv7.exe` | `go-cqhttp_windows_armv7.zip` |
+| 系统类型          | 可执行文件                         | 压缩文件                            |
+|:-------------:|:-----------------------------:|:-------------------------------:|
+| Intel 版 Macos | Not available                 | `go-cqhttp_darwin_amd64.tar.gz` |
+| M1 版 Macos    | Not available                 | `go-cqhttp_darwin_arm64.tar.gz` |
+| 32 位 Linux    | Not available                 | `go-cqhttp_linux_386.tar.gz`    |
+| 64 位 Linux    | Not available                 | `go-cqhttp_linux_amd64.tar.gz`  |
+| arm64 Linux   | Not available                 | `go-cqhttp_linux_arm64.tar.gz`  |
+| armv7 Linux   | Not available                 | `go-cqhttp_linux_armv7.tar.gz`  |
+| 32 位 Windows  | `go-cqhttp_windows_386.exe`   | `go-cqhttp_windows_386.zip`     |
+| 64 位 Windows  | `go-cqhttp_windows_amd64.exe` | `go-cqhttp_windows_amd64.zip`   |
+| arm64 Windows | `go-cqhttp_windows_arm64.exe` | `go-cqhttp_windows_arm64.zip`   |
+| armv7 Windows | `go-cqhttp_windows_armv7.exe` | `go-cqhttp_windows_armv7.zip`   |
 
 
 - MD5信息在 `go-cqhttp_checksums.txt` , 可用于校验文件完整性
