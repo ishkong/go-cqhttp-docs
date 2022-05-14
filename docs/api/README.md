@@ -1,25 +1,121 @@
 # API
 
-## 发送私聊消息
+## 基础传输
+
+请求一个 API 时, 包含了: API 终结点, 以及 API 所需参数.
+
+### 请求说明
+
+使用 HTTP GET:
+| 名称     | 说明                                                                                             |
+|-----|------------------------------------------------------------------------------------------------|
+| 请求 URL | /终结点?参数名=参数值&参数名=参数值......                                                                     |
+| 补充     | 使用 GET 虽然简单, 但是你无法传入复杂的数据结构, 所以一些需要嵌套数据的 API 是无法通过 HTTP Get 来调用的, 例如 send_group_forward_msg 接口 |
+
+使用 HTTP POST:
+| 名称     | 说明                                                             |
+|--------|----------------------------------------------------------------|
+| 请求 URL | /终结点                                                           |
+| 请求体    | 请求体可以使用 JSON 也可以使用 Form 表单, 需要注意的是, 请求的 Content-Type 是一定要设置准确的 |
+| 补充     | 同样, 在 POST 中, 如果要使用复杂的 API, 那么也需要使用 JSON 的格式, 表单格式是不支持数据嵌套的    |
+
+HTTP POST JSON 格式:
+```json
+{
+    "参数名": "参数值",
+    "参数名2": "参数值"
+}
+```
+
+HTTP POST 表单格式:
+```
+param1=value&param2=value
+```
+
+使用 WebSocket:
+| 说明                                                                                                          |
+|-------------------------------------------------------------------------------------------------------------|
+| 这个其实说的是 websocket 建立连接时的 URL, 你可以连接 / 路径, 也可以连接 /api 路径, 他们的区别是 / 除了用来发送 api 和响应 api, 还提供上报功能               |
+| 一个 JSON 数据, 其中包含了请求 API 的终结点, 以及参数                                                                          |
+| 在调用 api 时, 你还可以传入 "echo" 字段, 然后响应数据中也会有一个值相同的 "echo" 字段, 可以使用这个方式来甄别 "这个响应是哪个请求发出的", 你可以为每一个请求都使用一个唯一标识符来甄别 |
+WebSocket JSON 格式
+``` json
+{
+    "action": "终结点名称, 例如 'send_group_msg'",
+    "params": {
+        "参数名": "参数值",
+        "参数名2": "参数值"
+    },
+    "echo": "'回声', 如果指定了 echo 字段, 那么响应包也会同时包含一个 echo 字段, 它们会有相同的值"
+}
+```
+
+### 响应说明
+
+使用 HTTP 调用 API 的时候, HTTP 的响应状态码:
+
+| 值   | 说明                                                                       |
+|-----|--------------------------------------------------------------------------|
+| 401 | access token 未提供                                                         |
+| 403 | access token 不符合                                                         |
+| 406 | Content-Type 不支持 (非 application/json 或 application/x-www-form-urlencoded |
+| 404 | API 不存在                                                                  |
+| 200 | 除上述情况外所有情况 (具体 API 调用是否成功, 需要看 API 的 响应数据                                |
+API 的响应是一个 JSON 数据, 如下:
+```json
+{
+    "status": "状态, 表示 API 是否调用成功, 如果成功, 则是 OK, 其他的在下面会说明",
+    "retcode": 0,
+    "msg": "错误消息, 仅在 API 调用失败式有该字段",
+    "wording": "对错误的详细解释(中文), 仅在 API 调用失败时有该字段",
+    "data": {
+        "响应数据名": "数据值",
+        "响应数据名2": "数据值",
+    },
+    "echo": "'回声', 如果请求时指定了 echo, 那么响应也会包含 echo"
+}
+```
+
+其中, status 字段:
+| 值      | 说明                                                |
+|--------|---------------------------------------------------|
+| ok     | api 调用成功                                          |
+| async  | api 调用已经提交异步处理, 此时 retcode 为 1, 具体 api 调用是否成功无法得知 |
+| failed | api 调用失败                                          |
+
+retcode 字段:
+| 值  | 说明                                |
+|----|-----------------------------------|
+| 0  | 调用成功                              |
+| 1  | 已提交 async 处理                      |
+| 其他 | 操作失败, 具体原因可以看响应的 msg 和 wording 字段 |
+
+
+
+## 参数及响应数据
+
+下面是请求所需 params 和响应包含的 data 格式.
+
+### 发送私聊消息
 
 终结点：`/send_private_msg`
 
 **参数**
 
-| 字段名         | 数据类型  | 默认值   | 说明                                                                   |
-| ------------- | ------- | ------- | ---------------------------------------------------------------------- |
-| `user_id`     | int64   | -       | 对方 QQ 号                                                              |
-| `group_id`    | int64   | -       | 主动发起临时会话群号(机器人本身必须是管理员/群主)                               |
-| `message`     | message | -       | 要发送的内容                                                             |
+| 字段名           | 数据类型    | 默认值     | 说明                                                   |
+|---------------|---------|---------|------------------------------------------------------|
+| `user_id`     | int64   | -       | 对方 QQ 号                                              |
+| `group_id`    | int64   | -       | 主动发起临时会话群号(机器人本身必须是管理员/群主)                           |
+| `message`     | message | -       | 要发送的内容                                               |
 | `auto_escape` | boolean | `false` | 消息内容是否作为纯文本发送 ( 即不解析 CQ 码 ) , 只在 `message` 字段是字符串时有效 |
 
 **响应数据**
 
-| 字段名 | 数据类型 | 说明 |
-| ----- | ------- | --- |
+| 字段名          | 数据类型  | 说明    |
+|--------------|-------|-------|
 | `message_id` | int32 | 消息 ID |
 
-##  发送群消息
+###  发送群消息
 
 终结点：`/send_group_msg`
 
@@ -37,7 +133,7 @@
 | ----- | ------- | --- |
 | `message_id` | int32 | 消息 ID |
 
-## 发送合并转发 ( 群 )
+### 发送合并转发 ( 群 )
 
 终结点: `/send_group_forward_msg`
 
@@ -48,7 +144,7 @@
 | `group_id` | int64          | 群号                          |
 | `messages` | forward node[] | 自定义转发消息, 具体看 [CQcode](https://docs.go-cqhttp.org/cqcode/#%E5%90%88%E5%B9%B6%E8%BD%AC%E5%8F%91%E6%B6%88%E6%81%AF%E8%8A%82%E7%82%B9) |
 
-## 发送消息
+### 发送消息
 
 终结点：`/send_msg`
 
@@ -68,7 +164,7 @@
 | ----- | ------- | --- |
 | `message_id` | int32 | 消息 ID |
 
-## 撤回消息
+### 撤回消息
 
 终结点：`/delete_msg`
 
@@ -82,7 +178,7 @@
 该 API 无响应数据
 :::
 
-## 获取消息
+### 获取消息
 
 终结点: `/get_msg`
 
@@ -111,7 +207,7 @@
 在 go-cqhttp-v0.9.29-fix1 以前的版本可能不符合该文档
 :::
 
-## 获取合并转发内容
+### 获取合并转发内容
 
 终结点: `/get_forward_msg`
 
@@ -160,7 +256,7 @@
 }
 ````
 
-## 获取图片信息
+### 获取图片信息
 
 终结点: `/get_image`
 
@@ -182,7 +278,7 @@
 | `filename` | string | 图片文件原名   |
 | `url`      | string | 图片下载地址   |
 
-## 群组踢人
+### 群组踢人
 
 终结点：`/set_group_kick`
 
@@ -198,7 +294,7 @@
 该 API 无响应数据
 :::
 
-## 群组单人禁言
+### 群组单人禁言
 
 终结点：`/set_group_ban`
 
@@ -214,7 +310,7 @@
 该 API 无响应数据
 :::
 
-## 群组匿名用户禁言
+### 群组匿名用户禁言
 
 ::: warning 注意
 该 API 从 go-cqhttp-v0.9.36 开始支持
@@ -239,7 +335,7 @@
 该 API 无响应数据
 :::
 
-## 群组全员禁言
+### 群组全员禁言
 
 终结点：`/set_group_whole_ban`
 
@@ -254,7 +350,7 @@
 该 API 无响应数据
 :::
 
-## 群组设置管理员
+### 群组设置管理员
 
 终结点：`/set_group_admin`
 
@@ -270,7 +366,7 @@
 该 API 无响应数据
 :::
 
-## 群组匿名
+### 群组匿名
 
 ::: warning 注意
 该 API 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 API 被支持
@@ -290,7 +386,7 @@
 该 API 无响应数据
 :::
 
-## 设置群名片 ( 群备注 )
+### 设置群名片 ( 群备注 )
 
 终结点：`/set_group_card`
 
@@ -306,7 +402,7 @@
 该 API 无响应数据
 :::
 
-## 设置群名
+### 设置群名
 
 终结点：`/set_group_name`
 
@@ -321,7 +417,7 @@
 该 API 无响应数据
 :::
 
-## 退出群组
+### 退出群组
 
 终结点：`/set_group_leave`
 
@@ -336,7 +432,7 @@
 该 API 无响应数据
 :::
 
-## 设置群组专属头衔
+### 设置群组专属头衔
 
 终结点：`/set_group_special_title`
 
@@ -353,7 +449,7 @@
 该 API 无响应数据
 :::
 
-## 处理加好友请求
+### 处理加好友请求
 
 终结点：`/set_friend_add_request`
 
@@ -369,7 +465,7 @@
 该 API 无响应数据
 :::
 
-## 处理加群请求／邀请
+### 处理加群请求／邀请
 
 终结点：`/set_group_add_request`
 
@@ -386,7 +482,7 @@
 该 API 无响应数据
 :::
 
-## 获取登录号信息
+### 获取登录号信息
 
 终结点：`/get_login_info`
 
@@ -401,7 +497,7 @@
 | `user_id` | int64 | QQ 号 |
 | `nickname` | string | QQ 昵称 |
 
-### 获取企点账号信息
+#### 获取企点账号信息
 
 ::: tip 注意
 该API只有企点协议可用
@@ -421,7 +517,7 @@
 | `ext_name`         | string  | 用户昵称     |
 | `create_time`      | int64   | 账号创建时间  |
 
-## 获取陌生人信息
+### 获取陌生人信息
 
 终结点：`/get_stranger_info`
 
@@ -444,7 +540,7 @@
 | `level`| int32 | 等级 |
 | `login_days` | int32 | 等级 |
 
-## 获取好友列表
+### 获取好友列表
 
 终结点：`/get_friend_list`
 
@@ -462,7 +558,7 @@
 | `nickname` | string | 昵称 |
 | `remark` | string | 备注名 |
 
-## 删除好友
+### 删除好友
 
 终结点：`/delete_friend`
 
@@ -476,7 +572,7 @@
 该 API 无响应数据
 :::
 
-## 获取群信息
+### 获取群信息
 
 终结点：`/get_group_info`
 
@@ -512,7 +608,7 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 在 `go-cqhttp-v0.9.40`之前的版本中，该API不能获取陌生群消息
 :::
 
-## 获取群列表
+### 获取群列表
 
 终结点：`/get_group_list`
 
@@ -524,7 +620,7 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 
 响应内容为 json 数组, 每个元素和上面的 `get_group_info` 接口相同。
 
-## 获取群成员信息
+### 获取群成员信息
 
 终结点：`/get_group_member_info`
 
@@ -557,7 +653,7 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 | `card_changeable` | boolean | 是否允许修改群名片 |
 | `shut_up_timestamp` | int64 | 禁言到期时间 |
 
-## 获取群成员列表
+### 获取群成员列表
 
 终结点：`/get_group_member_list`
 
@@ -571,7 +667,7 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 
 响应内容为 json 数组, 每个元素的内容和上面的 `get_group_member_info` 接口相同, 但对于同一个群组的同一个成员, 获取列表时和获取单独的成员信息时, 某些字段可能有所不同, 例如 `area`、`title` 等字段在获取列表时无法获得, 具体应以单独的成员信息为准。
 
-## 获取群荣誉信息
+### 获取群荣誉信息
 
 终结点：`/get_group_honor_info`
 
@@ -612,7 +708,7 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 | `avatar` | string | 头像 URL |
 | `description` | string | 荣誉描述 |
 
-## 获取 Cookies
+### 获取 Cookies
 
 ::: warning 注意
 该 API 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 API 被支持
@@ -633,7 +729,7 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 | ----- | ------- | --- |
 | `cookies` | string | Cookies |
 
-## 获取 CSRF Token
+### 获取 CSRF Token
 
 ::: warning 注意
 该 API 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 API 被支持
@@ -652,7 +748,7 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 | ----- | ------- | --- |
 | `token` | int32 | CSRF Token |
 
-## 获取 QQ 相关接口凭证
+### 获取 QQ 相关接口凭证
 
 ::: warning 注意
 该 API 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 API 被支持
@@ -678,7 +774,7 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 | `cookies` | string | Cookies |
 | `csrf_token` | int32 | CSRF Token |
 
-## 获取语音
+### 获取语音
 
 ::: warning 注意
 该 API 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 API 被支持
@@ -704,7 +800,7 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 | ----- | ------- | --- |
 | `file` | string | 转换后的语音文件路径, 如 `/home/somebody/cqhttp/data/record/0B38145AA44505000B38145AA4450500.mp3` |
 
-## 检查是否可以发送图片
+### 检查是否可以发送图片
 
 终结点：`/can_send_image`
 
@@ -718,7 +814,7 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 | ----- | ------- | --- |
 | `yes` | boolean | 是或否 |
 
-## 检查是否可以发送语音
+### 检查是否可以发送语音
 
 终结点：`/can_send_record`
 
@@ -732,7 +828,7 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 | ----- | ------- | --- |
 | `yes` | boolean | 是或否 |
 
-## 获取版本信息
+### 获取版本信息
 
 终结点：`/get_version_info`
 
@@ -759,7 +855,7 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 | `version` | string || 应用版本, 如 `v0.9.40-fix4` |
 | `protocol` | int | `0/1/2/3/-1` | 当前登陆使用协议类型 |
 
-## 重启 go-cqhttp
+### 重启 go-cqhttp
 
 终结点：`/set_restart`
 
@@ -775,7 +871,7 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 该 API 无响应数据
 :::
 
-## 清理缓存
+### 清理缓存
 
 ::: warning 注意
 该 API 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 API 被支持
@@ -790,7 +886,7 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 该 API 无需参数也没有响应数据
 :::
 
-## 设置群头像
+### 设置群头像
 
 终结点: `/set_group_portrait`
 
@@ -812,7 +908,7 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 
 [3] 目前这个API在登录一段时间后因cookie失效而失效, 请考虑后使用
 
-## 获取中文分词 ( 隐藏 API )
+### 获取中文分词 ( 隐藏 API )
 
 ::: danger 警告
 隐藏 API 是不建议一般用户使用的, 它们只应该在 OneBot 实现内部或由 SDK 和框架使用, 因为不正确的使用可能造成程序运行不正常。
@@ -832,7 +928,7 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 | -------- | -------- | ---- |
 | `slices` | string[] | 词组 |
 
-## 图片 OCR
+### 图片 OCR
 
 ::: warning 注意
 目前图片OCR接口仅支持接受的图片
@@ -866,7 +962,7 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 | `coordinates` | vector2 | 坐标   |
 
 
-## 获取群系统消息
+### 获取群系统消息
 
 终结点: `/get_group_system_msg`
 
@@ -910,7 +1006,7 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 在 `go-cqhttp-v0.9.40` 之前的版本中，无法获取被过滤的群系统消息
 :::
 
-## 上传群文件
+### 上传群文件
 
 终结点: `/upload_group_file`
 
@@ -929,7 +1025,7 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 只能上传本地文件, 需要上传 `http` 文件的话请先调用 [`download_file` API](#下载文件到缓存目录)下载
 :::
 
-## 获取群文件系统信息
+### 获取群文件系统信息
 
 终结点: `/get_group_file_system_info`
 
@@ -948,7 +1044,7 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 | `used_space`  | int64 | 已使用空间 |
 | `total_space` | int64 | 空间上限   |
 
-## 获取群根目录文件列表
+### 获取群根目录文件列表
 
 ::: tip 提示
 `File` 和 `Folder` 对象信息请参考最下方
@@ -969,7 +1065,7 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 | `files`   | File[]   | 文件列表   |
 | `folders` | Folder[] | 文件夹列表 |
 
-## 获取群子目录文件列表
+### 获取群子目录文件列表
 
 ::: tip 提示
 `File` 和 `Folder` 对象信息请参考最下方
@@ -991,7 +1087,7 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 | `files`   | File[]   | 文件列表   |
 | `folders` | Folder[] | 文件夹列表 |
 
-## 获取群文件资源链接
+### 获取群文件资源链接
 
 ::: tip 提示
 `File` 和 `Folder` 对象信息请参考最下方
@@ -1041,7 +1137,7 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 | `creator_name`     | string | 创建者名字 |
 | `total_file_count` | int32  | 子文件数量 |
 
-## 获取状态
+### 获取状态
 
 终结点: `/get_status`
 
@@ -1076,7 +1172,7 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 :::
 
 
-## 获取群 @全体成员 剩余次数
+### 获取群 @全体成员 剩余次数
 
 终结点: `/get_group_at_all_remain`
 
@@ -1094,7 +1190,7 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 | `remain_at_all_count_for_group` | int16      | 群内所有管理当天剩余 @全体成员 次数 |
 | `remain_at_all_count_for_uin`   | int16      | Bot 当天剩余 @全体成员 次数      |
 
-## 对事件执行快速操作 ( 隐藏 API )
+### 对事件执行快速操作 ( 隐藏 API )
 
 ::: warning 注意
 隐藏 API 是不建议一般用户使用的, 它们只应该在 OneBot 实现内部或由 SDK 和框架使用, 因为不正确的使用可能造成程序运行不正常。
@@ -1115,7 +1211,9 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 该 API 没有响应数据
 :::
 
-## 发送群公告
+
+### 发送群公告
+
 
 终结点： `/_send_group_notice`
 
@@ -1131,7 +1229,7 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 该 API 没有响应数据
 :::
 
-## 重载事件过滤器
+### 重载事件过滤器
 
 终结点：`/reload_event_filter`
 
@@ -1145,7 +1243,7 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 该 API 没有响应数据
 :::
 
-## 下载文件到缓存目录
+### 下载文件到缓存目录
 
 终结点: `/download_file`
 
@@ -1190,7 +1288,7 @@ JSON数组:
 调用后会阻塞直到下载完成后才会返回数据，请注意下载大文件时的超时
 :::
 
-## 获取当前账号在线客户端列表
+### 获取当前账号在线客户端列表
 
 终结点：`/get_online_clients`
 
@@ -1214,7 +1312,7 @@ JSON数组:
 | `device_name`    | string       |  设备名称 |
 | `device_kind`    | string       |  设备类型 |
 
-## 获取群消息历史记录
+### 获取群消息历史记录
 
 终结点：`/get_group_msg_history`
 
@@ -1235,7 +1333,7 @@ JSON数组:
 不提供起始序号将默认获取最新的消息
 :::
 
-## 设置精华消息
+### 设置精华消息
 
 终结点: `/set_essence_msg`
 
@@ -1249,7 +1347,7 @@ JSON数组:
 该 API 没有响应数据
 :::
 
-## 移出精华消息
+### 移出精华消息
 
 终结点: `/delete_essence_msg`
 
@@ -1263,7 +1361,7 @@ JSON数组:
 该 API 没有响应数据
 :::
 
-## 获取精华消息列表
+### 获取精华消息列表
 
 终结点: `/get_essence_msg_list`
 
@@ -1287,7 +1385,7 @@ JSON数组:
 | `operator_time` | int64    | 精华设置时间 |
 | `message_id`    | int32    | 消息ID       |
 
-## 检查链接安全性
+### 检查链接安全性
 
 终结点：`/check_url_safely`
 
@@ -1304,7 +1402,7 @@ JSON数组:
 | `level`    | int       |  安全等级, 1: 安全 2: 未知 3: 危险  |
 
 
-## 获取在线机型
+### 获取在线机型
 
 ::: tip 提示
 有关例子可从[这个链接](https://github.com/Mrs4s/go-cqhttp/pull/872#issuecomment-831180149)找到
@@ -1332,7 +1430,7 @@ JSON数组:
 | `need_pay` | boolean | - |
 
 
-## 设置在线机型
+### 设置在线机型
 
 ::: tip 提示
 有关例子可从[这个链接](https://github.com/Mrs4s/go-cqhttp/pull/872#issuecomment-831180149)找到
