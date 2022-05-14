@@ -1,6 +1,43 @@
-# CQcode
+# CQ 码 / CQ Code
 
-## QQ 表情
+CQ 码是指 CQ 中特殊消息类型的文本格式, 这是它的基本语法:
+```
+[CQ:类型,参数=值,参数=值]
+```
+
+在 QQ 中, 一个消息由多个部分构成, 例如一段文本, 一个图片, at 某人的一个部分. CQ 中定义了与这些消息相符的 CQ 码, 以方便用户使用.
+
+例如, 下面是由一个 at 部分和一个文本部分构成的合法 CQ 消息串
+```
+[CQ:at,qq=114514]早上好啊
+```
+
+例如qq号为114514的人昵称为"小明", 那么上述消息串在QQ中的渲染是这样的:
+```
+@小明 早上好啊
+```
+
+> 注意, CQ 码中不应该有多余的空格, 请不要在任何逗号后或前添加空格, 它会被识别为参数或参数值的一部分.
+
+> 关于 CQ 码对应的 JSON 格式说明, 参考: [go-cqhttp 帮助中心: 参考](/reference)
+
+## 转义
+
+CQ 码由字符 `[` 起始, 以 `]` 结束, 并且以 `,` 分割各个参数, 如果你的 CQ 码中, 参数值包括了这些字符, 那么它们应该被使用 HTML 特殊字符的编码方式进行转义.
+
+| 字符  | 对应实体转义序列 |
+|:---:|----------|
+| `&` | `&amp;`  |
+| `[` | `&#91;`  |
+| `]` | `&#93;`  |
+| `,` | `&#44;`  |
+
+
+## 消息类型
+
+下面规定了 CQ 所支持的特殊消息类型
+
+### QQ 表情
 
 Type: `face`
 
@@ -23,7 +60,7 @@ Type: `face`
 | --- | --- | --- | --- | --- |
 | `id` | ✓ | ✓ | 见 [QQ 表情 ID 表](https://github.com/richardchien/coolq-http-api/wiki/%E8%A1%A8%E6%83%85-CQ-%E7%A0%81-ID-%E8%A1%A8) | QQ 表情 ID |
 
-## 语音
+### 语音
 
 ```json
 {
@@ -49,7 +86,7 @@ Type: `face`
 
 [1] 发送时, `file` 参数除了支持使用收到的语音文件名直接发送外, 还支持其它形式, 参考 [图片](#图片)。
 
-## 短视频
+### 短视频
 
 ::: warning 注意
 go-cqhttp-v0.9.38 起开始支持发送，需要依赖ffmpeg
@@ -68,13 +105,13 @@ go-cqhttp-v0.9.38 起开始支持发送，需要依赖ffmpeg
 [CQ:video,file=http://baidu.com/1.mp4]
 ```
 
-| 参数名   | 类型    | 可能的值 | 说明                                                       |
-| ------- | ------ | ------ | ---------------------------------------------------------- |
-| `file`  | string | -      | 视频地址, 支持http和file发送                                  |
-| `cover` | string | -      | 视频封面, 支持http, file和base64发送, 格式必须为jpg             |
-| `c`     | int    | `2` `3`| 通过网络下载视频时的线程数, 默认单线程. (在资源不支持并发时会自动处理) |
+| 参数名     | 类型     | 可能的值    | 说明                                     |
+|---------|--------|---------|----------------------------------------|
+| `file`  | string | -       | 视频地址, 支持http和file发送                    |
+| `cover` | string | -       | 视频封面, 支持http, file和base64发送, 格式必须为jpg  |
+| `c`     | int    | `2` `3` | 通过网络下载视频时的线程数, 默认单线程. (在资源不支持并发时会自动处理) |
 
-## @某人
+### \@某人
 
 ```json
 {
@@ -96,7 +133,7 @@ go-cqhttp-v0.9.38 起开始支持发送，需要依赖ffmpeg
 | `qq` | ✓ | ✓ | QQ 号、`all` | @的 QQ 号, `all` 表示全体成员 |
 | `name` | | ✓ | 字符串 | 当在群中找不到此QQ号的名称时才会生效 |
 
-## 猜拳魔法表情
+### 猜拳魔法表情
 
 ::: warning 注意
 该 CQcode 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 CQcode 被支持
@@ -114,7 +151,7 @@ go-cqhttp-v0.9.38 起开始支持发送，需要依赖ffmpeg
 [CQ:rps]
 ```
 
-## 掷骰子魔法表情
+### 掷骰子魔法表情
 
 ::: warning 注意
 该 CQcode 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 CQcode 被支持
@@ -132,7 +169,7 @@ go-cqhttp-v0.9.38 起开始支持发送，需要依赖ffmpeg
 [CQ:dice]
 ```
 
-## 窗口抖动（戳一戳） <Badge text="发"/>
+### 窗口抖动（戳一戳） <Badge text="发"/>
 
 ::: warning 注意
 该 CQcode 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 CQcode 被支持
@@ -154,7 +191,7 @@ go-cqhttp-v0.9.38 起开始支持发送，需要依赖ffmpeg
 [CQ:shake]
 ```
 
-## 匿名发消息 <Badge text="发"/>
+### 匿名发消息 <Badge text="发"/>
 
 ::: warning 注意
 该 CQcode 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 CQcode 被支持
@@ -180,7 +217,7 @@ go-cqhttp-v0.9.38 起开始支持发送，需要依赖ffmpeg
 | --- | --- | --- | --- | --- |
 | `ignore` |  | ✓ | `0` `1` | 可选, 表示无法匿名时是否继续发送 |
 
-## 链接分享
+### 链接分享
 
 ```json
 {
@@ -203,7 +240,7 @@ go-cqhttp-v0.9.38 起开始支持发送，需要依赖ffmpeg
 | `content` | ✓ | ✓ | - | 发送时可选, 内容描述 |
 | `image` | ✓ | ✓ | - | 发送时可选, 图片 URL |
 
-## 推荐好友/群
+### 推荐好友/群
 
 ::: warning 注意
 该 CQcode 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 CQcode 被支持
@@ -220,7 +257,7 @@ go-cqhttp-v0.9.38 起开始支持发送，需要依赖ffmpeg
 | `type` | ✓ | ✓ | `qq`/`group` | 推荐好友/群 |
 | `id` | ✓ | ✓ | - | 被推荐的 QQ （群）号 |
 
-## 位置
+### 位置
 
 ::: warning 注意
 该 CQcode 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 CQcode 被支持
@@ -248,7 +285,7 @@ go-cqhttp-v0.9.38 起开始支持发送，需要依赖ffmpeg
 | `title` | ✓ | ✓ | - | 发送时可选, 标题 |
 | `content` | ✓ | ✓ | - | 发送时可选, 内容描述 |
 
-## 音乐分享 <Badge text="发"/>
+### 音乐分享 <Badge text="发"/>
 
 ```json
 {
@@ -269,7 +306,7 @@ go-cqhttp-v0.9.38 起开始支持发送，需要依赖ffmpeg
 | `type` |  | ✓ | `qq` `163` `xm` | 分别表示使用 QQ 音乐、网易云音乐、虾米音乐 |
 | `id` |  | ✓ | - | 歌曲 ID |
 
-## 音乐自定义分享 <Badge text="发"/>
+### 音乐自定义分享 <Badge text="发"/>
 
 ```json
 {
@@ -296,7 +333,7 @@ go-cqhttp-v0.9.38 起开始支持发送，需要依赖ffmpeg
 | `content` |  | ✓ | - | 发送时可选, 内容描述 |
 | `image` |  | ✓ | - | 发送时可选, 图片 URL |
 
-## 图片
+### 图片
 
 Type : `image`
 
@@ -351,7 +388,7 @@ PNG格式不会被压缩, JPG可能不会二次压缩, GIF非动图转成PNG
 GIF动图原样发送(总帧数最大300张, 超过无法发出, 无论循不循环)
 :::
 
-## 回复
+### 回复
 
 Type : `reply`
 
@@ -378,7 +415,7 @@ Type : `reply`
 \
 自定义回复示例: `[CQ:reply,text=Hello World,qq=10086,time=3376656000,seq=5123]`
 
-## 红包 <Badge text="收"/>
+### 红包 <Badge text="收"/>
 
 Type: `redbag`
 
@@ -390,7 +427,7 @@ Type: `redbag`
 
 示例: `[CQ:redbag,title=恭喜发财]`
 
-## 戳一戳 <Badge text="发"/>
+### 戳一戳 <Badge text="发"/>
 
 ::: warning 注意
 发送戳一戳消息无法撤回, 返回的 `message id`  恒定为 `0`
@@ -408,7 +445,7 @@ Type: `poke`
 
 示例: `[CQ:poke,qq=123456]`
 
-## 礼物 <Badge text="发"/>
+### 礼物 <Badge text="发"/>
 
 ::: warning 注意
 
@@ -448,7 +485,7 @@ Type: `gift`
 
 示例: `[CQ:gift,qq=123456,id=8]`
 
-## 合并转发 <Badge text="收"/>
+### 合并转发 <Badge text="收"/>
 
 Type: `forward`
 
@@ -460,7 +497,7 @@ Type: `forward`
 
 示例: `[CQ:forward,id=xxxx]`
 
-## 合并转发消息节点 <Badge text="发"/>
+### 合并转发消息节点 <Badge text="发"/>
 
 Type: `node`
 
@@ -550,7 +587,7 @@ Type: `node`
 ]
 ````
 
-## XML 消息
+### XML 消息
 
 Type: `xml`
 
@@ -565,21 +602,21 @@ Type: `xml`
 
 示例: `[CQ:xml,data=xxxx]`
 
-#### 一些 xml 样例
+##### 一些 xml 样例
 
-#### ps:重要 : xml 中的 value 部分, 记得 html 实体化处理后, 再打加入到 CQ 码中
+##### ps:重要 : xml 中的 value 部分, 记得 html 实体化处理后, 再打加入到 CQ 码中
 
-#### QQ 音乐
+##### QQ 音乐
 
 ```xml
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?><msg serviceID="2" templateID="1" action="web" brief="&#91;分享&#93; 十年" sourceMsgId="0" url="https://i.y.qq.com/v8/playsong.html?_wv=1&amp;songid=4830342&amp;souce=qqshare&amp;source=qqshare&amp;ADTAG=qqshare" flag="0" adverSign="0" multiMsgFlag="0" ><item layout="2"><audio cover="http://imgcache.qq.com/music/photo/album_500/26/500_albumpic_89526_0.jpg" src="http://ws.stream.qqmusic.qq.com/C400003mAan70zUy5O.m4a?guid=1535153710&amp;vkey=D5315B8C0603653592AD4879A8A3742177F59D582A7A86546E24DD7F282C3ACF81526C76E293E57EA1E42CF19881C561275D919233333ADE&amp;uin=&amp;fromtag=3" /><title>十年</title><summary>陈奕迅</summary></item><source name="QQ音乐" icon="https://i.gtimg.cn/open/app_icon/01/07/98/56/1101079856_100_m.png" url="http://web.p.qq.com/qqmpmobile/aio/app.html?id=1101079856" action="app"  a_actionData="com.tencent.qqmusic" i_actionData="tencent1101079856://" appid="1101079856" /></msg>
 ```
-#### 网易音乐
+##### 网易音乐
 ```xml
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?><msg serviceID="2" templateID="1" action="web" brief="&#91;分享&#93; 十年" sourceMsgId="0" url="http://music.163.com/m/song/409650368" flag="0" adverSign="0" multiMsgFlag="0" ><item layout="2"><audio cover="http://p2.music.126.net/g-Qgb9ibk9Wp_0HWra0xQQ==/16636710440565853.jpg?param=90y90" src="https://music.163.com/song/media/outer/url?id=409650368.mp3" /><title>十年</title><summary>黄梦之</summary></item><source name="网易云音乐" icon="https://pic.rmb.bdstatic.com/911423bee2bef937975b29b265d737b3.png" url="http://web.p.qq.com/qqmpmobile/aio/app.html?id=1101079856" action="app" a_actionData="com.netease.cloudmusic" i_actionData="tencent100495085://" appid="100495085" /></msg>
 ```
 
-#### 卡片消息 1
+##### 卡片消息 1
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <msg serviceID="1">
@@ -588,7 +625,7 @@ Type: `xml`
 </msg>
 ```
 
-#### 卡片消息 2
+##### 卡片消息 2
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <msg serviceID="1">
@@ -599,7 +636,7 @@ Type: `xml`
 </msg>
 ```
 
-## JSON 消息
+### JSON 消息
 
 Type: `json`
 
@@ -630,7 +667,7 @@ json中的字符串需要进行转义 :
 ```
 
 
-## cardimage <Badge text="发"/>
+### cardimage <Badge text="发"/>
 一种xml的图片消息（装逼大图）
 
 ::: tip PS
@@ -657,7 +694,7 @@ Type: `cardimage`
 [CQ:cardimage,file=https://i.pixiv.cat/img-master/img/2020/03/25/00/00/08/80334602_p0_master1200.jpg]
 ```
 
-## 文本转语音 <Badge text="发"/>
+### 文本转语音 <Badge text="发"/>
 
 ::: warning 注意
 通过TX的TTS接口, 采用的音源与登录账号的性别有关
