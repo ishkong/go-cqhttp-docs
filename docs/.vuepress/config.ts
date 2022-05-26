@@ -50,6 +50,7 @@ export default defineUserConfig<DefaultThemeOptions>({
         repo: 'Mrs4s/go-cqhttp',
         docsRepo: 'ishkong/go-cqhttp-docs',
         docsBranch: 'main',
+        docsDir: 'docs',
         editLinkText: "编辑此页",
         lastUpdated: true,
         lastUpdatedText: '上一次编辑',
