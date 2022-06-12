@@ -2,11 +2,11 @@
 
 go-cqhttp 包含 `config.yml` 和 `device.json` 两个配置文件, 其中 `config.yml` 为运行配置 `device.json` 为虚拟设备信息。
 
-`config.yml` 会在首次运行 go-cqhttp 的时候自动生成，`device.json` 会在首次登陆账户的时候自动生成
+`config.yml` 会在首次运行 go-cqhttp 的时候自动生成，`device.json` 会在首次登陆账户的时候自动生成。
 
 ## 配置信息
 
-默认生成的配置文件如下所示: 
+默认生成的运行配置文件 `config.yml` 如下所示: 
 
 ```yaml
 # go-cqhttp 默认配置文件
@@ -24,6 +24,8 @@ account: # 账号相关
   # 是否使用服务器下发的新地址进行重连
   # 注意, 此设置可能导致在海外服务器上连接情况更差
   use-sso-address: true
+  # 是否允许发送临时会话消息
+  allow-temp-session: false
 
 heartbeat:
   # 心跳频率, 单位秒
@@ -60,6 +62,8 @@ output:
   log-aging: 15
   # 是否在每次启动时强制创建全新的文件储存日志. 为 false 的情况下将会在上次启动时创建的日志文件续写
   log-force-new: true
+  # 是否启用日志颜色
+  log-colorful: true
   # 是否启用 DEBUG
   debug: false # 开启调试模式
 
@@ -86,45 +90,56 @@ database: # 数据库相关设置
     # 关闭将无法使用 撤回 回复 get_msg 等上下文相关功能
     enable: true
 
+  # 媒体文件缓存， 删除此项则使用缓存文件(旧版行为)
+  cache:
+    image: data/image.db
+    video: data/video.db
+
 # 连接服务列表
 servers:
-# 添加方式，同一连接方式可添加多个，具体配置说明请查看文档
-#- http: # http 通信
-#- ws:   # 正向 Websocket
-#- ws-reverse: # 反向 Websocket
-#- pprof: #性能分析服务器
+  # 添加方式，同一连接方式可添加多个，具体配置说明请查看文档
+  #- http: # http 通信
+  #- ws:   # 正向 Websocket
+  #- ws-reverse: # 反向 Websocket
+  #- pprof: #性能分析服务器
+
 ```
 
-servers 部分参考配置：
+`servers` 部分参考配置：
 ```yaml
 servers:
-  # HTTP 通信设置
-  - http:
-      # 服务端监听地址
-      host: 127.0.0.1
-      # 服务端监听端口
-      port: 5700
-      # 反向HTTP超时时间, 单位秒
-      # 最小值为5，小于5将会忽略本项设置
-      timeout: 5
+  - http: # HTTP 通信设置
+      address: 0.0.0.0:5700 # HTTP监听地址
+      timeout: 5      # 反向 HTTP 超时时间, 单位秒，<5 时将被忽略
+      long-polling:   # 长轮询拓展
+        enabled: false       # 是否开启
+        max-queue-size: 2000 # 消息队列大小，0 表示不限制队列大小，谨慎使用
       middlewares:
         <<: *default # 引用默认中间件
-      # 反向HTTP POST地址列表
-      post:
-      #- url: '' # 地址
-      #  secret: ''           # 密钥
-      #- url: http://127.0.0.1:5701 # 地址
-      #  secret: ''          # 密钥
+      post:           # 反向HTTP POST地址列表
+      #- url: ''                # 地址
+      #  secret: ''             # 密钥
+      #  max-retries: 3         # 最大重试，0 时禁用
+      #  retries-interval: 1500 # 重试时间，单位毫秒，0 时立即
+      #- url: http://127.0.0.1:5701/ # 地址
+      #  secret: ''                  # 密钥
+      #  max-retries: 10             # 最大重试，0 时禁用
+      #  retries-interval: 1000      # 重试时间，单位毫秒，0 时立即
+
+  # LambdaServer 配置
+  - lambda:
+      type: scf # scf: 腾讯云函数 aws: aws Lambda
+      middlewares:
+        <<: *default # 引用默认中间件
 
   # 正向WS设置
   - ws:
       # 正向WS服务器监听地址
-      host: 127.0.0.1
-      # 正向WS服务器监听端口
-      port: 6700
+      address: 0.0.0.0:8080
       middlewares:
         <<: *default # 引用默认中间件
 
+  # 反向WS设置
   - ws-reverse:
       # 反向WS Universal 地址
       # 注意 设置了此项地址后下面两项将会被忽略
@@ -137,20 +152,6 @@ servers:
       reconnect-interval: 3000
       middlewares:
         <<: *default # 引用默认中间件
-  # pprof 性能分析服务器, 一般情况下不需要启用.
-  # 如果遇到性能问题请上传报告给开发者处理
-  # 注意: pprof服务不支持中间件、不支持鉴权. 请不要开放到公网
-  - pprof:
-      # pprof服务器监听地址
-      host: 127.0.0.1
-      # pprof服务器监听端口
-      port: 7700
-
-  # LambdaServer 配置
-  - lambda:
-      type: scf # 可用 scf,aws (aws未经过测试)
-      middlewares:
-        <<: *default # 引用默认中间件
 
   # 可添加更多
   #- ws-reverse:
@@ -158,6 +159,31 @@ servers:
   #- http:
 ```
 
+::: tip 提示
+开启密码加密后程序将在每次启动时要求输入解密密钥, 密钥错误会导致登录时提示密码错误.
+
+解密后密码将储存在内存中, 用于自动重连等功能. 所以此加密并不能防止内存读取.
+
+解密密钥在使用完成后并不会留存在内存中, 所以可用相对简单的字符串作为密钥.
+:::
+
+::: tip 提示
+分片发送为原酷Q发送长消息的老方案, 发送速度更优/兼容性更好
+
+但在有发言频率限制的群里，可能无法发送。
+
+关闭后将优先使用新方案, 能发送更长的消息,
+
+但发送速度更慢，在部分老客户端将无法解析.
+:::
+
+::: tip 提示
+对于不需要的通信方式，你可以使用注释将其停用(推荐)，或者添加配置 `disabled: true` 将其关闭
+:::
+
+::: warning 注意
+关闭心跳服务可能引起断线, 请谨慎关闭
+:::
 
 ## 在线状态
 
@@ -186,35 +212,9 @@ servers:
 | 追剧中 | 20 |
 | 健身中 | 21 |
 
-::: tip 提示
-开启密码加密后程序将在每次启动时要求输入解密密钥, 密钥错误会导致登录时提示密码错误.
-
-解密后密码将储存在内存中, 用于自动重连等功能. 所以此加密并不能防止内存读取.
-
-解密密钥在使用完成后并不会留存在内存中, 所以可用相对简单的字符串作为密钥.
-:::
-
-::: tip 提示
-分片发送为原酷Q发送长消息的老方案, 发送速度更优/兼容性更好
-
-但在有发言频率限制的群里，可能无法发送。
-
-关闭后将优先使用新方案, 能发送更长的消息,
-
-但发送速度更慢，在部分老客户端将无法解析.
-:::
-
-::: tip 提示
-对于不需要的通信方式，你可以使用注释将其停用(推荐)，或者添加配置 `disabled: true` 将其关闭
-:::
-
-::: warning 注意
-关闭心跳服务可能引起断线, 请谨慎关闭
-:::
-
 ## 设备信息
 
-默认生成的设备信息如下所示: 
+默认生成的虚拟设备信息文件 `device.json` 如下所示: 
 
 ```json5
 {
