@@ -18,7 +18,7 @@
 |-----------|--------|--------------------------------------|----------------------------|
 | time  | int64  | -  | 事件发生的时间戳 |
 | self_id | int64  | -  | 收到事件的机器人的 QQ 号 |
-| post_type | string [参考](/reference/data_struct/#Post_Type) | message, request, notice, meta_event | 表示该上报的类型, 消息, 请求, 通知, 或元事件 |
+| post_type | string [参考](/reference/data_struct.html#Post_Type) | message, request, notice, meta_event | 表示该上报的类型, 消息, 请求, 通知, 或元事件 |
 
 ### 消息上报
 
@@ -26,13 +26,13 @@ post_type 为 message 的上报将会有以下有效通用数据
 
 | 字段名 | 数据类型 | 可能的值 | 说明 |
 |-------------|--------------------------------------------------------|------|----|
-| sub_type  | string [参考](Post_Message_SubType) | group, public | 表示消息的子类型 |
+| sub_type  | string [参考](/reference/data_struct.html#Post_Message_SubType) | group, public | 表示消息的子类型 |
 | message_id  | int32  | - | 消息 ID |
 | user_id | int64  | - | 发送者 QQ 号 |
 | message | message  | - | 一个消息链 |
 | raw_message | string [参考](/cqcode) | - | CQ 码格式的消息 |
 | font  | int  | - | 字体 |
-| sender  | object [参考](/reference/data_struct/#Post_Message_MessageSender) | - | 发送者信息 |
+| sender  | object [参考](/reference/data_struct.html#Post_Message_MessageSender) | - | 发送者信息 |
 
 ### 请求上报
 
@@ -40,7 +40,7 @@ post_type 为 request 的上报会有以下有效通用数据
 
 | 字段名 | 数据类型 | 可能的值 | 说明 |
 | - | - | - | - |
-| request_type | string [参考](/reference/data_struct/#Post_Request_Type) | - | 请求类型 |
+| request_type | string [参考](/reference/data_struct.html#Post_Request_Type) | - | 请求类型 |
 
 ### 通知上报
 
@@ -48,7 +48,7 @@ post_type 为 request 的上报会有以下有效通用数据
 
 | 字段名 | 数据类型 | 可能的值 | 说明 |
 | - | - | - | - |
-| notice_type | string [参考](/reference/data_struct/#Post_Notice_Type) | - | 通知类型 |
+| notice_type | string [参考](/reference/data_struct.html#Post_Notice_Type) | - | 通知类型 |
 
 ### 元事件上报
 
@@ -56,7 +56,7 @@ post_type 为 meta_event 的上报会有以下有效数据
 
 | 字段名 | 数据类型 | 可能的值 | 说明 |
 | - | - | - | - |
-| meta_event_type | string [参考](/reference/data_struct/#Post_MetaEvent_Type) | - | 元数据类型 |
+| meta_event_type | string [参考](/reference/data_struct.html#Post_MetaEvent_Type) | - | 元数据类型 |
 
 ## 数据定义
 
@@ -72,15 +72,15 @@ post_type 为 meta_event 的上报会有以下有效数据
 |----------------|--------------------------------------------------------|---------------------------------------|------------------------------------------------------------------------|
 | \* `time`  | int64  | - | 事件发生的时间戳 |
 | \* `self_id` | int64  | - | 收到事件的机器人 QQ 号  |
-| \* `post_type` | string [参考](/reference/data_struct/#Post_Type) | `message` | 上报类型 |
+| \* `post_type` | string [参考](/reference/data_struct.html#Post_Type) | `message` | 上报类型 |
 | \* `message_type` | string | `private` | 消息类型 |
-| \* `sub_type` | string [参考](Post_Message_SubType) | `friend`、`group`、`group_self`、`other` | 消息子类型, 如果是好友则是 `friend`, 如果是群临时会话则是 `group`, 如果是在群中自身发送则是 `group_self` |
+| \* `sub_type` | string [参考](/reference/data_struct.html#Post_Message_SubType) | `friend`、`group`、`group_self`、`other` | 消息子类型, 如果是好友则是 `friend`, 如果是群临时会话则是 `group`, 如果是在群中自身发送则是 `group_self` |
 | \* `message_id` | int32  | - | 消息 ID  |
 | \* `user_id`  | int64  | - | 发送者 QQ 号 |
 | \* `message`  | message  | - | 消息内容 |
 | \* `raw_message`  | string [参考](/cqcode) | - | 原始消息内容 |
 | \* `font` | int32  | - | 字体 |
-| \* `sender` | object [参考](/reference/data_struct/#Post_Message_MessageSender) | - | 发送人信息  |
+| \* `sender` | object [参考](/reference/data_struct.html#Post_Message_MessageSender) | - | 发送人信息  |
 | `temp_source`  | int  | - | 临时会话来源 |
 
 需要注意的是, `sender` 中的各字段是尽最大努力提供的, 也就是说, 不保证每个字段都一定存在, 也不保证存在的字段都是完全正确的 ( 缓存可能过期 ) 。
@@ -100,7 +100,7 @@ post_type 为 meta_event 的上报会有以下有效数据
 |----------------|---------|-------------------------------|-------------------------------------------------------------------------------|
 | \* `time`  | int64 | - | 事件发生的时间戳  |
 | \* `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
-| \* `post_type` | string [参考](/reference/data_struct/#Post_Type) | `message` | 上报类型  |
+| \* `post_type` | string [参考](/reference/data_struct.html#Post_Type) | `message` | 上报类型  |
 | \* `message_type` | string  | `group` | 消息类型  |
 | \* `sub_type` | string  | `normal`、`anonymous`、`notice` | 消息子类型, 正常消息是 `normal`, 匿名消息是 `anonymous`, 系统提示 ( 如「管理员已禁止群内匿名聊天」 ) 是 `notice` |
 | \* `message_id` | int32 | - | 消息 ID |
@@ -108,7 +108,7 @@ post_type 为 meta_event 的上报会有以下有效数据
 | \* `message`  | message | - | 消息内容  |
 | \* `raw_message`  | string  | - | 原始消息内容  |
 | \* `font` | int32 | - | 字体  |
-| \* `sender` | object [参考](/reference/data_struct/#Post_Message_MessageSender) | - | 发送人信息 |
+| \* `sender` | object [参考](/reference/data_struct.html#Post_Message_MessageSender) | - | 发送人信息 |
 | `group_id` | int64 | - | 群号  |
 | `anonymous`  | object  | - | 匿名信息, 如果不是匿名消息则为 null |
 
@@ -148,8 +148,8 @@ post_type 为 meta_event 的上报会有以下有效数据
 | ----- | ------ | ------- | ---- |
 | \* `time` | int64 | - | 事件发生的时间戳 |
 | \* `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
-| \* `post_type` | string [参考](/reference/data_struct/#Post_Type) | `notice` | 上报类型 |
-| \* `notice_type` | string [参考](/reference/data_struct/#Post_Notice_Type) | `group_upload` | 通知类型 |
+| \* `post_type` | string [参考](/reference/data_struct.html#Post_Type) | `notice` | 上报类型 |
+| \* `notice_type` | string [参考](/reference/data_struct.html#Post_Notice_Type) | `group_upload` | 通知类型 |
 | `group_id` | int64 | - | 群号 |
 | `user_id` | int64 | - | 发送者 QQ 号 |
 | `file` | object | - | 文件信息 |
@@ -171,8 +171,8 @@ post_type 为 meta_event 的上报会有以下有效数据
 | ----- | ------ | -------- | --- |
 | \* `time` | int64 | - | 事件发生的时间戳 |
 | \* `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
-| \* `post_type` | string [参考](/reference/data_struct/#Post_Type) | `notice` | 上报类型 |
-| \* `notice_type` | string [参考](/reference/data_struct/#Post_Notice_Type) | `group_admin` | 通知类型 |
+| \* `post_type` | string [参考](/reference/data_struct.html#Post_Type) | `notice` | 上报类型 |
+| \* `notice_type` | string [参考](/reference/data_struct.html#Post_Notice_Type) | `group_admin` | 通知类型 |
 | `sub_type` | string | `set`、`unset` | 事件子类型, 分别表示设置和取消管理员 |
 | `group_id` | int64 | - | 群号 |
 | `user_id` | int64 | - | 管理员 QQ 号 |
@@ -185,8 +185,8 @@ post_type 为 meta_event 的上报会有以下有效数据
 | ----- | ------ | -------- | --- |
 | \* `time` | int64 | - | 事件发生的时间戳 |
 | \* `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
-| \* `post_type` | string [参考](/reference/data_struct/#Post_Type) | `notice` | 上报类型 |
-| \* `notice_type` | string [参考](/reference/data_struct/#Post_Notice_Type) | `group_decrease` | 通知类型 |
+| \* `post_type` | string [参考](/reference/data_struct.html#Post_Type) | `notice` | 上报类型 |
+| \* `notice_type` | string [参考](/reference/data_struct.html#Post_Notice_Type) | `group_decrease` | 通知类型 |
 | `sub_type` | string | `leave`、`kick`、`kick_me` | 事件子类型, 分别表示主动退群、成员被踢、登录号被踢 |
 | `group_id` | int64 | - | 群号 |
 | `operator_id` | int64 | - | 操作者 QQ 号 ( 如果是主动退群, 则和 `user_id` 相同 )  |
@@ -200,8 +200,8 @@ post_type 为 meta_event 的上报会有以下有效数据
 | ----- | ------ | -------- | --- |
 | \* `time` | int64 | - | 事件发生的时间戳 |
 | \* `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
-| \* `post_type` | string [参考](/reference/data_struct/#Post_Type) | `notice` | 上报类型 |
-| \* `notice_type` | string [参考](/reference/data_struct/#Post_Notice_Type) | `group_increase` | 通知类型 |
+| \* `post_type` | string [参考](/reference/data_struct.html#Post_Type) | `notice` | 上报类型 |
+| \* `notice_type` | string [参考](/reference/data_struct.html#Post_Notice_Type) | `group_increase` | 通知类型 |
 | `sub_type` | string | `approve`、`invite` | 事件子类型, 分别表示管理员已同意入群、管理员邀请入群 |
 | `group_id` | int64 | - | 群号 |
 | `operator_id` | int64 | - | 操作者 QQ 号 |
@@ -215,8 +215,8 @@ post_type 为 meta_event 的上报会有以下有效数据
 | ----- | ------ | -------- | --- |
 | \* `time` | int64 | - | 事件发生的时间戳 |
 | \* `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
-| \* `post_type` | string [参考](/reference/data_struct/#Post_Type) | `notice` | 上报类型 |
-| \* `notice_type` | string [参考](/reference/data_struct/#Post_Notice_Type) | `group_ban` | 通知类型 |
+| \* `post_type` | string [参考](/reference/data_struct.html#Post_Type) | `notice` | 上报类型 |
+| \* `notice_type` | string [参考](/reference/data_struct.html#Post_Notice_Type) | `group_ban` | 通知类型 |
 | `sub_type` | string | `ban`、`lift_ban` | 事件子类型, 分别表示禁言、解除禁言 |
 | `group_id` | int64 | - | 群号 |
 | `operator_id` | int64 | - | 操作者 QQ 号 |
@@ -231,8 +231,8 @@ post_type 为 meta_event 的上报会有以下有效数据
 | ----- | ------ | -------- | --- |
 | \* `time` | int64 | - | 事件发生的时间戳 |
 | \* `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
-| \* `post_type` | string [参考](/reference/data_struct/#Post_Type) | `notice` | 上报类型 |
-| \* `notice_type` | string [参考](/reference/data_struct/#Post_Notice_Type) | `friend_add` | 通知类型 |
+| \* `post_type` | string [参考](/reference/data_struct.html#Post_Type) | `notice` | 上报类型 |
+| \* `notice_type` | string [参考](/reference/data_struct.html#Post_Notice_Type) | `friend_add` | 通知类型 |
 | `user_id` | int64 | - | 新添加好友 QQ 号 |
 
 ### 群消息撤回
@@ -243,8 +243,8 @@ post_type 为 meta_event 的上报会有以下有效数据
 | ------------- | ------ | -------------- | -------------- |
 | \* `time` | int64 | - | 事件发生的时间戳 |
 | \* `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
-| \* `post_type` | string [参考](/reference/data_struct/#Post_Type) | `notice` | 上报类型 |
-| \* `notice_type` | string [参考](/reference/data_struct/#Post_Notice_Type) | `group_recall` | 通知类型 |
+| \* `post_type` | string [参考](/reference/data_struct.html#Post_Type) | `notice` | 上报类型 |
+| \* `notice_type` | string [参考](/reference/data_struct.html#Post_Notice_Type) | `group_recall` | 通知类型 |
 | `group_id`  | int64  |  | 群号 |
 | `user_id` | int64  |  | 消息发送者 QQ 号 |
 | `operator_id` | int64  |  | 操作者 QQ 号  |
@@ -258,8 +258,8 @@ post_type 为 meta_event 的上报会有以下有效数据
 | ------------- | ------ | -------------- | -------------- |
 | \* `time` | int64 | - | 事件发生的时间戳 |
 | \* `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
-| \* `post_type` | string [参考](/reference/data_struct/#Post_Type) | `notice` | 上报类型 |
-| \* `notice_type` | string [参考](/reference/data_struct/#Post_Notice_Type) | `friend_recall`| 通知类型 |
+| \* `post_type` | string [参考](/reference/data_struct.html#Post_Type) | `notice` | 上报类型 |
+| \* `notice_type` | string [参考](/reference/data_struct.html#Post_Notice_Type) | `friend_recall`| 通知类型 |
 | `user_id` | int64  |  | 好友 QQ 号  |
 | `message_id`  | int64  |  | 被撤回的消息 ID |
 
@@ -271,8 +271,8 @@ post_type 为 meta_event 的上报会有以下有效数据
 | ----- | ------ | -------- | --- |
 | \* `time` | int64 | | 时间 |
 | \* `self_id` | int64 |  | BOT QQ 号 |
-| \* `post_type` | string [参考](/reference/data_struct/#Post_Type) | `notice` | 上报类型 |
-| \* `notice_type` | string [参考](/reference/data_struct/#Post_Notice_Type) | `notify` | 消息类型 |
+| \* `post_type` | string [参考](/reference/data_struct.html#Post_Type) | `notice` | 上报类型 |
+| \* `notice_type` | string [参考](/reference/data_struct.html#Post_Notice_Type) | `notify` | 消息类型 |
 | `sub_type` | string | `poke` | 提示类型 |
 | `sender_id` | int64 | | 发送者 QQ 号 |
 | `user_id` | int64  | | 发送者 QQ 号 |
@@ -290,8 +290,8 @@ post_type 为 meta_event 的上报会有以下有效数据
 | ------------- | ------ | -------------- | -------------- |
 | \* `time` | int64 | | 时间 |
 | \* `self_id` | int64 |  | BOT QQ 号 |
-| \* `post_type` | string [参考](/reference/data_struct/#Post_Type) | `notice` | 上报类型 |
-| \* `notice_type` | string [参考](/reference/data_struct/#Post_Notice_Type) | `notify` | 消息类型 |
+| \* `post_type` | string [参考](/reference/data_struct.html#Post_Type) | `notice` | 上报类型 |
+| \* `notice_type` | string [参考](/reference/data_struct.html#Post_Notice_Type) | `notify` | 消息类型 |
 | `sub_type` | string | `poke` | 提示类型 |
 | `group_id` | int64 |  | 群号 |
 | `user_id` | int64  |  | 发送者 QQ 号 |
@@ -309,8 +309,8 @@ post_type 为 meta_event 的上报会有以下有效数据
 | ------------- | ------ | ------------ | ------------ |
 | \* `time` | int64 | | 时间 |
 | \* `self_id` | int64 |  | BOT QQ 号 |
-| \* `post_type` | string [参考](/reference/data_struct/#Post_Type) | `notice` | 上报类型 |
-| \* `notice_type` | string [参考](/reference/data_struct/#Post_Notice_Type) | `notify` | 消息类型 |
+| \* `post_type` | string [参考](/reference/data_struct.html#Post_Type) | `notice` | 上报类型 |
+| \* `notice_type` | string [参考](/reference/data_struct.html#Post_Notice_Type) | `notify` | 消息类型 |
 | `group_id`  | int64  |  | 群号 |
 | `sub_type`  | string | `lucky_king` | 提示类型 |
 | `user_id` | int64  |  | 红包发送者id |
@@ -328,8 +328,8 @@ post_type 为 meta_event 的上报会有以下有效数据
 | ------------- | ------ | -------------------------------------------------------- | -------- |
 | \* `time` | int64 | | 时间 |
 | \* `self_id` | int64 |  | BOT QQ 号 |
-| \* `post_type` | string [参考](/reference/data_struct/#Post_Type) | `notice` | 上报类型 |
-| \* `notice_type` | string [参考](/reference/data_struct/#Post_Notice_Type) | `notify` | 消息类型 |
+| \* `post_type` | string [参考](/reference/data_struct.html#Post_Type) | `notice` | 上报类型 |
+| \* `notice_type` | string [参考](/reference/data_struct.html#Post_Notice_Type) | `notify` | 消息类型 |
 | `group_id`  | int64  |  | 群号 |
 | `sub_type`  | string | `honor`  | 提示类型 |
 | `user_id` | int64  |  | 成员id |
@@ -347,8 +347,8 @@ post_type 为 meta_event 的上报会有以下有效数据
 | ------------- | ------ | ------------ | -------- |
 | \* `time` | int64 | | 时间 |
 | \* `self_id` | int64 |  | BOT QQ 号 |
-| \* `post_type` | string [参考](/reference/data_struct/#Post_Type) | `notice` | 上报类型 |
-| \* `notice_type` | string [参考](/reference/data_struct/#Post_Notice_Type) | `group_card` | 消息类型 |
+| \* `post_type` | string [参考](/reference/data_struct.html#Post_Type) | `notice` | 上报类型 |
+| \* `notice_type` | string [参考](/reference/data_struct.html#Post_Notice_Type) | `group_card` | 消息类型 |
 | `group_id`  | int64  |  | 群号 |
 | `user_id` | int64  |  | 成员id |
 | `card_new`  | string  |  | 新名片 |
@@ -366,8 +366,8 @@ post_type 为 meta_event 的上报会有以下有效数据
 | ------------- | ------ | -------------- | -------- |
 | \* `time` | int64 | | 时间 |
 | \* `self_id` | int64 |  | BOT QQ 号 |
-| \* `post_type` | string [参考](/reference/data_struct/#Post_Type) | `notice` | 上报类型 |
-| \* `notice_type` | string [参考](/reference/data_struct/#Post_Notice_Type) | `offline_file` | 消息类型 |
+| \* `post_type` | string [参考](/reference/data_struct.html#Post_Type) | `notice` | 上报类型 |
+| \* `notice_type` | string [参考](/reference/data_struct.html#Post_Notice_Type) | `offline_file` | 消息类型 |
 | `user_id` | int64  |  | 发送者id |
 | `file`  | object |  | 文件数据 |
 
@@ -387,8 +387,8 @@ post_type 为 meta_event 的上报会有以下有效数据
 | ----- | ------ | -------- | --- |
 | \* `time` | int64 | - | 事件发生的时间戳 |
 | \* `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
-| \* `post_type` | string [参考](/reference/data_struct/#Post_Type) | `request` | 上报类型 |
-| \* `request_type` | string [参考](/reference/data_struct/#Post_Request_Type) | `friend` | 请求类型 |
+| \* `post_type` | string [参考](/reference/data_struct.html#Post_Type) | `request` | 上报类型 |
+| \* `request_type` | string [参考](/reference/data_struct.html#Post_Request_Type) | `friend` | 请求类型 |
 | `user_id` | int64 | - | 发送请求的 QQ 号 |
 | `comment` | string | - | 验证信息 |
 | `flag` | string | - | 请求 flag, 在调用处理请求的 API 时需要传入 |
@@ -408,8 +408,8 @@ post_type 为 meta_event 的上报会有以下有效数据
 | ----- | ------ | -------- | --- |
 | \* `time` | int64 | - | 事件发生的时间戳 |
 | \* `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
-| \* `post_type` | string [参考](/reference/data_struct/#Post_Type) | `request` | 上报类型 |
-| \* `request_type` | string [参考](/reference/data_struct/#Post_Request_Type) | `group` | 请求类型 |
+| \* `post_type` | string [参考](/reference/data_struct.html#Post_Type) | `request` | 上报类型 |
+| \* `request_type` | string [参考](/reference/data_struct.html#Post_Request_Type) | `group` | 请求类型 |
 | `sub_type` | string | `add`、`invite` | 请求子类型, 分别表示加群请求、邀请登录号入群 |
 | `group_id` | int64 | - | 群号 |
 | `user_id` | int64 | - | 发送请求的 QQ 号 |
@@ -429,8 +429,8 @@ post_type 为 meta_event 的上报会有以下有效数据
 
 | 字段  | 类型 | 可能的值 | 说明 |
 | ------------- | ------ | -------------- | -------- |
-| \* `post_type` | string [参考](/reference/data_struct/#Post_Type) | `notice` | 上报类型 |
-| \* `notice_type` | string [参考](/reference/data_struct/#Post_Notice_Type) | `client_status` | 消息类型 |
+| \* `post_type` | string [参考](/reference/data_struct.html#Post_Type) | `notice` | 上报类型 |
+| \* `notice_type` | string [参考](/reference/data_struct.html#Post_Notice_Type) | `client_status` | 消息类型 |
 | `client`  | Device*  |  | 客户端信息 |
 | `online`  | bool |  | 当前是否在线 |
 
@@ -444,8 +444,8 @@ post_type 为 meta_event 的上报会有以下有效数据
 | ------------- | ------ | -------------- | -------- |
 | \* `time` | int64 | | 时间 |
 | \* `self_id` | int64 |  | BOT QQ 号 |
-| \* `post_type` | string [参考](/reference/data_struct/#Post_Type) | `notice` | 上报类型 |
-| \* `notice_type` | string [参考](/reference/data_struct/#Post_Notice_Type) | `essence` | 消息类型 |
+| \* `post_type` | string [参考](/reference/data_struct.html#Post_Type) | `notice` | 上报类型 |
+| \* `notice_type` | string [参考](/reference/data_struct.html#Post_Notice_Type) | `essence` | 消息类型 |
 | `sub_type` | string | `add`,`delete` | 添加为`add`,移出为`delete` |
 | `sender_id` | int64 |  | 消息发送者ID |
 | `operator_id` | int64 |  | 操作者ID |
