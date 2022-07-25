@@ -277,6 +277,20 @@ retcode 字段:
 | `filename` | string | 图片文件原名   |
 | `url`      | string | 图片下载地址   |
 
+### 标记消息已读
+
+终结点: `/mark_msg_as_read`
+
+**参数**
+
+| 字段         | 类型  | 说明   |
+| ------------ | ----- | ------ |
+| `message_id` | int32 | 消息id |
+
+::: tip 提示
+该 API 无响应数据
+:::
+
 ### 群组踢人
 
 终结点：`/set_group_kick`
@@ -448,6 +462,18 @@ retcode 字段:
 该 API 无响应数据
 :::
 
+### 群打卡
+
+终结点：`/send_group_sign`
+
+| 字段名   | 数据类型 | 说明 |
+| -------- | ------ | ---- |
+| `group_id` | int64 | 群号 |
+
+::: tip 提示
+该 API 无响应数据
+:::
+
 ### 处理加好友请求
 
 终结点：`/set_friend_add_request`
@@ -516,6 +542,19 @@ retcode 字段:
 | `ext_name`         | string  | 用户昵称     |
 | `create_time`      | int64   | 账号创建时间  |
 
+
+### 设置登录号资料
+
+终结点：`/set_qq_profile`
+
+| 字段名          | 数据类型 | 默认值 | 说明 |
+| --------------- | ------- | ----- | --- |
+| `nickname`      | string | - | 名称 |
+| `company`       | string | - | 公司 |
+| `email`         | string | - | 邮箱 |
+| `college`       | string | - | 学校 |
+| `personal_note` | string | - | 个人说明 |
+
 ### 获取陌生人信息
 
 终结点：`/get_stranger_info`
@@ -556,6 +595,24 @@ retcode 字段:
 | `user_id` | int64 | QQ 号 |
 | `nickname` | string | 昵称 |
 | `remark` | string | 备注名 |
+
+### 获取单向好友列表
+
+终结点：`/get_unidirectional_friend_list`
+
+::: tip 提示
+该 API 无需参数
+:::
+
+**响应数据**
+
+响应内容为 json 数组, 每个元素如下：
+
+| 字段名 | 数据类型 | 说明 |
+| ----- | ------- | --- |
+| `user_id` | int64 | QQ 号 |
+| `nickname` | string | 昵称 |
+| `source` | string | 来源 |
 
 ### 删除好友
 
@@ -1005,6 +1062,22 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 在 `go-cqhttp-v0.9.40` 之前的版本中，无法获取被过滤的群系统消息
 :::
 
+### 上传私聊文件
+
+终结点: `/upload_private_file`
+
+**参数**
+
+| 字段      | 类型   | 说明         |
+| --------- | ------ | ------------ |
+| `user_id` | int64  | 对方 QQ 号   |
+| `file`    | string | 本地文件路径 |
+| `name`    | string | 文件名称     |
+
+::: warning 注意
+只能上传本地文件, 需要上传 `http` 文件的话请先调用 [`download_file` API](#下载文件到缓存目录)下载
+:::
+
 ### 上传群文件
 
 终结点: `/upload_group_file`
@@ -1085,6 +1158,63 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 | --------- | -------- | ---------- |
 | `files`   | File[]   | 文件列表   |
 | `folders` | Folder[] | 文件夹列表 |
+
+### 创建群文件文件夹
+
+::: warning 注意
+仅能在根目录创建文件夹
+:::
+
+终结点: `/create_group_file_folder`
+
+**参数**
+
+| 字段        | 类型   | 说明       |
+| ----------- | ------ | ---------- |
+| `group_id`  | int64  | 群号       |
+| `name`      | string | 文件夹名称 |
+| `parent_id` | string | 仅能为 `/` |
+
+::: tip 提示
+该 API 无响应数据
+:::
+
+### 删除群文件文件夹
+
+::: tip 提示
+`Folder` 对象信息请参考最下方
+:::
+
+终结点: `/delete_group_folder`
+
+| 字段        | 类型   | 说明                         |
+| ----------- | ------ | ---------------------------- |
+| `group_id`  | int64  | 群号                        |
+| `folder_id` | string | 文件夹ID 参考 `Folder` 对象 |
+
+::: tip 提示
+该 API 无响应数据
+:::
+
+### 删除群文件
+
+::: tip 提示
+`File` 对象信息请参考最下方
+:::
+
+终结点: `/delete_group_file`
+
+**参数**
+
+| 字段       | 类型   | 说明                      |
+| ---------- | ------ | ------------------------- |
+| `group_id` | int64  | 群号                      |
+| `file_id`  | string | 文件ID 参考 `File` 对象   |
+| `busid`    | int32  | 文件类型 参考 `File` 对象 |
+
+::: tip 提示
+该 API 无响应数据
+:::
 
 ### 获取群文件资源链接
 
@@ -1227,6 +1357,45 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 ::: tip 提示
 该 API 没有响应数据
 :::
+
+
+### 获取群公告
+
+
+终结点： `/_send_group_notice`
+
+**参数**
+
+| 字段名      | 数据类型  | 默认值 | 说明 |
+|------------| ------- | ----- |---------------|
+| `group_id` | int64   |       | 群号  |
+
+
+**响应数据**
+
+响应内容为 json 数组，每个元素内容如下：
+
+| 字段           | 类型   | 说明         |
+| -------------- | ------ | -------------- |
+| `sender_id`    | int64  | 公告发表者   |
+| `publish_time` | int64  | 公告发表时间 |
+| `message`      | object | 公告内容     |
+
+其中 `message` 字段的内容如下：
+
+| 字段      | 类型   | 说明    |
+| --------- | ------ | --------|
+| `text`    | string | 公告内容 |
+| `images`  | array | 公告图片 |
+
+其中 `images` 字段每个元素内容如下：
+
+| 字段      | 类型   | 说明    |
+| --------- | ------ | --------|
+| `height`  | string | 图片高度 |
+| `width`   | string | 图片宽度 |
+| `id`      | string | 图片ID |
+
 
 ### 重载事件过滤器
 
