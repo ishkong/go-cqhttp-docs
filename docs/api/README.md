@@ -1362,7 +1362,7 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 ### 获取群公告
 
 
-终结点： `/_send_group_notice`
+终结点： `/_get_group_notice`
 
 **参数**
 
