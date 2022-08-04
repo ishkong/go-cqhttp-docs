@@ -263,7 +263,7 @@ post_type 为 meta_event 的上报会有以下有效数据
 | `user_id` | int64  |  | 好友 QQ 号  |
 | `message_id`  | int64  |  | 被撤回的消息 ID |
 
-### 好友戳一戳
+### 好友戳一戳（双击头像）
 
 **事件数据**
 
@@ -278,7 +278,7 @@ post_type 为 meta_event 的上报会有以下有效数据
 | `user_id` | int64  | | 发送者 QQ 号 |
 | `target_id` | int64 | | 被戳者 QQ 号 |
 
-### 群内戳一戳
+### 群内戳一戳（双击头像）
 
 ::: warning 注意
 此事件无法在手表协议上触发
