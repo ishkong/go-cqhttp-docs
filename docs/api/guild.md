@@ -286,3 +286,130 @@ FeedContent:
 | `display_text`   | string |  显示文本    |
 | `guild_id`   | string |  频道ID    |
 | `channel_id`   | string |  子频道ID    |
+
+### 删除频道角色
+
+终结点: `/delete_guild_role`
+
+**参数**
+
+| 字段       | 类型  | 说明 |
+| ---------- | ----- | ---- |
+| `guild_id` | string | 频道ID |
+| `role_id` | string | 角色ID |
+
+::: tip 提示
+该 API 无响应数据
+:::
+
+### 获取频道消息
+
+终结点: `/get_guild_msg`
+
+**参数**
+
+| 字段       | 类型  | 默认值  | 说明 |
+| ---------- | ----- | ----- | ---- |
+| `message_id` | string | - | 频道消息ID |
+| `no_cache` | bool | false | 是否不使用缓存（使用缓存可能更新不及时, 但响应更快） |
+
+**响应数据**
+
+| 字段名          | 数据类型  | 说明    |
+|--------------|-------|-------|
+| `channel_id` | string | 子频道ID |
+| `guild_id` | string | 频道ID |
+| `message` | string | 消息内容 |
+| `message_id` | string | 消息ID |
+| `message_seq` | int64 | 消息序号(你可以理解为第几条消息,历史) |
+| `message_source` | string | 消息来源(channel,direct) |
+| `sender` | object | 发送人信息 |
+| `reactions` | array | 未知,目前恒定为空 |
+| `time` | int64 | 发送消息时时间戳(10位) |
+
+- `sender`
+
+| 字段          | 类型  | 说明       |
+| ------------- | ----- | ---------- |
+| `nickname`   | string |  发送人昵称    |
+| `tiny_id`   | string |  发送人ID    |
+| `user_id`   | int64 |  发送人ID    |
+
+### 获取频道角色列表
+
+终结点: `/get_guild_roles`
+
+**参数**
+
+| 字段       | 类型  | 默认值  | 说明 |
+| ---------- | ----- | ----- | ---- |
+| `guild_id` | string | - | 频道ID |
+
+**响应数据(数组)**
+
+| 字段名          | 数据类型  | 说明    |
+|--------------|-------|-------|
+| `argb_color` | int64 | 颜色值(示例:4294927682) |
+| `disabled` | bool | 是否启用 |
+| `independent` | bool | 未知 |
+| `max_count` | int32 | 最大多少人拥有此角色 |
+| `member_count` | int32 | 多少人拥有此角色 |
+| `owned` | bool | 未知 |
+| `role_id` | string | 角色id |
+| `role_name` | string | 角色名 |
+
+### 设置用户在频道中的角色
+
+终结点: `/set_guild_member_role`
+
+**参数**
+
+| 字段       | 类型  | 默认值  | 说明 |
+| ---------- | ----- | ----- | ---- |
+| `guild_id` | string | - | 频道ID |
+| `set` | bool | false | 是否设置(默认假，取消) |
+| `role_id` | string | - | 频道ID |
+| `users` | string|array | - | 角色id,可传字符串数组批量设置 |
+
+::: tip 提示
+该 API 无响应数据
+:::
+
+### 修改频道角色
+
+终结点: `/update_guild_role`
+
+**参数**
+
+| 字段       | 类型  | 默认值  | 说明 |
+| ---------- | ----- | ----- | ---- |
+| `guild_id` | string | - | 频道ID |
+| `role_id` | string | - | 角色ID |
+| `name` | string | - | 角色名 |
+| `color` | string | - | 颜色(示例:4294927682) |
+| `indepedent` | bool | false | 未知 |
+
+
+::: tip 提示
+该 API 无响应数据
+:::
+
+### 创建频道角色
+
+终结点: `/create_guild_role`
+
+**参数**
+
+| 字段       | 类型  | 默认值  | 说明 |
+| ---------- | ----- | ----- | ---- |
+| `guild_id` | string | - | 频道ID |
+| `color` | string | - | 颜色 |
+| `name` | string | - | 角色名 |
+| `independent` | bool | false | 颜色 |
+| `initial_users` | array|string | - | 创建后把哪些用户设置为这个角色,可字符串数组批量设置 |
+
+**响应数据(数组)**
+
+| 字段名          | 数据类型  | 说明    |
+|--------------|-------|-------|
+| `role_id` | int64 | 角色id |
