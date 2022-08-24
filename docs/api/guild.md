@@ -387,7 +387,7 @@ FeedContent:
 | `role_id` | string | - | 角色ID |
 | `name` | string | - | 角色名 |
 | `color` | string | - | 颜色(示例:4294927682) |
-| `indepedent` | bool | false | 未知 |
+| `independent` | bool | false | 未知 |
 
 
 ::: tip 提示
@@ -405,7 +405,7 @@ FeedContent:
 | `guild_id` | string | - | 频道ID |
 | `color` | string | - | 颜色 |
 | `name` | string | - | 角色名 |
-| `independent` | bool | false | 颜色 |
+| `independent` | bool | false | 未知 |
 | `initial_users` | array|string | - | 创建后把哪些用户设置为这个角色,可字符串数组批量设置 |
 
 **响应数据(数组)**
