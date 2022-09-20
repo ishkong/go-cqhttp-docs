@@ -44,7 +44,7 @@ post_type 为 request 的上报会有以下有效通用数据
 
 ### 通知上报
 
-post_type 为 request 的上报会有以下有效通用数据
+post_type 为 notice 的上报会有以下有效通用数据
 
 | 字段名 | 数据类型 | 可能的值 | 说明 |
 | - | - | - | - |
