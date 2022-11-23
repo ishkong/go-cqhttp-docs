@@ -43,6 +43,14 @@
 
 > 该消息在 "message" 上报中被使用
 
+## Post_Message_Type
+
+一个枚举, 传输使用字符串, 表示消息类型.
+
+| 值 | 说明 |
+| ------- | -------- |
+| private | 私聊消息 |
+| group   | 群消息 |
 
 ## Post_Message_SubType
 
