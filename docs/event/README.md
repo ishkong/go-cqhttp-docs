@@ -26,7 +26,8 @@ post_type 为 message 的上报将会有以下有效通用数据
 
 | 字段名 | 数据类型 | 可能的值 | 说明 |
 |-------------|--------------------------------------------------------|------|----|
-| sub_type  | string [参考](Post_Message_SubType) | group, public | 表示消息的子类型 |
+| message_type | string [参考](/reference/data_struct/#Post_Message_Type) | private, group | 消息类型 |
+| sub_type  | string [参考](/reference/data_struct/#Post_Message_SubType) | group, public | 表示消息的子类型 |
 | message_id  | int32  | - | 消息 ID |
 | user_id | int64  | - | 发送者 QQ 号 |
 | message | message  | - | 一个消息链 |
