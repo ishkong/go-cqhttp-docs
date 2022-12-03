@@ -622,7 +622,7 @@ retcode 字段:
 
 | 字段名 | 数据类型 | 默认值 | 说明 |
 | ----- | ------- | ----- | --- |
-| `friend_id` | int64 | - | 好友 QQ 号 |
+| `user_id` | int64 | - | 好友 QQ 号 |
 
 ::: tip 提示
 该 API 无响应数据
@@ -1619,7 +1619,7 @@ JSON数组:
 :::
 
 
-### 删除单项好友
+### 删除单向好友
 
 终结点：`/delete_unidirectional_friend`
 
