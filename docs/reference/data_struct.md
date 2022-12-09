@@ -56,7 +56,14 @@
 
 一个枚举, 传输使用字符串, 表示消息子类型.
 
-如果是好友则是 friend, 如果是群临时会话则是 group, 如果是在群中自身发送则是 group_self, 正常群聊消息是 normal, 匿名消息是 anonymous, 系统提示 ( 如「管理员已禁止群内匿名聊天」 ) 是 notice
+| 值 | 说明 |
+| --- | ---- |
+| friend | 好友 |
+| normal | 群聊 |
+| anonymous | 匿名 |
+| group_self | 群中自身发送 |
+| group | 群临时会话 |
+| notice | 系统提示 |
 
 ## Post_Message_TempSource
 
