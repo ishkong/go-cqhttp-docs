@@ -336,6 +336,21 @@ post_type 为 meta_event 的上报会有以下有效数据
 | `user_id` | int64  |  | 成员id |
 | `honor_type`  | string | `talkative:龙王` `performer:群聊之火` `emotion:快乐源泉` | 荣誉类型 |
 
+### 群成员头衔变更
+
+**事件数据**
+
+| 字段  | 类型 | 可能的值 | 说明 |
+| ------------- | ------ | -------------------------------------------------------- | -------- |
+| \* `time` | int64 | | 时间 |
+| \* `self_id` | int64 |  | BOT QQ 号 |
+| \* `post_type` | string [参考](/reference/data_struct/#Post_Type) | `notice` | 上报类型 |
+| \* `notice_type` | string [参考](/reference/data_struct/#Post_Notice_Type) | `notify` | 消息类型 |
+| `sub_type`  | string | `title`  | 提示类型 |
+| `group_id`  | int64  |  | 群号 |
+| `user_id`   | int64  |  | 变更头衔的用户 QQ 号 |
+| `title` | string | | 获得的新头衔 |
+
 ### 群成员名片更新
 
 ::: warning 注意
