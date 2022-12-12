@@ -95,6 +95,19 @@ post_type 为 meta_event 的上报会有以下有效数据
 | `reply` | message | 要回复的内容 | 不回复 |
 | `auto_escape` | boolean | 消息内容是否作为纯文本发送 ( 即不解析 CQ 码 ) , 只在 `reply` 字段是字符串时有效 | 不转义 |
 
+### 私聊消息撤回
+
+**事件数据**
+
+| 字段名  | 数据类型 | 可能的值 | 说明 |
+| ------------- | ------ | -------------- | -------------- |
+| \* `time` | int64 | - | 事件发生的时间戳 |
+| \* `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
+| \* `post_type` | string [参考](/reference/data_struct/#post-type) | `notice` | 上报类型 |
+| \* `notice_type` | string [参考](/reference/data_struct/#post-notice-type) | `friend_recall`| 通知类型 |
+| `user_id` | int64  |  | 好友 QQ 号  |
+| `message_id`  | int64  |  | 被撤回的消息 ID |
+
 ### 群消息
 
 **事件数据**
@@ -143,6 +156,67 @@ post_type 为 meta_event 的上报会有以下有效数据
 | `ban` | boolean | 把发送者禁言 `ban_duration` 指定时长, 对匿名用户也有效 | 不禁言 |
 | `ban_duration` | number | 禁言时长 | 30 分钟 |
 
+
+
+### 群消息撤回
+
+**事件数据**
+
+| 字段名  | 数据类型 | 可能的值 | 说明 |
+| ------------- | ------ | -------------- | -------------- |
+| \* `time` | int64 | - | 事件发生的时间戳 |
+| \* `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
+| \* `post_type` | string [参考](/reference/data_struct/#post-type) | `notice` | 上报类型 |
+| \* `notice_type` | string [参考](/reference/data_struct/#post-notice-type) | `group_recall` | 通知类型 |
+| `group_id`  | int64  |  | 群号 |
+| `user_id` | int64  |  | 消息发送者 QQ 号 |
+| `operator_id` | int64  |  | 操作者 QQ 号  |
+| `message_id`  | int64  |  | 被撤回的消息 ID |
+
+### 群成员增加
+
+**事件数据**
+
+| 字段名 | 数据类型 | 可能的值 | 说明 |
+| ----- | ------ | -------- | --- |
+| \* `time` | int64 | - | 事件发生的时间戳 |
+| \* `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
+| \* `post_type` | string [参考](/reference/data_struct/#post-type) | `notice` | 上报类型 |
+| \* `notice_type` | string [参考](/reference/data_struct/#post-notice-type) | `group_increase` | 通知类型 |
+| `sub_type` | string | `approve`、`invite` | 事件子类型, 分别表示管理员已同意入群、管理员邀请入群 |
+| `group_id` | int64 | - | 群号 |
+| `operator_id` | int64 | - | 操作者 QQ 号 |
+| `user_id` | int64 | - | 加入者 QQ 号 |
+
+### 群成员减少
+
+**事件数据**
+
+| 字段名 | 数据类型 | 可能的值 | 说明 |
+| ----- | ------ | -------- | --- |
+| \* `time` | int64 | - | 事件发生的时间戳 |
+| \* `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
+| \* `post_type` | string [参考](/reference/data_struct/#post-type) | `notice` | 上报类型 |
+| \* `notice_type` | string [参考](/reference/data_struct/#post-notice-type) | `group_decrease` | 通知类型 |
+| `sub_type` | string | `leave`、`kick`、`kick_me` | 事件子类型, 分别表示主动退群、成员被踢、登录号被踢 |
+| `group_id` | int64 | - | 群号 |
+| `operator_id` | int64 | - | 操作者 QQ 号 ( 如果是主动退群, 则和 `user_id` 相同 )  |
+| `user_id` | int64 | - | 离开者 QQ 号 |
+
+### 群管理员变动
+
+**事件数据**
+
+| 字段名 | 数据类型 | 可能的值 | 说明 |
+| ----- | ------ | -------- | --- |
+| \* `time` | int64 | - | 事件发生的时间戳 |
+| \* `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
+| \* `post_type` | string [参考](/reference/data_struct/#post-type) | `notice` | 上报类型 |
+| \* `notice_type` | string [参考](/reference/data_struct/#post-notice-type) | `group_admin` | 通知类型 |
+| `sub_type` | string | `set`、`unset` | 事件子类型, 分别表示设置和取消管理员 |
+| `group_id` | int64 | - | 群号 |
+| `user_id` | int64 | - | 管理员 QQ 号 |
+
 ### 群文件上传
 
 **事件数据**
@@ -166,49 +240,9 @@ post_type 为 meta_event 的上报会有以下有效数据
 | `size` | int64 | 文件大小 ( 字节数 )  |
 | `busid` | int64 | busid ( 目前不清楚有什么作用 )  |
 
-### 群管理员变动
 
-**事件数据**
 
-| 字段名 | 数据类型 | 可能的值 | 说明 |
-| ----- | ------ | -------- | --- |
-| \* `time` | int64 | - | 事件发生的时间戳 |
-| \* `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
-| \* `post_type` | string [参考](/reference/data_struct/#post-type) | `notice` | 上报类型 |
-| \* `notice_type` | string [参考](/reference/data_struct/#post-notice-type) | `group_admin` | 通知类型 |
-| `sub_type` | string | `set`、`unset` | 事件子类型, 分别表示设置和取消管理员 |
-| `group_id` | int64 | - | 群号 |
-| `user_id` | int64 | - | 管理员 QQ 号 |
 
-### 群成员减少
-
-**事件数据**
-
-| 字段名 | 数据类型 | 可能的值 | 说明 |
-| ----- | ------ | -------- | --- |
-| \* `time` | int64 | - | 事件发生的时间戳 |
-| \* `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
-| \* `post_type` | string [参考](/reference/data_struct/#post-type) | `notice` | 上报类型 |
-| \* `notice_type` | string [参考](/reference/data_struct/#post-notice-type) | `group_decrease` | 通知类型 |
-| `sub_type` | string | `leave`、`kick`、`kick_me` | 事件子类型, 分别表示主动退群、成员被踢、登录号被踢 |
-| `group_id` | int64 | - | 群号 |
-| `operator_id` | int64 | - | 操作者 QQ 号 ( 如果是主动退群, 则和 `user_id` 相同 )  |
-| `user_id` | int64 | - | 离开者 QQ 号 |
-
-### 群成员增加
-
-**事件数据**
-
-| 字段名 | 数据类型 | 可能的值 | 说明 |
-| ----- | ------ | -------- | --- |
-| \* `time` | int64 | - | 事件发生的时间戳 |
-| \* `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
-| \* `post_type` | string [参考](/reference/data_struct/#post-type) | `notice` | 上报类型 |
-| \* `notice_type` | string [参考](/reference/data_struct/#post-notice-type) | `group_increase` | 通知类型 |
-| `sub_type` | string | `approve`、`invite` | 事件子类型, 分别表示管理员已同意入群、管理员邀请入群 |
-| `group_id` | int64 | - | 群号 |
-| `operator_id` | int64 | - | 操作者 QQ 号 |
-| `user_id` | int64 | - | 加入者 QQ 号 |
 
 ### 群禁言
 
@@ -238,33 +272,9 @@ post_type 为 meta_event 的上报会有以下有效数据
 | \* `notice_type` | string [参考](/reference/data_struct/#post-notice-type) | `friend_add` | 通知类型 |
 | `user_id` | int64 | - | 新添加好友 QQ 号 |
 
-### 群消息撤回
 
-**事件数据**
 
-| 字段名  | 数据类型 | 可能的值 | 说明 |
-| ------------- | ------ | -------------- | -------------- |
-| \* `time` | int64 | - | 事件发生的时间戳 |
-| \* `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
-| \* `post_type` | string [参考](/reference/data_struct/#post-type) | `notice` | 上报类型 |
-| \* `notice_type` | string [参考](/reference/data_struct/#post-notice-type) | `group_recall` | 通知类型 |
-| `group_id`  | int64  |  | 群号 |
-| `user_id` | int64  |  | 消息发送者 QQ 号 |
-| `operator_id` | int64  |  | 操作者 QQ 号  |
-| `message_id`  | int64  |  | 被撤回的消息 ID |
 
-### 好友消息撤回
-
-**事件数据**
-
-| 字段名  | 数据类型 | 可能的值 | 说明 |
-| ------------- | ------ | -------------- | -------------- |
-| \* `time` | int64 | - | 事件发生的时间戳 |
-| \* `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
-| \* `post_type` | string [参考](/reference/data_struct/#post-type) | `notice` | 上报类型 |
-| \* `notice_type` | string [参考](/reference/data_struct/#post-notice-type) | `friend_recall`| 通知类型 |
-| `user_id` | int64  |  | 好友 QQ 号  |
-| `message_id`  | int64  |  | 被撤回的消息 ID |
 
 ### 好友戳一戳（双击头像）
 
@@ -397,6 +407,34 @@ post_type 为 meta_event 的上报会有以下有效数据
 | `size` | int64  |  | 文件大小 |
 | `url`  | string |  | 下载链接 |
 
+### 其他客户端在线状态变更
+
+**事件数据**
+
+| 字段  | 类型 | 可能的值 | 说明 |
+| ------------- | ------ | -------------- | -------- |
+| \* `post_type` | string [参考](/reference/data_struct/#post-type) | `notice` | 上报类型 |
+| \* `notice_type` | string [参考](/reference/data_struct/#post-notice-type) | `client_status` | 消息类型 |
+| `client`  | Device*  |  | 客户端信息 |
+| `online`  | bool |  | 当前是否在线 |
+
+* Device 可在 [API - 获取当前账号在线客户端列表](../api/#获取当前账号在线客户端列表) 查看
+
+### 精华消息变更
+
+**事件数据**
+
+| 字段  | 类型 | 可能的值 | 说明 |
+| ------------- | ------ | -------------- | -------- |
+| \* `time` | int64 | | 时间 |
+| \* `self_id` | int64 |  | BOT QQ 号 |
+| \* `post_type` | string [参考](/reference/data_struct/#post-type) | `notice` | 上报类型 |
+| \* `notice_type` | string [参考](/reference/data_struct/#post-notice-type) | `essence` | 消息类型 |
+| `sub_type` | string | `add`,`delete` | 添加为`add`,移出为`delete` |
+| `sender_id` | int64 |  | 消息发送者ID |
+| `operator_id` | int64 |  | 操作者ID |
+| `message_id` | int32 |  | 消息ID |
+
 ### 加好友请求
 
 **事件数据**
@@ -441,30 +479,4 @@ post_type 为 meta_event 的上报会有以下有效数据
 | `approve` | boolean | 是否同意请求／邀请 | 不处理 |
 | `reason` | string | 拒绝理由 ( 仅在拒绝时有效 )  | 无理由 |
 
-### 其他客户端在线状态变更
 
-**事件数据**
-
-| 字段  | 类型 | 可能的值 | 说明 |
-| ------------- | ------ | -------------- | -------- |
-| \* `post_type` | string [参考](/reference/data_struct/#post-type) | `notice` | 上报类型 |
-| \* `notice_type` | string [参考](/reference/data_struct/#post-notice-type) | `client_status` | 消息类型 |
-| `client`  | Device*  |  | 客户端信息 |
-| `online`  | bool |  | 当前是否在线 |
-
-* Device 可在 [API - 获取当前账号在线客户端列表](../api/#获取当前账号在线客户端列表) 查看
-
-### 精华消息变更
-
-**事件数据**
-
-| 字段  | 类型 | 可能的值 | 说明 |
-| ------------- | ------ | -------------- | -------- |
-| \* `time` | int64 | | 时间 |
-| \* `self_id` | int64 |  | BOT QQ 号 |
-| \* `post_type` | string [参考](/reference/data_struct/#post-type) | `notice` | 上报类型 |
-| \* `notice_type` | string [参考](/reference/data_struct/#post-notice-type) | `essence` | 消息类型 |
-| `sub_type` | string | `add`,`delete` | 添加为`add`,移出为`delete` |
-| `sender_id` | int64 |  | 消息发送者ID |
-| `operator_id` | int64 |  | 操作者ID |
-| `message_id` | int32 |  | 消息ID |
