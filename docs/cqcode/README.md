@@ -126,6 +126,7 @@ go-cqhttp-v0.9.38 起开始支持发送，需要依赖ffmpeg
 ```
 [CQ:at,qq=10001000]
 [CQ:at,qq=123,name=不在群的QQ]
+[CQ:at,qq=all]
 ```
 
 | 参数名 | 收 | 发 | 可能的值 | 说明 |
