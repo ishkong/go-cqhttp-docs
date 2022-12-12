@@ -152,7 +152,7 @@ post_type 为 meta_event 的上报会有以下有效数据
 | `auto_escape` | boolean | 消息内容是否作为纯文本发送 ( 即不解析 CQ 码 ) , 只在 `reply` 字段是字符串时有效 | 不转义 |
 | `at_sender` | boolean | 是否要在回复开头 at 发送者 ( 自动添加 ) , 发送者是匿名用户时无效 | at 发送者 |
 | `delete` | boolean | 撤回该条消息 | 不撤回 |
-| `kick` | boolean | 把发送者踢出群组 ( 需要登录号权限足够 ) , **不拒绝**此人后续加群请求, 发送者是匿名用户时无效 | 不踢 |
+| `kick` | boolean | 把发送者踢出群组 ( 需要登录号权限足够 ) , **不拒绝**此人后续加群请求, 发送者是匿名用户时无效 | 不踢出 |
 | `ban` | boolean | 把发送者禁言 `ban_duration` 指定时长, 对匿名用户也有效 | 不禁言 |
 | `ban_duration` | number | 禁言时长 | 30 分钟 |
 
@@ -257,8 +257,8 @@ post_type 为 meta_event 的上报会有以下有效数据
 | `sub_type` | string | `ban`、`lift_ban` | 事件子类型, 分别表示禁言、解除禁言 |
 | `group_id` | int64 | - | 群号 |
 | `operator_id` | int64 | - | 操作者 QQ 号 |
-| `user_id` | int64 | - | 被禁言 QQ 号 |
-| `duration` | int64 | - | 禁言时长, 单位秒 |
+| `user_id` | int64 | - | 被禁言 QQ 号 (为全员禁言时为`0`) |
+| `duration` | int64 | - | 禁言时长, 单位秒 (为全员禁言时为`-1`) |
 
 ### 好友添加
 
@@ -271,10 +271,6 @@ post_type 为 meta_event 的上报会有以下有效数据
 | \* `post_type` | string [参考](/reference/data_struct/#post-type) | `notice` | 上报类型 |
 | \* `notice_type` | string [参考](/reference/data_struct/#post-notice-type) | `friend_add` | 通知类型 |
 | `user_id` | int64 | - | 新添加好友 QQ 号 |
-
-
-
-
 
 ### 好友戳一戳（双击头像）
 
@@ -324,8 +320,8 @@ post_type 为 meta_event 的上报会有以下有效数据
 | \* `self_id` | int64 |  | BOT QQ 号 |
 | \* `post_type` | string [参考](/reference/data_struct/#post-type) | `notice` | 上报类型 |
 | \* `notice_type` | string [参考](/reference/data_struct/#post-notice-type) | `notify` | 消息类型 |
-| `group_id`  | int64  |  | 群号 |
 | `sub_type`  | string | `lucky_king` | 提示类型 |
+| `group_id`  | int64  |  | 群号 |
 | `user_id` | int64  |  | 红包发送者id |
 | `target_id` | int64  |  | 运气王id |
 
@@ -343,8 +339,8 @@ post_type 为 meta_event 的上报会有以下有效数据
 | \* `self_id` | int64 |  | BOT QQ 号 |
 | \* `post_type` | string [参考](/reference/data_struct/#post-type) | `notice` | 上报类型 |
 | \* `notice_type` | string [参考](/reference/data_struct/#post-notice-type) | `notify` | 消息类型 |
-| `group_id`  | int64  |  | 群号 |
 | `sub_type`  | string | `honor`  | 提示类型 |
+| `group_id`  | int64  |  | 群号 |
 | `user_id` | int64  |  | 成员id |
 | `honor_type`  | string | `talkative:龙王` `performer:群聊之火` `emotion:快乐源泉` | 荣誉类型 |
 
