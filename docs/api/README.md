@@ -101,10 +101,10 @@ retcode 字段:
 
 **参数**
 
-| 字段名           | 数据类型    | 默认值     | 说明                                                   |
-|---------------|---------|---------|------------------------------------------------------|
-| `user_id`     | int64   | -       | 对方 QQ 号                                              |
-| `group_id`    | int64   | -       | 主动发起临时会话群号(机器人本身必须是管理员/群主)                           |
+| 字段名           | 数据类型    | 默认值     | 说明                                               |
+|---------------|---------|---------|----------------------------------------------------------|
+| `user_id`     | int64   | -       | 对方 QQ 号                                                |
+| `group_id`    | int64   | -       | 主动发起临时会话时的来源群号(可选, 机器人本身必须是管理员/群主)   |
 | `message`     | message | -       | 要发送的内容                                               |
 | `auto_escape` | boolean | `false` | 消息内容是否作为纯文本发送 ( 即不解析 CQ 码 ) , 只在 `message` 字段是字符串时有效 |
 
@@ -124,7 +124,7 @@ retcode 字段:
 | ----- | ------- | ----- | --- |
 | `group_id` | int64 | - | 群号 |
 | `message` | message | - | 要发送的内容 |
-| `auto_escape` | boolean | `false` | 消息内容是否作为纯文本发送 ( 即不解析 CQ 码) , 只在 `message` 字段是字符串时有效 |
+| `auto_escape` | boolean | `false` | 消息内容是否作为纯文本发送 ( 即不解析 CQ 码 ) , 只在 `message` 字段是字符串时有效 |
 
 **响应数据**
 
@@ -191,12 +191,21 @@ retcode 字段:
 
 | 字段          | 类型     | 说明       |
 | ------------ | -------- | ---------- |
+| `group`      | bool     | 是否是群消息  |
+| `group_id`   | int64    | 是群消息时的群号(否则不存在此字段)|
 | `message_id` | int32    | 消息id      |
 | `real_id`    | int32    | 消息真实id   |
+| `message_type` | string | 群消息时为`group`, 私聊消息为`private` |
 | `sender`     | object   | 发送者      |
 | `time`       | int32    | 发送时间    |
 | `message`    | message  | 消息内容    |
 | `raw_message`| message  | 原始消息内容 |
+
+其中`sender`字段包含两个字段:
+| 字段 | 类型 | 说明 |
+| --- | --- | --- |
+| `nickname` | string | 发送者昵称 |
+| `user_id` | int64 | 发送者 QQ 号 |
 
 ::: warning 注意
 在 go-cqhttp-v0.9.35~v0.9.36-fix3 版本中 `raw_message` 字段为 `message_raw`
