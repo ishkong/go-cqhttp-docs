@@ -427,6 +427,7 @@ post_type 为 meta_event 的上报会有以下有效数据
 | \* `post_type` | string [参考](/reference/data_struct/#post-type) | `notice` | 上报类型 |
 | \* `notice_type` | string [参考](/reference/data_struct/#post-notice-type) | `essence` | 消息类型 |
 | `sub_type` | string | `add`,`delete` | 添加为`add`,移出为`delete` |
+| `group_id` | int64 |  | 群号 |
 | `sender_id` | int64 |  | 消息发送者ID |
 | `operator_id` | int64 |  | 操作者ID |
 | `message_id` | int32 |  | 消息ID |
