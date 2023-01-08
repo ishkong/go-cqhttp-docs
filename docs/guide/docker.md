@@ -20,7 +20,7 @@ docker pull ghcr.io/mrs4s/go-cqhttp:master
 
 ## 开始运行
 
-接下来输入以下命以启动go-cqhttp
+接下来输入以下命令以启动go-cqhttp
 
 ```bash
 docker run \
