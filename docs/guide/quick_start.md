@@ -34,7 +34,7 @@
 
 ### 使用
 
-#### Windows 标准方法
+#### Windows 标准启动方法
 
 1. 双击`go-cqhttp_*.exe`，根据提示生成运行脚本
 2. 双击运行脚本
@@ -52,7 +52,7 @@
 
 此时, 基础配置完成
 
-#### Linux 标准方法
+#### Linux 标准启动方法
 
 1. 通过 SSH 连接到服务器
 2. `cd`到解压目录
@@ -77,6 +77,26 @@
 
 请配合 screen 等服务来保证断开 SSH 连接后 go-cqhttp 的持续运行
 :::
+
+#### 开始与 go-cqhttp 交互
+
+在 `go-cqhttp` 成功运行之后, 你就可以通过自己写的程序, 使用 `HTTP` 或者 `WebSocket` 与 `go-cqhttp` 进行通讯, 实现 QQ 机器人. 在这个过程中, 你的程序只需要把一些数据发送给 `go-cqhttp`, 关于 QQ 的通信协议, `gq-cqhttp` 会帮你解决.
+
+你也可以将 `go-cqhttp` 部署在你的服务器上, 并加上验证, 这样, 你就可以在各个地方使用自己的程序连接到远程的 `go-cqhttp`.
+
+想要与 `go-cqhttp` 进行通信, 你可以使用专门为 `go-cqhttp` 开发的开源 SDK, 这是最好的选择. 不过你也可以直接使用实现 `OneBot` 协议的开源 SDK, 只是他们可能并不包含 `go-cqhttp` 中的某些 API 或者消息类型, 这或许会影响你的使用体验.
+
+#### 已知的 go-cqhttp 通信 SDK
+
+| 语言 / 平台 | 名称 | 简介 | 通信协议支持 | 开源 |
+| --- | --- | --- | --- | --- |
+| C# / .NET | EleCho.GoCqHttpSdk | 完全遵守 C# 命名规范, 优雅与便捷的 Go-CqHttp 通信 SDK, 完全支持 array 与 string 通信格式 | 正反向 HTTP, 正向 WebSocket | [GitHub](https://github.com/EleChoNet/EleCho.GoCqHttpSdk) |
+| C# / .NET | Ilyfairy.Robot.Sdk | go-cqhttp 的 C# SDK | 正向 HTTP | [GitHub](https://github.com/ilyfairy/Ilyfairy.Robot.Sdk) |
+| GO | leafbot | 基于 go-cqhttp，实现 onebot 协议的 go 语言版本 sdk，拥有内置插件。| 正向 HTTP, 正反向 WebSocket| [GitHub](https://github.com/huoxue1/leafbot) |
+| Python | pycqBot | go-cqhttp python 框架，可以用于快速塔建 bot | 正向 HTTP, 正向 WebSocket | [GitHub](https://github.com/FengLiuFeseliud/pycqBot) |
+| Python | Nakuru Project | 一款为 go-cqhttp 的正向 WebSocket 设计的 Python SDK，支持纯 CQ 码与消息链的转换处理 | 正向 HTTP, 正向 WebSocket | [GitHub](https://github.com/Lxns-Network/nakuru-project) |
+
+> 以上数据来自于 GitHub 搜索, 如有错误, 请指出
 
 ### 跳过启动的五秒延时
 
