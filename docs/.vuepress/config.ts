@@ -63,8 +63,9 @@ export default defineUserConfig<DefaultThemeOptions>({
             { text: 'Guide', children: ['/guide/', '/guide/quick_start.md', '/guide/config.md', '/guide/eventfilter.md', '/guide/file.md', '/guide/achieve.md'] },
             { text: 'API', children: ['/api/', '/api/guild.md'] },
             { text: 'Event', children: ['/event/', '/event/guild.md'] },
-            { text: 'CQ code', link: '/cqcode/' },
+            { text: 'CQ Code', link: '/cqcode/' },
             { text: 'Guild', link: '/guild/'},
+            { text: 'Reference', link: '/reference/'},
             { text: 'Advanced', link: '/advanced/'},
             { text: 'FAQ', link: '/faq/' }
         ],
