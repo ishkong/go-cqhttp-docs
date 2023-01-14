@@ -923,6 +923,11 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 
 ### 重启 go-cqhttp
 
+::: warning 注意
+该 API 由于技术原因，自 1.0.0 版本已被移除，目前暂时没有再加入的计划
+[#1230](https://github.com/Mrs4s/go-cqhttp/issues/1230)
+:::
+
 终结点：`/set_restart`
 
 由于重启 go-cqhttp 实现同时需要重启 API 服务, 这意味着当前的 API 请求会被中断, 因此需要异步地重启, 接口返回的 `status` 是 `async`。
