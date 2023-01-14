@@ -378,10 +378,10 @@ Type : `image`
 | 10    | 有待测试                                   |
 | 13    | 热搜图                                    |
 
-发送时，`file` 参数除了支持相对 `data/image` 的路径外，还支持：
+发送时，`file` 参数支持：
 
-- 绝对路径，例如 `file:///C:\\Users\Richard\Pictures\1.png`，格式使用 [`file` URI](https://tools.ietf.org/html/rfc8089)
-- 网络 URL，例如 `http://i1.piimg.com/567571/fdd6e7b6d93f1ef0.jpg`
+- 绝对路径，例如 `file:///C:\\Users\Alice\Pictures\1.png`，格式使用 [`file` URI](https://tools.ietf.org/html/rfc8089)
+- 网络 URL，例如 `https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png`
 - Base64 编码，例如 `base64://iVBORw0KGgoAAAANSUhEUgAAABQAAAAVCAIAAADJt1n/AAAAKElEQVQ4EWPk5+RmIBcwkasRpG9UM4mhNxpgowFGMARGEwnBIEJVAAAdBgBNAZf+QAAAAABJRU5ErkJggg==`
 
 示例: `[CQ:image,file=http://baidu.com/1.jpg,type=show,id=40004]`
