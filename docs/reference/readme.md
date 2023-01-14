@@ -22,11 +22,80 @@
 
 使用反向 HTTP 时, go-cqhttp 会将 "上报" 通过 POST 请求的方式主动发送给客户端, 关于请求体的详细内容, 在文档的 Event 部分中有详细讲解
 
+| 请求头 | 描述 |
+| --- | --- |
+| X-Self-ID| 登陆的 QQ |
+| X-Signature | 签名(Optional) |
+
 > 链接: [go-cqhttp 帮助中心: Event](/event)
+
+假设配置指定的上报 URL 为 http://127.0.0.1:8080/, 以私聊消息为例，事件上报的 POST 请求如下:
+
+```http
+POST / HTTP/1.1
+Host: 127.0.0.1:8080
+Content-Type: application/json
+X-Self-ID: 10001000
+
+{
+    "time": 1515204254,
+    "self_id": 10001000,
+    "post_type": "message",
+    "message_type": "private",
+    "sub_type": "friend",
+    "message_id": 12,
+    "user_id": 12345678,
+    "message": "你好～",
+    "raw_message": "你好～",
+    "font": 456,
+    "sender": {
+        "nickname": "小不点",
+        "sex": "male",
+        "age": 18
+    }
+}
+
+```
 
 ### WebSocket
 
 正向 WebSocket 和反向 WebSocket 操作无异, 关于数据格式, 也同样在 API 和 Event 部分有详细讲解
+
+# 鉴权
+
+在通信中, 为了保证安全, go-cqhttp 提供了 Access token 和签名来保证安全性.
+
+## 访问口令
+
+在 HTTP 和 WebSocket 通信中, 用户需要在请求头中加入 "Authorization" 头, 格式如下:
+
+```http
+GET /api HTTP/1.1
+...
+Authorization: Bearer access-token
+```
+
+例如, 当你在配置文件中指定 Access token 为 "1114514" 的时候, 那么任何通过 HTTP 和正向 WebSocket 连接到 go-cqhttp 的请求都需要添加这个头
+
+```http
+GET /api HTTP/1.1
+...
+Authorization: Bearer 114514
+```
+
+如果是反向 WebSocket, 那么 go-cqhttp 在连接到你的程序时, 也会在请求头中加入对应的访问口令
+
+## 上报签名
+
+如果配置中给定了 `secret` 即签名密钥, 那么在 go-cqhttp 发送上报信息到你的程序时, 都会在请求头中加入对应 HMAC 签名, 即 `X-Signature` 头, 如:
+
+```http
+POST / HTTP/1.1
+...
+X-Signature: sha1=f9ddd4863ace61e64f462d41ca311e3d2c1176e2
+
+```
+
 
 ## 上报
 
