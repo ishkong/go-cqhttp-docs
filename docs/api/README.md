@@ -571,6 +571,10 @@ retcode 字段:
 | `college`       | string | - | 学校 |
 | `personal_note` | string | - | 个人说明 |
 
+::: tip 提示
+该 API 没有响应数据
+:::
+
 ### 获取陌生人信息
 
 终结点：`/get_stranger_info`
