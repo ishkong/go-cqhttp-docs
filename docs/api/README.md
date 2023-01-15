@@ -143,6 +143,13 @@ retcode 字段:
 | `group_id` | int64          | 群号                          |
 | `messages` | forward node[] | 自定义转发消息, 具体看 [CQcode](https://docs.go-cqhttp.org/cqcode/#%E5%90%88%E5%B9%B6%E8%BD%AC%E5%8F%91%E6%B6%88%E6%81%AF%E8%8A%82%E7%82%B9) |
 
+**响应数据**
+
+| 字段名 | 数据类型 | 说明 |
+| ----- | ------- | --- |
+| `message_id` | int64 | 消息 ID |
+| `forward_id` | string | 转发消息 ID |
+
 ### 发送消息
 
 终结点：`/send_msg`
