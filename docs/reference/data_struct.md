@@ -101,7 +101,6 @@
 
 一个枚举, 传输使用字符串, 表示通知类型.
 
-
 | 值 | 说明 |
 | --- | ---- |
 | group_upload | 群文件上传 |
@@ -121,6 +120,7 @@
 ## Post_Notice_Notify_SubType
 
 一个枚举, 传输使用字符串, 表示系统通知的子类型
+
 | 值 | 说明 |
 | -- | --- |
 | honor | 群荣誉变更 |
@@ -136,3 +136,40 @@
 | - | - |
 | lifecycle | 生命周期 |
 | heartbeat | 心跳包 |
+
+## Status
+
+一个数据结构, 在 `心跳包` 上报中作为成员使用
+
+| 字段名 | 数据类型 | 说明 |
+| --- | --- | --- |
+| `app_initialized` | bool | 程序是否初始化完毕 |
+| `app_enabled` | bool | 程序是否可用 |
+| `plugins_good` | bool | 插件正常(可能为 null) |
+| `app_good` | bool | 程序正常 |
+| `online` | bool | 是否在线 |
+| `stat` | Status_Statistics | 统计信息 |
+
+## Status_Statistics
+
+一个数据结构, 是 `心跳包` 的 `status` 字段的 `stat` 字段
+
+| 字段名 | 数据类型 | 说明 |
+| --- | --- | --- |
+| `PacketReceived` | uint64 | 收包数 |
+| `PacketSent` | uint64 | 发包数 |
+| `PacketLost` | uint64 | 丢包数 |
+| `MessageReceived` | uint64 | 消息接收数 |
+| `MessageSent` | uint64 | 消息发送数 |
+| `DisconnectTimes` | uint32 | 连接断开次数 |
+| `LostTimes` | uint32 | 连接丢失次数 |
+| `LastMessageTime` | int64 | 最后一次消息时间 |
+
+## Post_MetaEvent_LifecycleType
+
+一个枚举, 传输使用字符串, 表示生命周期上报的子类型
+
+| 值 | 说明 |
+| `enable` | 启用 |
+| `disable` | 禁用 |
+| `connect` | 连接 |
