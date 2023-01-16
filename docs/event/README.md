@@ -4,6 +4,8 @@
 
 参考: [go-cqhttp 帮助中心: 参考](/reference), [go-cqhttp 帮助中心: 数据结构](/reference/data_struct)
 
+关于下面 API 中 **快速操作** 的使用方式, 请参考: [go-cqhttp 参考: 快速操作](/reference/#快速操作)
+
 > 本页面中, 数据类型是使用 golang 数据类型来表示的.
 
 ## 通用数据
