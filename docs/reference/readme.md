@@ -61,11 +61,11 @@ X-Self-ID: 10001000
 
 正向 WebSocket 和反向 WebSocket 操作无异, 关于数据格式, 也同样在 API 和 Event 部分有详细讲解
 
-# 鉴权
+## 鉴权
 
 在通信中, 为了保证安全, go-cqhttp 提供了 Access token 和签名来保证安全性.
 
-## 访问口令
+### 访问口令
 
 在 HTTP 和 WebSocket 通信中, 用户需要在请求头中加入 "Authorization" 头, 格式如下:
 
@@ -85,7 +85,7 @@ Authorization: Bearer 114514
 
 如果是反向 WebSocket, 那么 go-cqhttp 在连接到你的程序时, 也会在请求头中加入对应的访问口令
 
-## 上报签名
+### 上报签名
 
 如果配置中给定了 `secret` 即签名密钥, 那么在 go-cqhttp 发送上报信息到你的程序时, 都会在请求头中加入对应 HMAC 签名, 即 `X-Signature` 头, 如:
 
@@ -94,6 +94,30 @@ POST / HTTP/1.1
 ...
 X-Signature: sha1=f9ddd4863ace61e64f462d41ca311e3d2c1176e2
 
+```
+
+下面是验证签名的 C# 示例代码
+
+```cs
+// HMACSHA1 的初始化
+byte[] tokenBin = Encoding.UTF8.GetBytes(secret);    // 获取二进制数据
+HMACSHA1 sha1 = new HMACSHA1(tokenBin);              // 初始化 HMACSHA1
+
+// 验证签名与数据是否匹配
+private bool Verify(string? signature, byte[] data)
+{
+    if (signature == null)
+        return sha1 == null;
+    if (sha1 == null)
+        return false;
+
+    if (signature.StartsWith("sha1="))
+        signature = signature.Substring(5);
+
+    byte[] hash = sha1.ComputeHash(data);
+    string realSignature = string.Join(null, hash.Select(bt => Convert.ToString(bt, 16).PadLeft(2, '0')));
+    return signature == realSignature;
+}
 ```
 
 
