@@ -8,7 +8,7 @@
 
 ## 通用数据
 
-下面定义了上报数据所包含的通用数据, 这些可能在你编写 "类" 并处理继承关系时有用
+下面定义了上报数据所包含的通用数据, 这些可能在你进行面向对象封装并处理继承关系时有用
 
 ### 所有上报
 
@@ -16,7 +16,7 @@
 
 | 字段名 | 数据类型 | 可能的值 | 说明 |
 |-----------|--------|--------------------------------------|----------------------------|
-| `time`  | int64  | -  | 事件发生的时间戳 |
+| `time`  | int64  | -  | 事件发生的unix时间戳 |
 | `self_id` | int64  | -  | 收到事件的机器人的 QQ 号 |
 | `post_type` | string [参考](/reference/data_struct/#post-type) | message, message_sent, request, notice, meta_event | 表示该上报的类型, 消息, 消息发送, 请求, 通知, 或元事件 |
 
@@ -32,7 +32,7 @@
 | `sub_type`  | string [参考](/reference/data_struct/#post-message-subtype) | group, public | 表示消息的子类型 |
 | `message_id`  | int32  | - | 消息 ID |
 | `user_id` | int64  | - | 发送者 QQ 号 |
-| `message` | message  | - | 一个消息链 |
+| `message` | message [参考](/reference/#消息) | - | 一个消息链 |
 | `raw_message` | string [参考](/cqcode) | - | CQ 码格式的消息 |
 | `font`  | int  | 0 | 字体 |
 | `sender`  | object [参考](/reference/data_struct/#post-message-messagesender) | - | 发送者信息 |
@@ -95,7 +95,7 @@ post_type 为 meta_event 的上报会有以下有效数据
 | \* `sub_type` | string [参考](/reference/data_struct/#post-message-subtype) | `friend`、`group`、`group_self`、`other` | 消息子类型, 如果是好友则是 `friend`, 如果是群临时会话则是 `group`, 如果是在群中自身发送则是 `group_self` |
 | \* `message_id` | int32  | - | 消息 ID  |
 | \* `user_id`  | int64  | - | 发送者 QQ 号 |
-| \* `message`  | message  | - | 消息内容 |
+| \* `message`  | message [参考](/reference/#消息) | - | 消息内容 |
 | \* `raw_message`  | string [参考](/cqcode) | - | 原始消息内容 |
 | \* `font` | int32  | - | 字体 |
 | \* `sender` | object [参考](/reference/data_struct/#post-message-messagesender) | - | 发送人信息  |
@@ -123,7 +123,7 @@ post_type 为 meta_event 的上报会有以下有效数据
 | \* `sub_type` | string  | `normal`、`anonymous`、`notice` | 消息子类型, 正常消息是 `normal`, 匿名消息是 `anonymous`, 系统提示 ( 如「管理员已禁止群内匿名聊天」 ) 是 `notice` |
 | \* `message_id` | int32 | - | 消息 ID |
 | \* `user_id`  | int64 | - | 发送者 QQ 号  |
-| \* `message`  | message | - | 消息内容  |
+| \* `message`  | message [参考](/reference/#消息) | - | 消息内容  |
 | \* `raw_message`  | string  | - | 原始消息内容  |
 | \* `font` | int32 | - | 字体  |
 | \* `sender` | object [参考](/reference/data_struct/#post-message-messagesender) | - | 发送人信息 |
@@ -155,8 +155,8 @@ post_type 为 meta_event 的上报会有以下有效数据
 | `at_sender` | boolean | 是否要在回复开头 at 发送者 ( 自动添加 ) , 发送者是匿名用户时无效 | at 发送者 |
 | `delete` | boolean | 撤回该条消息 | 不撤回 |
 | `kick` | boolean | 把发送者踢出群组 ( 需要登录号权限足够 ) , **不拒绝**此人后续加群请求, 发送者是匿名用户时无效 | 不踢出 |
-| `ban` | boolean | 把发送者禁言 `ban_duration` 指定时长, 对匿名用户也有效 | 不禁言 |
-| `ban_duration` | number | 禁言时长 | 30 分钟 |
+| `ban` | boolean | 禁言该消息发送者, 对匿名用户也有效 | 不禁言 |
+| `ban_duration` | number | 若要执行禁言操作时的禁言时长 | 30 分钟 |
 
 ### 通知上报
 
@@ -521,7 +521,7 @@ post_type 为 meta_event 的上报会有以下有效数据
 | `status` | Status [参考](/reference/data_struct#status) | - | 应用程序状态 |
 | `interval` | int64 | - | 距离上一次心跳包的时间(单位是毫秒) |
 
-#### 声明周期
+#### 生命周期
 
 | 字段名 | 数据类型 | 可能的值 | 说明 |
 | ----- | ------ | -------- | --- |
