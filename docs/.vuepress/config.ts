@@ -60,7 +60,7 @@ export default defineUserConfig<DefaultThemeOptions>({
         danger: "警告",
         backToHome: "返回首页",
         navbar: [
-            { text: 'Guide', children: ['/guide/', '/guide/quick_start.md', '/guide/config.md', '/guide/eventfilter.md', '/guide/file.md', '/guide/achieve.md'] },
+            { text: 'Guide', children: ['/guide/', '/guide/quick_start.md', '/guide/config.md', '/guide/eventfilter.md', '/guide/file.md', '/guide/achieve.md', '/guide/docker.md'] },
             { text: 'API', children: ['/api/', '/api/guild.md'] },
             { text: 'Event', children: ['/event/', '/event/guild.md'] },
             { text: 'CQ Code', link: '/cqcode/' },
