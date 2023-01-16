@@ -76,7 +76,7 @@ GET /api HTTP/1.1
 Authorization: Bearer access-token
 ```
 
-例如, 当你在配置文件中指定 Access token 为 "1114514" 的时候, 那么任何通过 HTTP 和正向 WebSocket 连接到 go-cqhttp 的请求都需要添加这个头
+例如, 当你在配置文件中指定 Access token 为 "114514" 的时候, 那么任何通过 HTTP 和正向 WebSocket 连接到 go-cqhttp 的请求都需要添加这个头
 
 ```http
 GET /api HTTP/1.1
