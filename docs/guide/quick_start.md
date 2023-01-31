@@ -24,7 +24,7 @@
 | armv7 Windows | `go-cqhttp_windows_armv7.exe` | `go-cqhttp_windows_armv7.zip`   |
 
 
-- MD5信息在 `go-cqhttp_checksums.txt` , 可用于校验文件完整性
+- SHA-256信息在 `go-cqhttp_checksums.txt` , 可用于校验文件完整性
 - 如果没有你所使用的系统版本或者希望自己构建, 请移步 [进阶指南-如何自己构建](#如何自己构建)
 
 ### 解压
