@@ -73,7 +73,7 @@
 
 ![image.png](https://i.loli.net/2020/12/27/WZsTCyGwSjc9mb5.png)
 
-点击 `OK` 并处理滑块, 完成即可登录成功。( OK可能反应稍微慢点, 请不要多次点击 )
+点击 `OK` 并处理滑块, 完成即可登录成功。( 可能反应稍微慢点, 请不要多次点击 )
 
 ![image.png](https://i.loli.net/2020/12/27/UnvAuxreijYzgLC.png)
 

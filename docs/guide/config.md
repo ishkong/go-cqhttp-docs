@@ -263,6 +263,7 @@ servers:
 | 3   | MacOS         | 无                                                               |
 | 4   | 企点          | 只能登录企点账号或企点子账号                                      |
 | 5   | iPad          |无                                                                |
+| 6   | aPad          |无                                                                |
 
 ::: warning 注意
 根据协议的不同, 各类消息有所限制
@@ -297,7 +298,7 @@ servers:
 在部署前，请在本地完成登录，并将 `config.yml` ， `device.json` ，`bootstrap` 和 `go-cqhttp`
 一起打包。
 
-在触发器中创建一个 API 网关触发器，并启用继承响应， 创建完成后即可通过api网关访问 `go-cqhttp` (建议配置 AccessToken)。
+在触发器中创建一个 API 网关触发器，并启用集成响应， 创建完成后即可通过api网关访问 `go-cqhttp` (建议配置 AccessToken)。
 
 > `scripts/bootstrap` 中使用的工作路径为 /tmp, 这个目录最大能容下 500M 文件, 如需长期使用，
 > 请挂载文件存储(CFS).

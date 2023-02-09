@@ -10,6 +10,7 @@
 | 反向 HTTP      | 客户端作为 HTTP 服务端, go-cqhttp 会主动向客户端发送 HTTP 请求, 这种通信方式用来实现 "被动操作", 例如接收消息, 并不能够实现发送消息 |
 | 正向 WebSocket | 服务端会作为 WebSocket 服务端, 客户端连接, 然后与之通信, 由于 WebSocket 是双工的, 所以该方式既可以进行发送消息, 也可以进行接收消息  |
 | 反向 WebSocket | 客户端需作为 WebSocket 服务端, go-cqhttp 会连接客户端, 然后与之通信, 通信的数据内容与正向 WebSocket 是一致的          |
+
 关于上述通信方式, 在 go-cqhttp 的配置文件中均能够配置, 例如指定正向 HTTP 方式中, go-cqhttp 监听的地址与端口, 或者指定访问令牌
 
 ### 正向 HTTP
@@ -75,7 +76,7 @@ GET /api HTTP/1.1
 Authorization: Bearer access-token
 ```
 
-例如, 当你在配置文件中指定 Access token 为 "1114514" 的时候, 那么任何通过 HTTP 和正向 WebSocket 连接到 go-cqhttp 的请求都需要添加这个头
+例如, 当你在配置文件中指定 Access token 为 "114514" 的时候, 那么任何通过 HTTP 和正向 WebSocket 连接到 go-cqhttp 的请求都需要添加这个头
 
 ```http
 GET /api HTTP/1.1
