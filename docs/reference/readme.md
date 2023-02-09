@@ -19,6 +19,21 @@
 
 > 链接: [go-cqhttp 帮助中心: API](/api)
 
+下面是发送 Action 的请求格式
+
+```http
+GET /终结点?参数1=参数值&参数2=参数值 HTTP/1.1
+```
+
+```http
+POST /终结点 HTTP/1.1
+
+{
+    "参数名": "参数值",
+    "参数名2": "参数值"
+}
+```
+
 ### 反向 HTTP
 
 使用反向 HTTP 时, go-cqhttp 会将 "上报" 通过 POST 请求的方式主动发送给客户端, 关于请求体的详细内容, 在文档的 Event 部分中有详细讲解
@@ -62,6 +77,65 @@ X-Self-ID: 10001000
 
 正向 WebSocket 和反向 WebSocket 操作无异, 关于数据格式, 也同样在 API 和 Event 部分有详细讲解
 
+使用 WebSocket 请求时, 只需要发送一个 JSON 即可
+
+```json
+{
+    "action": "终结点名称, 例如 'send_group_msg'",
+    "params": {
+        "参数名": "参数值",
+        "参数名2": "参数值"
+    },
+    "echo": "'回声', 如果指定了 echo 字段, 那么响应包也会同时包含一个 echo 字段, 它们会有相同的值"
+}
+```
+
+Action 的响应是这样的格式:
+
+```json
+{
+    "status": "状态, 表示 API 是否调用成功, 如果成功, 则是 OK, 其他的在下面会说明",
+    "retcode": 0,
+    "msg": "错误消息, 仅在 API 调用失败时有该字段",
+    "wording": "对错误的详细解释(中文), 仅在 API 调用失败时有该字段",
+    "data": {
+        "响应数据名": "数据值",
+        "响应数据名2": "数据值",
+    },
+    "echo": "'回声', 如果请求时指定了 echo, 那么响应也会包含 echo"
+}
+```
+
+接收一个上报的时候, 它的格式与反向 HTTP 一样
+
+```json
+{
+    "time": 1515204254,
+    "self_id": 10001000,
+    "post_type": "message",
+    "message_type": "private",
+    "sub_type": "friend",
+    "message_id": 12,
+    "user_id": 12345678,
+    "message": "你好～",
+    "raw_message": "你好～",
+    "font": 456,
+    "sender": {
+        "nickname": "小不点",
+        "sex": "male",
+        "age": 18
+    }
+}
+```
+
+从上面的内容, 你也能看出来, 如果我只连接一个 WebSocket 会话, 那么这个会话接收的数据可能包含上报数据, 也可能包含 Action 响应, go-cqhttp 还提供了不同的 WebSocket 终结点, 通过使用特定终结点, 就可以仅使用特定功能, 避免数据冲突
+
+| 终结点 | 功能 | 描述 |
+| -- | -- | -- |
+| / | Action / Post | 包含 Action 发送, 结果接收, 以及 Post 接收功能 |
+| /api | Action | 通过连接到这个终结点, 你的 WebSocket 不会接收到 Post, 它只用来进行 Action 发送与结果接收 |
+| /event | Post | 连接到这个终结点, 你可以仅接收到 Post, 它不应该用于 Action 发送
+
 ## 鉴权
 
 在通信中, 为了保证安全, go-cqhttp 提供了 Access token 和签名来保证安全性.
@@ -88,7 +162,7 @@ Authorization: Bearer 114514
 
 ### 上报签名
 
-如果配置中给定了 `secret` 即签名密钥, 那么在 go-cqhttp 发送上报信息到你的程序时, 都会在请求头中加入对应 HMAC 签名, 即 `X-Signature` 头, 如:
+如果配置中给定了 `secret` 即签名密钥, 那么在 go-cqhttp 发送上报信息到你的程序时, 都会在请求头中加入对应 HMAC SHA1 签名, 即 `X-Signature` 头, 如:
 
 ```http
 POST / HTTP/1.1
