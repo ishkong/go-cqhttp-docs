@@ -109,7 +109,8 @@ servers:
 ```yaml
 servers:
   - http: # HTTP 通信设置
-      address: 0.0.0.0:5700 # HTTP监听地址
+      host: 0.0.0.0 # HTTP监听地址
+      port: 5700 # 端口
       timeout: 5      # 反向 HTTP 超时时间, 单位秒，<5 时将被忽略
       long-polling:   # 长轮询拓展
         enabled: false       # 是否开启
