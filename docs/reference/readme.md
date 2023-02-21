@@ -41,7 +41,7 @@ POST /终结点 HTTP/1.1
 | 请求头 | 描述 |
 | --- | --- |
 | X-Self-ID| 登陆的 QQ |
-| X-Signature | 签名(Optional) |
+| X-Signature | 签名(可选) |
 
 > 链接: [go-cqhttp 帮助中心: Event](/event)
 
@@ -170,6 +170,10 @@ POST / HTTP/1.1
 X-Signature: sha1=f9ddd4863ace61e64f462d41ca311e3d2c1176e2
 
 ```
+X-Signature的内容中，sha1的值的计算方式为：
+- 获取请求体的内容，即 `requestBody`
+- 使用密钥为 `secret`的HMAC算法加密 `requestBody`
+- 得到的HMAC加密值以Hex格式输出为字符串
 
 下面是验证签名的 C# 示例代码
 
@@ -195,6 +199,45 @@ private bool Verify(string? signature, byte[] data)
 }
 ```
 
+
+下面是验证签名的 GO （go gin框架）的示例代码
+```golang
+// CqhttpAuth 当X-Signature存在时，校验签名
+// 该方法配置为 gin middleware，可根据需要修改
+// secert 配置的密钥
+func CqhttpAuth(secret string) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		hSignature := c.GetHeader("X-Signature")
+		if hSignature != "" {
+			if secret == "" {
+				c.AbortWithStatus(http.StatusUnauthorized)
+				return
+			}
+			// 读取 request body
+			body, err := io.ReadAll(c.Request.Body)
+			if err != nil {
+				c.AbortWithStatus(http.StatusInternalServerError)
+				return
+			}
+			// gin框架中request body只能读取一次，需要复写 request body
+			c.Request.Body = io.NopCloser(bytes.NewBuffer(body))
+			// 使用密钥计算request body的 hmac码
+			mac := hmac.New(sha1.New, []byte(secret))
+			if _, err := mac.Write(body); err != nil {
+				c.AbortWithStatus(http.StatusInternalServerError)
+				return
+			}
+			// 校验hmac签名
+			if "sha1="+hex.EncodeToString(mac.Sum(nil)) != hSignature {
+				c.AbortWithStatus(http.StatusUnauthorized)
+				return
+			}
+		}
+		c.Next()
+	}
+
+}
+```
 
 ## 上报
 
