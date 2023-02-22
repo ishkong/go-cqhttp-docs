@@ -90,7 +90,7 @@
 
 | 语言 / 平台 | 名称 | 简介 | 通信协议支持 | 开源 |
 | --- | --- | --- | --- | --- |
-| C# / .NET | EleCho.GoCqHttpSdk | 完全遵守 C# 命名规范, 优雅与便捷的 Go-CqHttp 通信 SDK, 完全支持 array 与 string 通信格式 | 正反向 HTTP, 正向 WebSocket | [GitHub](https://github.com/EleChoNet/EleCho.GoCqHttpSdk) |
+| C# / .NET | EleCho.GoCqHttpSdk | 完全遵守 C# 命名规范, 优雅与便捷的 Go-CqHttp 通信 SDK, 完全支持 array 与 string 通信格式 | 正反向 HTTP, 正向 WebSocket | [GitHub](https://github.com/OrgEleCho/EleCho.GoCqHttpSdk) |
 | C# / .NET | IlyfairyLib.GoCqHttpSdk | 一个 go-cqhttp 的 C# SDK, 使用了类似管道的模式 | 正向 HTTP, 正向 WebSocket | [GitHub](https://github.com/ilyfairy/IlyfairyLib.GoCqHttpSdk) |
 | C# / .NET | Saladim.QBot | 封装了大部分常用事件及接口并从其抽象, 从抽象层再次封装了简单可依赖注入的简单服务(指令解析, 事件处理管线, 简单的协程, session等) | 正反向HTTP, 正向WebSocket | [Github](https://github.com/saladim-org/Saladim.QBot) |
 | GO | leafbot | 基于 go-cqhttp，实现 onebot 协议的 go 语言版本 sdk，拥有内置插件。| 正向 HTTP, 正反向 WebSocket| [GitHub](https://github.com/huoxue1/leafbot) |
