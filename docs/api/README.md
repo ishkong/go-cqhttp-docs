@@ -1120,7 +1120,7 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 | `group_id`      | int64    | -      | 群号                                                         |
 | `user_id`       | int64    | -      | 要设置的 QQ 号                                               |
 | `special_title` | string   | 空     | 专属头衔, 不填或空字符串表示删除专属头衔                     |
-| `duration`      | number   | `-1`   | 专属头衔有效期, 单位秒, -1 表示永久, 不过此项似乎没有效果, 可能是只有某些特殊的时间长度有效, 有待测试 |
+| `duration`      | uint32   | `-1`   | 专属头衔有效期, 单位秒, -1 表示永久, 不过此项似乎没有效果, 可能是只有某些特殊的时间长度有效, 有待测试 |
 
 ::: tip 提示
 该 API 无响应数据
@@ -1184,7 +1184,7 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 | `group_id`                 | int64    | -         | 群号                                                        |
 | `anonymous`                | object   | -         | 可选, 要禁言的匿名用户对象（群消息上报的 `anonymous` 字段） |
 | `anonymous_flag` 或 `flag` | string   | -         | 可选, 要禁言的匿名用户的 flag（需从群消息上报的数据中获得） |
-| `duration`                 | number   | `30 * 60` | 禁言时长, 单位秒, 无法取消匿名用户禁言                      |
+| `duration`                 | uint32   | `30 * 60` | 禁言时长, 单位秒, 无法取消匿名用户禁言                      |
 
 ::: tip 提示
 上面的 `anonymous` 和 `anonymous_flag` 两者任选其一传入即可, 若都传入, 则使用 `anonymous`。
