@@ -1737,7 +1737,7 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 
 ### 重启 Go-CqHttp
 
-::: warning 注意
+::: danger 注意
 该 API 由于技术原因，自 1.0.0 版本已被移除，目前暂时没有再加入的计划
 [#1230](https://github.com/Mrs4s/go-cqhttp/issues/1230)
 :::
