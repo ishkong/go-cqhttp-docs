@@ -667,11 +667,11 @@ ocr_image API移除了实验模式, 目前版本 .ocr_image 和 ocr_image 均能
 
 **TextDetection**
 
-| 字段          | 类型    | 说明   |
-| ------------- | ------- | ------ |
-| `text`        | string  | 文本   |
-| `confidence`  | int32   | 置信度 |
-| `coordinates` | vector2 | 坐标   |
+| 字段          | 类型      | 说明   |
+| ------------- | --------- | ------ |
+| `text`        | string    | 文本   |
+| `confidence`  | int32     | 置信度 |
+| `coordinates` | vector2[] | 坐标   |
 
 
 
