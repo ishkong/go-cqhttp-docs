@@ -21,18 +21,51 @@
 
 下面是发送 Action 的请求格式
 
+
+
+GET 请求:
+
 ```http
 GET /终结点?参数1=参数值&参数2=参数值 HTTP/1.1
 ```
 
+或者 POST 请求(将参数放到请求体中)
+
 ```http
 POST /终结点 HTTP/1.1
+Content-Type: application/json
 
 {
     "参数名": "参数值",
     "参数名2": "参数值"
 }
 ```
+
+或者(将终结点在请求体中写明):
+
+```http
+POST / HTTP/1.1
+Content-Type: application/json
+
+{ 
+    "action": "终结点名称, 例如 'send_group_msg'",
+    "params": {
+        "参数名": "参数值", 
+        "参数名2": "参数值"
+    }
+}
+```
+
+或者(使用表单):
+
+```http
+POST /终结点 HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+参数1=参数值&参数2=参数值
+```
+
+
 
 ### 反向 HTTP
 
