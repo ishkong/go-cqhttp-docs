@@ -101,6 +101,7 @@ post_type 为 meta_event 的上报会有以下有效数据
 | \* `raw_message`  | string [参考](/cqcode) | - | 原始消息内容 |
 | \* `font` | int32  | - | 字体 |
 | \* `sender` | object [参考](/reference/data_struct/#post-message-messagesender) | - | 发送人信息  |
+|  `target_id`  | int64  | - | 接收者 QQ 号 |
 | `temp_source`  | int  | - | 临时会话来源 |
 
 需要注意的是, `sender` 中的各字段是尽最大努力提供的, 也就是说, 不保证每个字段都一定存在, 也不保证存在的字段都是完全正确的 ( 缓存可能过期 ) 。
