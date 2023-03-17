@@ -80,7 +80,7 @@
 
 #### 开始与 go-cqhttp 交互
 
-在 `go-cqhttp` 成功运行之后, 你就可以通过自己写的程序, 使用 `HTTP` 或者 `WebSocket` 与 `go-cqhttp` 进行通讯, 实现 QQ 机器人. 在这个过程中, 你的程序只需要把一些数据发送给 `go-cqhttp`, 关于 QQ 的通信协议, `gq-cqhttp` 会帮你解决.
+在 `go-cqhttp` 成功运行之后, 你就可以通过自己写的程序, 使用 `HTTP` 或者 `WebSocket` 与 `go-cqhttp` 进行通讯, 实现 QQ 机器人. 在这个过程中, 你的程序只需要把一些数据发送给 `go-cqhttp`, 关于 QQ 的通信协议, `go-cqhttp` 会帮你解决.
 
 你也可以将 `go-cqhttp` 部署在你的服务器上, 并加上验证, 这样, 你就可以在各个地方使用自己的程序连接到远程的 `go-cqhttp`.
 
