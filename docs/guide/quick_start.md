@@ -94,7 +94,7 @@
 | C# / .NET | IlyfairyLib.GoCqHttpSdk | 一个 go-cqhttp 的 C# SDK, 使用了类似管道的模式 | 正向 HTTP, 正向 WebSocket | [GitHub](https://github.com/ilyfairy/IlyfairyLib.GoCqHttpSdk) |
 | C# / .NET | Saladim.QBot | 封装了大部分常用事件及接口并从其抽象, 从抽象层再次封装了简单可依赖注入的简单服务(指令解析, 事件处理管线, 简单的协程, session等) | 正反向HTTP, 正向WebSocket | [Github](https://github.com/saladim-org/Saladim.QBot) |
 | GO | leafbot | 基于 go-cqhttp，实现 onebot 协议的 go 语言版本 sdk，拥有内置插件。| 正向 HTTP, 正反向 WebSocket| [GitHub](https://github.com/huoxue1/leafbot) |
-| Python | pycqBot | go-cqhttp python 框架，可以用于快速塔建 bot | 正向 HTTP, 正向 WebSocket | [GitHub](https://github.com/FengLiuFeseliud/pycqBot) |
+| Python | pycqBot | go-cqhttp python 框架，可以用于快速搭建 bot | 正向 HTTP, 正向 WebSocket | [GitHub](https://github.com/FengLiuFeseliud/pycqBot) |
 | Python | Nakuru Project | 一款为 go-cqhttp 的正向 WebSocket 设计的 Python SDK，支持纯 CQ 码与消息链的转换处理 | 正向 HTTP, 正向 WebSocket | [GitHub](https://github.com/Lxns-Network/nakuru-project) |
 
 > 以上数据来自于 GitHub 搜索, 如有错误, 请指出
