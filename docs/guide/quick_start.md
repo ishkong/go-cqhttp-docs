@@ -146,14 +146,11 @@ go-cqhttp.exe update
 如果在国内连接github下载速度可能很慢, 可以使用镜像源下载
 
 ```powershell
-go-cqhttp.exe update https://github.rc1844.workers.dev
+go-cqhttp.exe update https://hub.fgit.ml
 ```
 
-几个可用的镜像源
-- `https://hub.fastgit.org`
-- `https://github.com.cnpmjs.org`
-- `https://github.bajins.com`
-- `https://github.rc1844.workers.dev`
+目前可用的镜像源
+- `https://hub.fgit.ml`
 
 **linux**
 
