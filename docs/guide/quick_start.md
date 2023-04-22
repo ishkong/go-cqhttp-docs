@@ -96,6 +96,7 @@
 | GO | leafbot | 基于 go-cqhttp，实现 onebot 协议的 go 语言版本 sdk，拥有内置插件。| 正向 HTTP, 正反向 WebSocket| [GitHub](https://github.com/huoxue1/leafbot) |
 | Python | pycqBot | go-cqhttp python 框架，可以用于快速搭建 bot | 正向 HTTP, 正向 WebSocket | [GitHub](https://github.com/FengLiuFeseliud/pycqBot) |
 | Python | Nakuru Project | 一款为 go-cqhttp 的正向 WebSocket 设计的 Python SDK，支持纯 CQ 码与消息链的转换处理 | 正向 HTTP, 正向 WebSocket | [GitHub](https://github.com/Lxns-Network/nakuru-project) |
+| GO | Nyabot | NyaBot 是一个基于 Go 语言的开源聊天机器人框架，支持多种聊天平台协议。| 正向 HTTP, 正反向 WebSocket | [GitHub](https://github.com/Elyart-Network/NyaBot)
 
 > 以上数据来自于 GitHub 搜索, 如有错误, 请指出
 
