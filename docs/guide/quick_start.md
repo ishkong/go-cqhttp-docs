@@ -42,7 +42,7 @@
 [WARNING]: 尝试加载配置文件 config.yml 失败: 文件不存在
 [INFO]: 默认配置文件已生成,请编辑 config.yml 后重启程序.
 ```
-3. 参照[config.md](https://github.com/Mrs4s/go-cqhttp/blob/master/docs/config.md)和你所用到的插件的 `README` 填入参数
+3. 参照[config.md](https://github.com/ishkong/go-cqhttp-docs/blob/main/docs/guide/config.md)和你所用到的插件的 `README` 填入参数
 4. 再次双击运行脚本
 ```
 [INFO]: 登录成功 欢迎使用: balabala
