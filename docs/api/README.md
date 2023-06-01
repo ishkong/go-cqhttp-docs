@@ -1720,14 +1720,14 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 
 | 字段              | 类型   | 说明             |
 | ----------------- | ------ | ---------------- |
-| `PacketReceived`  | uint64 | 收到的数据包总数 |
-| `PacketSent`      | uint64 | 发送的数据包总数 |
-| `PacketLost`      | uint32 | 数据包丢失总数   |
-| `MessageReceived` | uint64 | 接受信息总数     |
-| `MessageSent`     | uint64 | 发送信息总数     |
-| `DisconnectTimes` | uint32 | TCP 链接断开次数 |
-| `LostTimes`       | uint32 | 账号掉线次数     |
-| `LastMessageTime` | int64  | 最后一条消息时间 |
+| `packet_received`  | uint64 | 收到的数据包总数 |
+| `packet_sent`      | uint64 | 发送的数据包总数 |
+| `packet_lost`      | uint32 | 数据包丢失总数   |
+| `message_received` | uint64 | 接受信息总数     |
+| `message_sent`     | uint64 | 发送信息总数     |
+| `disconnect_times` | uint32 | TCP 链接断开次数 |
+| `lost_times`       | uint32 | 账号掉线次数     |
+| `last_message_time` | int64  | 最后一条消息时间 |
 
 ::: warning 注意
 所有统计信息都将在重启后重置
