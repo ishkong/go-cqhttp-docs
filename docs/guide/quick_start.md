@@ -24,7 +24,7 @@
 | armv7 Windows | `go-cqhttp_windows_armv7.exe` | `go-cqhttp_windows_armv7.zip`   |
 
 
-- MD5信息在 `go-cqhttp_checksums.txt` , 可用于校验文件完整性
+- SHA-256信息在 `go-cqhttp_checksums.txt` , 可用于校验文件完整性
 - 如果没有你所使用的系统版本或者希望自己构建, 请移步 [进阶指南-如何自己构建](#如何自己构建)
 
 ### 解压
@@ -42,7 +42,7 @@
 [WARNING]: 尝试加载配置文件 config.yml 失败: 文件不存在
 [INFO]: 默认配置文件已生成,请编辑 config.yml 后重启程序.
 ```
-3. 参照[config.md](https://github.com/Mrs4s/go-cqhttp/blob/master/docs/config.md)和你所用到的插件的 `README` 填入参数
+3. 参照[config.md](https://github.com/ishkong/go-cqhttp-docs/blob/main/docs/guide/config.md)和你所用到的插件的 `README` 填入参数
 4. 再次双击运行脚本
 ```
 [INFO]: 登录成功 欢迎使用: balabala
@@ -80,7 +80,7 @@
 
 #### 开始与 go-cqhttp 交互
 
-在 `go-cqhttp` 成功运行之后, 你就可以通过自己写的程序, 使用 `HTTP` 或者 `WebSocket` 与 `go-cqhttp` 进行通讯, 实现 QQ 机器人. 在这个过程中, 你的程序只需要把一些数据发送给 `go-cqhttp`, 关于 QQ 的通信协议, `gq-cqhttp` 会帮你解决.
+在 `go-cqhttp` 成功运行之后, 你就可以通过自己写的程序, 使用 `HTTP` 或者 `WebSocket` 与 `go-cqhttp` 进行通讯, 实现 QQ 机器人. 在这个过程中, 你的程序只需要把一些数据发送给 `go-cqhttp`, 关于 QQ 的通信协议, `go-cqhttp` 会帮你解决.
 
 你也可以将 `go-cqhttp` 部署在你的服务器上, 并加上验证, 这样, 你就可以在各个地方使用自己的程序连接到远程的 `go-cqhttp`.
 
@@ -90,12 +90,15 @@
 
 | 语言 / 平台 | 名称 | 简介 | 通信协议支持 | 开源 |
 | --- | --- | --- | --- | --- |
-| C# / .NET | EleCho.GoCqHttpSdk | 完全遵守 C# 命名规范, 优雅与便捷的 Go-CqHttp 通信 SDK, 完全支持 array 与 string 通信格式 | 正反向 HTTP, 正向 WebSocket | [GitHub](https://github.com/EleChoNet/EleCho.GoCqHttpSdk) |
+| C# / .NET | EleCho.GoCqHttpSdk | 完全遵守 C# 命名规范, 优雅与便捷的 Go-CqHttp 通信 SDK, 完全支持 array 与 string 通信格式 | 正反向 HTTP, 正向 WebSocket | [GitHub](https://github.com/OrgEleCho/EleCho.GoCqHttpSdk) |
 | C# / .NET | IlyfairyLib.GoCqHttpSdk | 一个 go-cqhttp 的 C# SDK, 使用了类似管道的模式 | 正向 HTTP, 正向 WebSocket | [GitHub](https://github.com/ilyfairy/IlyfairyLib.GoCqHttpSdk) |
 | C# / .NET | Saladim.QBot | 封装了大部分常用事件及接口并从其抽象, 从抽象层再次封装了简单可依赖注入的简单服务(指令解析, 事件处理管线, 简单的协程, session等) | 正反向HTTP, 正向WebSocket | [Github](https://github.com/saladim-org/Saladim.QBot) |
 | GO | leafbot | 基于 go-cqhttp，实现 onebot 协议的 go 语言版本 sdk，拥有内置插件。| 正向 HTTP, 正反向 WebSocket| [GitHub](https://github.com/huoxue1/leafbot) |
-| Python | pycqBot | go-cqhttp python 框架，可以用于快速塔建 bot | 正向 HTTP, 正向 WebSocket | [GitHub](https://github.com/FengLiuFeseliud/pycqBot) |
+| GO | Nyabot | NyaBot 是一个基于 Go 语言的开源聊天机器人框架，支持多种聊天平台协议。| 正向 HTTP, 正反向 WebSocket | [GitHub](https://github.com/Elyart-Network/NyaBot) |
+| PHP | 虞灪 | go-cqhttp的php sdk，拥有完整的代码提示和注释，使你可以脱离文档来快速开发 | 正向 HTTP | [GitHub](https://github.com/MicroDreamTeam/go-cq-http-sdk) |
+| Python | pycqBot | go-cqhttp python 框架，可以用于快速搭建 bot | 正向 HTTP, 正向 WebSocket | [GitHub](https://github.com/FengLiuFeseliud/pycqBot) |
 | Python | Nakuru Project | 一款为 go-cqhttp 的正向 WebSocket 设计的 Python SDK，支持纯 CQ 码与消息链的转换处理 | 正向 HTTP, 正向 WebSocket | [GitHub](https://github.com/Lxns-Network/nakuru-project) |
+
 
 > 以上数据来自于 GitHub 搜索, 如有错误, 请指出
 
@@ -146,14 +149,11 @@ go-cqhttp.exe update
 如果在国内连接github下载速度可能很慢, 可以使用镜像源下载
 
 ```powershell
-go-cqhttp.exe update https://github.rc1844.workers.dev
+go-cqhttp.exe update https://hub.fgit.ml
 ```
 
-几个可用的镜像源
-- `https://hub.fastgit.org`
-- `https://github.com.cnpmjs.org`
-- `https://github.bajins.com`
-- `https://github.rc1844.workers.dev`
+目前可用的镜像源
+- `https://hub.fgit.ml`
 
 **linux**
 
