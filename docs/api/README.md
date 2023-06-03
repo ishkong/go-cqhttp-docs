@@ -1680,22 +1680,22 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 
 **响应数据**
 
-| 字段名 | 数据类型 | 默认值 | 说明 |
-| ----- | ------- | --- | ---- |
-| `app_name` | string | `go-cqhttp` | 应用标识, 如 `go-cqhttp` 固定值 |
-| `app_version` | string |  | 应用版本, 如 `v0.9.40-fix4` |
-| `app_full_name` | string | | 应用完整名称 |
-| `protocol_version` | string | `v11` | OneBot 标准版本 固定值 |
-| `coolq_edition` | string | `pro` | 原Coolq版本 固定值 |
-| `coolq_directory` | string |  |  |
-| `go-cqhttp` | bool | true| 是否为go-cqhttp 固定值 |
-| `plugin_version` | string | `4.15.0` | 固定值 |
-| `plugin_build_number` | int | 99 | 固定值 |
-| `plugin_build_configuration` | string | `release` | 固定值 |
-| `runtime_version` | string |  |  |
-| `runtime_os` | string |  |  |
-| `version` | string || 应用版本, 如 `v0.9.40-fix4` |
-| `protocol` | int | `0/1/2/3/-1` | 当前登陆使用协议类型 |
+| 字段名 | 数据类型   | 默认值          | 说明 |
+| ----- |--------|--------------| ---- |
+| `app_name` | string | `go-cqhttp`  | 应用标识, 如 `go-cqhttp` 固定值 |
+| `app_version` | string |              | 应用版本, 如 `v0.9.40-fix4` |
+| `app_full_name` | string |              | 应用完整名称 |
+| `protocol_name` | int    | 6            |  |
+| `protocol_version` | string | `v11`        | OneBot 标准版本 固定值 |
+| `coolq_edition` | string | `pro`        | 原Coolq版本 固定值 |
+| `coolq_directory` | string |              |  |
+| `go-cqhttp` | bool   | true         | 是否为go-cqhttp 固定值 |
+| `plugin_version` | string | `4.15.0`     | 固定值 |
+| `plugin_build_number` | int    | 99           | 固定值 |
+| `plugin_build_configuration` | string | `release`    | 固定值 |
+| `runtime_version` | string |              |  |
+| `runtime_os` | string |              |  |
+| `version` | string |              | 应用版本, 如 `v0.9.40-fix4` |
 
 
 
@@ -1720,14 +1720,14 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 
 | 字段              | 类型   | 说明             |
 | ----------------- | ------ | ---------------- |
-| `PacketReceived`  | uint64 | 收到的数据包总数 |
-| `PacketSent`      | uint64 | 发送的数据包总数 |
-| `PacketLost`      | uint32 | 数据包丢失总数   |
-| `MessageReceived` | uint64 | 接受信息总数     |
-| `MessageSent`     | uint64 | 发送信息总数     |
-| `DisconnectTimes` | uint32 | TCP 链接断开次数 |
-| `LostTimes`       | uint32 | 账号掉线次数     |
-| `LastMessageTime` | int64  | 最后一条消息时间 |
+| `packet_received`  | uint64 | 收到的数据包总数 |
+| `packet_sent`      | uint64 | 发送的数据包总数 |
+| `packet_lost`      | uint32 | 数据包丢失总数   |
+| `message_received` | uint64 | 接受信息总数     |
+| `message_sent`     | uint64 | 发送信息总数     |
+| `disconnect_times` | uint32 | TCP 链接断开次数 |
+| `lost_times`       | uint32 | 账号掉线次数     |
+| `last_message_time` | int64  | 最后一条消息时间 |
 
 ::: warning 注意
 所有统计信息都将在重启后重置
