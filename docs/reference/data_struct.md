@@ -9,6 +9,7 @@
 | 值 | 说明 |
 | --- | ---- |
 | message | 消息, 例如, 群聊消息 |
+| message_sent | 消息发送，例如，bot发送在群里的消息|
 | request | 请求, 例如, 好友申请 |
 | notice | 通知, 例如, 群成员增加 |
 | meta_event | 元事件, 例如, go-cqhttp 心跳包 |
