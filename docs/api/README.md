@@ -1244,11 +1244,6 @@ https://p.qlogo.cn/gh/{group_id}/{group_id}/100
 
 ### 群设置匿名
 
-::: warning 注意
-该 API 暂未被 go-cqhttp 支持, 您可以提交 pr 以使该 API 被支持
-[提交 pr](https://github.com/Mrs4s/go-cqhttp/compare)
-:::
-
 终结点：`/set_group_anonymous`
 
 **参数**
