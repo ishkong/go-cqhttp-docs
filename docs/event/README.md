@@ -520,7 +520,7 @@ post_type 为 meta_event 的上报会有以下有效数据
 | \* `time` | int64 | - | 事件发生的时间戳 |
 | \* `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
 | \* `post_type` | string [参考](/reference/data_struct#post-type) | `meta_event` | 上报类型 |
-| `meta_event_type` | string [参考](/reference/data_struct#post-metaevent-type) | `heartbeat` | 元事件类型 |
+| \* `meta_event_type` | string [参考](/reference/data_struct#post-metaevent-type) | `heartbeat` | 元事件类型 |
 | `status` | Status [参考](/reference/data_struct#status) | - | 应用程序状态 |
 | `interval` | int64 | - | 距离上一次心跳包的时间(单位是毫秒) |
 
@@ -531,4 +531,5 @@ post_type 为 meta_event 的上报会有以下有效数据
 | \* `time` | int64 | - | 事件发生的时间戳 |
 | \* `self_id` | int64 | - | 收到事件的机器人 QQ 号 |
 | \* `post_type` | string [参考](/reference/data_struct#post-type) | `meta_event` | 上报类型 |
+| \* `meta_event_type` | string [参考](/reference/data_struct#post-metaevent-type) | `lifecycle` | 元事件类型 |
 | `sub_type` | string | `enable`, `disable`, `connect` | 子类型 |
