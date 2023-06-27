@@ -157,14 +157,14 @@
 
 | 字段名 | 数据类型 | 说明 |
 | --- | --- | --- |
-| `PacketReceived` | uint64 | 收包数 |
-| `PacketSent` | uint64 | 发包数 |
-| `PacketLost` | uint64 | 丢包数 |
-| `MessageReceived` | uint64 | 消息接收数 |
-| `MessageSent` | uint64 | 消息发送数 |
-| `DisconnectTimes` | uint32 | 连接断开次数 |
-| `LostTimes` | uint32 | 连接丢失次数 |
-| `LastMessageTime` | int64 | 最后一次消息时间 |
+| `packet_received` | uint64 | 收包数 |
+| `packet_sent` | uint64 | 发包数 |
+| `packet_lost` | uint64 | 丢包数 |
+| `message_received` | uint64 | 消息接收数 |
+| `message_sent` | uint64 | 消息发送数 |
+| `disconnect_times` | uint32 | 连接断开次数 |
+| `lost_times` | uint32 | 连接丢失次数 |
+| `last_message_time` | int64 | 最后一次消息时间 |
 
 ## Post_MetaEvent_LifecycleType
 
