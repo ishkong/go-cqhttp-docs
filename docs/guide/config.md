@@ -27,6 +27,18 @@ account: # 账号相关
   # 是否允许发送临时会话消息
   allow-temp-session: false
 
+
+  # 数据包的签名服务器
+  # 兼容 https://github.com/fuqiuluo/unidbg-fetch-qsign
+  # 暂不支持最新版qsign服务可用（v1.1.0）
+  # 如果遇到 登录 45 错误, 或者发送信息风控的话需要填入一个服务器
+  # 示例:
+  # sign-server: 'http://127.0.0.1:8080' # 本地签名服务器
+  # sign-server: 'https://signserver.example.com' # 线上签名服务器
+  # 服务器可使用docker在本地搭建或者使用他人开放的服务
+  # 不建议使用公共服务器, 有封号风险
+  sign-server: '-'
+
 heartbeat:
   # 心跳频率, 单位秒
   # -1 为关闭心跳
@@ -98,7 +110,7 @@ database: # 数据库相关设置
 # 连接服务列表
 servers:
   # 添加方式，同一连接方式可添加多个，具体配置说明请查看文档
-  #- http: # http 通信
+  #- http: # http 通信（此协议可连接青龙，请确保IP和端口正确）
   #- ws:   # 正向 Websocket
   #- ws-reverse: # 反向 Websocket
   #- pprof: #性能分析服务器
