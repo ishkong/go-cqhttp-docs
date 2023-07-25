@@ -110,7 +110,7 @@ database: # 数据库相关设置
 # 连接服务列表
 servers:
   # 添加方式，同一连接方式可添加多个，具体配置说明请查看文档
-  #- http: # http 通信（此协议可连接青龙，请确保IP和端口正确）
+  #- http: # http 通信
   #- ws:   # 正向 Websocket
   #- ws-reverse: # 反向 Websocket
   #- pprof: #性能分析服务器
