@@ -6,7 +6,7 @@ go-cqhttp 包含 `config.yml` 和 `device.json` 两个配置文件, 其中 `conf
 
 ## 配置信息
 
-默认生成的运行配置文件 `config.yml` 如下所示: 
+一个典型的运行配置文件示例 `config.yml` 如下所示: 
 
 ```yaml
 # go-cqhttp 默认配置文件
@@ -26,6 +26,9 @@ account: # 账号相关
   use-sso-address: true
   # 是否允许发送临时会话消息
   allow-temp-session: false
+  # 使用签名服务器（见go-cqhttp仓库issue #2242）
+  # 该项目前未加入默认生成的配置样板
+  sign-server："http://127.0.0.1:8080"
 
   # 数据包的签名服务器列表，第一个作为主签名服务器，后续作为备用
   # 兼容 https://github.com/fuqiuluo/unidbg-fetch-qsign
